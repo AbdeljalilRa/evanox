@@ -14,7 +14,7 @@ return new class extends Migration
        Schema::table('users', function (Blueprint $table) {
             $table->string('username')->nullable()->unique()->after('name');
             $table->string('telephone')->nullable()->after('password');
-            $table->string('role')->nullable()->after('telephone'); // ou role_id
+            $table->enum('role', ['customer', 'admin'])->default('customer')->after('telephone');
             $table->softDeletes(); // ajoute deleted_at
         });
     }
@@ -30,3 +30,4 @@ return new class extends Migration
         });
     }
 };
+
