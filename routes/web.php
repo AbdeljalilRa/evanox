@@ -11,6 +11,10 @@ Route::get('/admin', function () {
     return view('admin.dashbord');
 });
 
+Route::get('/home', function () {
+    return view('store.index');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
