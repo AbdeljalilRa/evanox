@@ -37,7 +37,21 @@
         }
     </script>
 
-    
+    {{-- Custom CSS for smooth scrolling and back to top button --}}
+    <style>
+        /* Smooth scroll behavior for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Back to top button custom transitions */
+        [x-cloak] { display: none !important; }
+        
+        /* Custom shadow for the back to top button */
+        .back-to-top-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 
     @stack('styles')
 </head>
@@ -56,8 +70,44 @@
     {{-- Footer --}}
     @include('layouts.store.footer')
 
+    {{-- Back to Top Button --}}
+    <div x-data="backToTop()" x-show="showButton" x-transition class="fixed bottom-6 right-6 z-50">
+        <button 
+            @click="scrollToTop()" 
+            class="bg-white hover:bg-gray-100 text-black p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-gray-300"
+            aria-label="Back to top"
+            title="Back to top"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+            </svg>
+        </button>
+    </div>
+
    
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
+        // Back to Top Component for Alpine.js
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('backToTop', () => ({
+                showButton: false,
+                
+                init() {
+                    // Show/hide button based on scroll position
+                    window.addEventListener('scroll', () => {
+                        this.showButton = window.pageYOffset > 300;
+                    });
+                },
+                
+                scrollToTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }));
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
