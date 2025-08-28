@@ -15,6 +15,10 @@ Route::get('/home', function () {
     return view('store.index');
 });
 
+Route::get('/products', function () {
+    return view('store.products');
+})->name('products');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
