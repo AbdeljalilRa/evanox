@@ -7,23 +7,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
-                        <span>HOME</span>
+                    <a href="/home" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
+                        <span>ENTER</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="/collections" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
+                        <span>COLLECTION</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
-                        <span>PRODUCT</span>
+                        <span>THE ARCHIVE</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
-                        <span>STORE</span>
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
-                        <span>ABOUT US</span>
+                        <span>THE CODE</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
