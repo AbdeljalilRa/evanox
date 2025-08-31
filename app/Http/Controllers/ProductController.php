@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -25,62 +26,54 @@ class ProductController extends Controller
         return view('admin.products.create', compact('categories'));
     }
 
- public function store(ProductRequest $request)
+
+     public function store(Request $request)
     {
-        try {
-            DB::beginTransaction();
-            
-            $data = $request->validated();
-            $data['slug'] = Str::slug($data['title']);
-            
-            // Handle main product image
-            if ($request->hasFile('file_path')) {
-                $file = $request->file('file_path');
-                $filename = time() . '_' . Str::slug($file->getClientOriginalName());
-                
-                // Store file with public visibility
-                $path = Storage::disk('s3')->putFileAs(
-                    'products',
-                    $file,
-                    $filename,
-                    ['visibility' => 'public']
-                );
-                
-                $data['file_path'] = $this->getS3Url($path);
-            }
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string',
+            'discount_percentage' => 'nullable|numeric|min:0|max:100',
+            'file_path' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
 
-            $product = Product::create($data);
+        // Generate slug
+        $slug = Str::slug($request->title);
 
-            // Handle multiple product images
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $filename = time() . '_' . Str::slug($image->getClientOriginalName());
-                    
-                    $path = Storage::disk('s3')->putFileAs(
-                        'products/gallery',
-                        $image,
-                        $filename,
-                        ['visibility' => 'public']
-                    );
-                    
-                    $product->images()->create([
-                        'image_path' => $this->getS3Url($path)
-                    ]);
-                }
-            }
-
-            DB::commit();
-            return redirect()
-                ->route('admin.products.index')
-                ->with('success', 'Product created successfully.');
-                
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error('Product creation error: ' . $e->getMessage());
-            return back()
-                ->withInput()
-                ->with('error', 'Error creating product: ' . $e->getMessage());
+        // Main Image Upload
+        $mainImagePath = null;
+        if ($request->hasFile('file_path')) {
+            $mainImagePath = $request->file('file_path')->store('products/main', 's3');
         }
+
+        // Create product
+        $product = Product::create([
+            'title' => $request->title,
+            'slug' => $slug,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount_percentage' => $request->discount_percentage ?? 0,
+            'stock' => $request->stock,
+            'file_path' => $mainImagePath,
+            'is_active' => $request->has('is_active'),
+            'category_id' => $request->category_id,
+        ]);
+
+        // Gallery Images Upload
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $galleryPath = $image->store('products/gallery', 's3');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $galleryPath,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     public function show(Product $product)
@@ -94,90 +87,57 @@ class ProductController extends Controller
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-     public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        try {
-            DB::beginTransaction();
-            
-            $data = $request->validated();
-            
-            if ($request->hasFile('file_path')) {
-                // Delete old image
-                if ($product->file_path) {
-                    $oldPath = $this->getPathFromUrl($product->file_path);
-                    Storage::disk('s3')->delete($oldPath);
-                }
-                
-                $file = $request->file('file_path');
-                $filename = time() . '_' . Str::slug($file->getClientOriginalName());
-                
-                $path = Storage::disk('s3')->putFileAs(
-                    'products',
-                    $file,
-                    $filename,
-                    ['visibility' => 'public']
-                );
-                
-                $data['file_path'] = $this->getS3Url($path);
-            }
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string',
+            'discount_percentage' => 'nullable|numeric|min:0|max:100',
+            'file_path' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
 
-            // Handle multiple product images
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $filename = time() . '_' . Str::slug($image->getClientOriginalName());
-                    
-                    $path = Storage::disk('s3')->putFileAs(
-                        'products/gallery',
-                        $image,
-                        $filename,
-                        ['visibility' => 'public']
-                    );
-                    
-                    $product->images()->create([
-                        'image_path' => $this->getS3Url($path)
-                    ]);
-                }
-            }
+        $product->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount_percentage' => $request->discount_percentage ?? 0,
+            'stock' => $request->stock,
+            'is_active' => $request->has('is_active'),
+            'category_id' => $request->category_id,
+        ]);
 
-            $product->update($data);
-            
-            DB::commit();
-            return redirect()
-                ->route('admin.products.index')
-                ->with('success', 'Product updated successfully.');
-                
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error('Product update error: ' . $e->getMessage());
-            return back()
-                ->withInput()
-                ->with('error', 'Error updating product: ' . $e->getMessage());
+        // Replace main image if uploaded
+        if ($request->hasFile('file_path')) {
+            if ($product->file_path) {
+                Storage::disk('s3')->delete($product->file_path);
+            }
+            $product->file_path = $request->file('file_path')->store('products/main', 's3');
+            $product->save();
         }
-    }
 
+        // Add new gallery images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $galleryPath = $image->store('products/gallery', 's3');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $galleryPath,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    }
 
     public function destroy(Product $product)
     {
-        try {
-            // Delete main image from S3
-            if ($product->file_path) {
-                $path = $this->getPathFromUrl($product->file_path);
-                Storage::disk('s3')->delete($path);
-            }
-
-            // Delete gallery images from S3
-            foreach ($product->images as $image) {
-                $path = $this->getPathFromUrl($image->image_path);
-                Storage::disk('s3')->delete($path);
-            }
-
-            $product->delete();
-
-            return redirect()->route('admin.products.index')
-                ->with('success', 'Product deleted successfully.');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Error deleting product: ' . $e->getMessage());
-        }
+        $product->delete(); // Soft delete
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 
     public function toggleStatus(Product $product)
@@ -186,14 +146,5 @@ class ProductController extends Controller
         return back()->with('success', 'Product status updated successfully.');
     }
 
-    private function getS3Url($path)
-    {
-        return config('filesystems.disks.s3.url') . '/' . $path;
-    }
-
-    private function getPathFromUrl($url)
-    {
-        $baseUrl = rtrim(config('filesystems.disks.s3.url'), '/') . '/';
-        return str_replace($baseUrl, '', $url);
-    }
+   
 }
