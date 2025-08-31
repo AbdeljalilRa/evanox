@@ -19,6 +19,10 @@ Route::get('/collections', function () {
     return view('store.collections');
 })->name('collections');
 
+Route::get('/productdetails', function () {
+    return view('store.productdetails');
+})->name('productdetails');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
