@@ -50,7 +50,7 @@
                                 </tr>
                                 <tr>
                                     <th>Category</th>
-                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->category->title }}</td>
                                 </tr>
                                 <tr>
                                     <th>Price</th>

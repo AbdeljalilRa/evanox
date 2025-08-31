@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Filesystem\FilesystemAdapter;
 
 class Product extends Model
 {
@@ -28,16 +30,17 @@ class Product extends Model
         'discount_percentage' => 'decimal:2',
         'is_active' => 'boolean',
     ];
-
+    protected $appends = ['image_url'];
     // Generate slug before saving
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($product) {
             $product->slug = Str::slug($product->title);
         });
     }
+
 
     // Relationships
     public function category()
@@ -58,4 +61,23 @@ class Product extends Model
         }
         return $this->price;
     }
+
+
+
+     // Accessor باش تولد temporary URLs للـ gallery images
+   public function getGalleryUrlsAttribute()
+{
+    return $this->images->map(function ($image) {
+        if ($image->image_path && strlen($image->image_path) > 0) {
+            try {
+                /** @var FilesystemAdapter $disk */
+                $disk = Storage::disk('s3');
+                return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+            } catch (\Exception $e) {
+                return asset('images/no-image.png');
+            }
+        }
+        return asset('images/no-image.png');
+    });
+}
 }
