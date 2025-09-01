@@ -45,7 +45,7 @@
                 </div>
                 
                 {{-- Feature Icons Section --}}
-                <div class="mt-10 bg-black">
+                <div class="mt-10 bg-black px-4">
                     <div class="grid grid-cols-2 gap-x-6 gap-y-12">
                         {{-- First Row: Design Feature and Instant Delivery --}}
                         <div class="flex flex-col items-start">
@@ -108,7 +108,7 @@
                         
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon6.png') }}" alt="Compatibility Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon 6.png') }}" alt="Compatibility Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Program Compatibility</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -213,54 +213,33 @@
         {{-- Reviews Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{-- Review 1 --}}
-            <div class="border border-gray-800 rounded-lg p-6 review-card">
+            <div class="rounded-lg p-6 review-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-500 mr-2">
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                    </div>
-                    <span class="text-white/70 text-sm">| Mason B.</span>
+                    <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason B.</span>
                 </div>
-                <p class="text-white/70 text-sm">
+                <p class="text-white font-montserrat font-semibold text-[8.64px]">
                     This design hits hard. The contrast between the message and the glimmer makes it perfect for our digital
                     merch line. Clean, crisp, and consistent — just how I like it.
                 </p>
             </div>
 
             {{-- Review 2 --}}
-            <div class="border border-gray-800 rounded-lg p-6 review-card">
+            <div class="rounded-lg p-6 review-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-500 mr-2">
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                    </div>
-                    <span class="text-white/70 text-sm">| Mason P.</span>
+                    <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason P.</span>
                 </div>
-                <p class="text-white/70 text-sm">
+                <p class="text-white font-montserrat font-semibold text-[8.64px]">
                     This design hits hard. The contrast between the message and the glimmer makes it perfect for our digital
                     merch line. Clean, crisp, and consistent — just how I like it.
                 </p>
             </div>
 
             {{-- Review 3 --}}
-            <div class="border border-gray-800 rounded-lg p-6 review-card">
+            <div class="rounded-lg p-6 review-card">
                 <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-500 mr-2">
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
-                    </div>
-                    <span class="text-white/70 text-sm">| Mason R.</span>
+                    <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason R.</span>
                 </div>
-                <p class="text-white/70 text-sm">
+                <p class="text-white font-montserrat font-semibold text-[8.64px]">
                     This design hits hard. The contrast between the message and the glimmer makes it perfect for our digital
                     merch line. Clean, crisp, and consistent — just how I like it.
                 </p>
@@ -269,8 +248,8 @@
     </section>
 
     {{-- Related Products Section --}}
-    <section class="container mx-auto px-4 py-12 border-t border-gray-800">
-        <h2 class="text-xl font-bold text-white mb-8">• ALSO ROCKED BY DESIGNERS LIKE YOU</h2>
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-white font-montserrat font-black text-[10px] mb-8">• ALSO ROCKED BY DESIGNERS LIKE YOU</h2>
 
         {{-- Related Products Grid --}}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -281,7 +260,7 @@
                     <img src="{{ asset('images/BIG FACE FUTURE.png') }}"
                         alt="Big Face FUTURE - Codeine Glare Edition" class="w-full h-auto">
                 </div>
-                <h3 class="text-white text-sm font-medium mb-2">Big Face FUTURE - Codeine Glare Edition</h3>
+                <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">Big Face FUTURE - Codeine Glare Edition</h3>
                 <div class="flex items-center mb-2">
                     <div class="flex text-yellow-500 mr-1">
                         <span>★</span>
@@ -290,9 +269,9 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <span class="text-white/70 text-xs">(48)</span>
+                    <span class="text-white font-montserrat font-black text-[10px]">(48)</span>
                 </div>
-                <p class="text-white font-bold">29,99 USD</p>
+                <p class="text-white font-montserrat font-extrabold text-[14.42px]">29,99 USD</p>
             </div>
 
             {{-- Related Product 2 --}}
@@ -302,7 +281,7 @@
                     <img src="{{ asset('images/big face fifty cent BOX.png') }}"
                         alt="Big Face 50 Cent Box Edition" class="w-full h-auto">
                 </div>
-                <h3 class="text-white text-sm font-medium mb-2">Big Face 50 Cent - Box Edition</h3>
+                <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">Big Face 50 Cent - Box Edition</h3>
                 <div class="flex items-center mb-2">
                     <div class="flex text-yellow-500 mr-1">
                         <span>★</span>
@@ -311,9 +290,9 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <span class="text-white/70 text-xs">(48)</span>
+                    <span class="text-white font-montserrat font-black text-[10px]">(48)</span>
                 </div>
-                <p class="text-white font-bold">29,99 USD</p>
+                <p class="text-white font-montserrat font-extrabold text-[14.42px]">29,99 USD</p>
             </div>
 
             {{-- Related Product 3 --}}
@@ -323,7 +302,7 @@
                     <img src="{{ asset('images/travis scoot.png') }}"
                         alt="Travis Scott Design" class="w-full h-auto">
                 </div>
-                <h3 class="text-white text-sm font-medium mb-2">Travis Scott - Limited Edition Design</h3>
+                <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">Travis Scott - Limited Edition Design</h3>
                 <div class="flex items-center mb-2">
                     <div class="flex text-yellow-500 mr-1">
                         <span>★</span>
@@ -332,9 +311,9 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <span class="text-white/70 text-xs">(48)</span>
+                    <span class="text-white font-montserrat font-black text-[10px]">(48)</span>
                 </div>
-                <p class="text-white font-bold">29,99 USD</p>
+                <p class="text-white font-montserrat font-extrabold text-[14.42px]">29,99 USD</p>
             </div>
 
             {{-- Related Product 4 --}}
@@ -344,7 +323,7 @@
                     <img src="{{ asset('images/boxx rihana 2.png') }}"
                         alt="Rihanna Box Edition" class="w-full h-auto">
                 </div>
-                <h3 class="text-white text-sm font-medium mb-2">Rihanna - Premium Box Edition</h3>
+                <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">Rihanna - Premium Box Edition</h3>
                 <div class="flex items-center mb-2">
                     <div class="flex text-yellow-500 mr-1">
                         <span>★</span>
@@ -353,9 +332,9 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <span class="text-white/70 text-xs">(48)</span>
+                    <span class="text-white font-montserrat font-black text-[10px]">(48)</span>
                 </div>
-                <p class="text-white font-bold">29,99 USD</p>
+                <p class="text-white font-montserrat font-extrabold text-[14.42px]">29,99 USD</p>
             </div>
         </div>
     </section>
