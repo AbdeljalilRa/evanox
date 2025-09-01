@@ -6,8 +6,8 @@
 {{-- Main Content Section --}}
 @section('content')
     {{-- Breadcrumb Navigation --}}
-    <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center text-white/70 font-montserrat text-[14px] font-normal">
+    <div class="container mx-auto px-4 py-4 mt-10">
+        <div class="flex items-center text-white/70 font-montserrat text-[14px] font-normal px-4">
             <a href="{{ url('/') }}" class="hover:text-white">HOME</a>
             <span class="mx-2">›</span>
             <span class="text-white">EXCLUSIVE EVANOX CENTUM "CATCH ME IN THE FAST LANE"</span>
