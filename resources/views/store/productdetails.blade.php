@@ -197,11 +197,11 @@
 
     {{-- Customer Reviews Section --}}
     <section class="container mx-auto px-4 py-12">
-        <h2 class="text-xl font-bold text-white mb-8">Customer Reviews</h2>
+        <h2 class="text-white font-montserrat font-bold italic text-[14.37px] mb-8 text-center">Customer Reviews</h2>
 
         {{-- Average Star Rating Display --}}
         <div class="flex items-center justify-center mb-8">
-            <div class="flex text-yellow-500 text-2xl">
+            <div class="flex text-white text-2xl">
                 <span>★</span>
                 <span>★</span>
                 <span>★</span>
