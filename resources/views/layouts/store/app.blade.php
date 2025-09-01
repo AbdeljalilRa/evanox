@@ -37,21 +37,8 @@
         }
     </script>
 
-    {{-- Custom CSS for smooth scrolling and back to top button --}}
-    <style>
-        /* Smooth scroll behavior for the entire page */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Back to top button custom transitions */
-        [x-cloak] { display: none !important; }
-        
-        /* Custom shadow for the back to top button */
-        .back-to-top-shadow {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    {{-- Application CSS --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/evanox-app.css') }}">
 
     @stack('styles')
 </head>
@@ -85,73 +72,39 @@
     </div>
 
    
+    {{-- AlpineJS Library --}}
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script>
-        // Back to Top Component for Alpine.js
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('backToTop', () => ({
-                showButton: false,
-                
-                init() {
-                    // Show/hide button based on scroll position
-                    window.addEventListener('scroll', () => {
-                        this.showButton = window.pageYOffset > 300;
-                    });
-                },
-                
-                scrollToTop() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            }));
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const header = document.querySelector('header');
-            let lastScroll = 0;
-
-            // Mobile menu toggle
-            if(mobileMenuButton){
-                mobileMenuButton.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    if (mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.remove('hidden');
-                        setTimeout(() => {
-                            mobileMenu.classList.remove('opacity-0', 'scale-95');
-                            mobileMenu.classList.add('opacity-100', 'scale-100');
-                        }, 10);
-                    } else {
-                        mobileMenu.classList.add('opacity-0', 'scale-95');
-                        mobileMenu.classList.remove('opacity-100', 'scale-100');
-                        setTimeout(() => {
-                            mobileMenu.classList.add('hidden');
-                        }, 300);
-                    }
-                });
-            }
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll <= 0) {
-                    header.style.transform = 'translateY(0)';
-                    return;
-                }
-                if (currentScroll > lastScroll) {
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    header.style.transform = 'translateY(0)';
-                }
-                lastScroll = currentScroll;
-            });
-        });
-    </script>
+    
+    {{-- Application JavaScript --}}
+    <script src="{{ asset('assets/js/evanox-app.js') }}"></script>
 
    
     @stack('scripts')
+    
+    {{-- Shopping Bag Structure --}}
+    <div id="bag-overlay"></div>
+    <div id="evanox-bag-panel">
+        <div class="p-4 border-b border-white/10">
+            <div class="flex justify-between items-center">
+                <h2 class="text-white font-montserrat font-extrabold text-[16px]">YOUR BAG</h2>
+                <button id="close-bag" class="text-white hover:text-white/80">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-4" id="bag-content">
+            <!-- Bag content will be dynamically loaded here -->
+            <div class="py-8 text-center">
+                <p class="text-white/70 font-montserrat text-[14px]">Loading your bag...</p>
+            </div>
+        </div>
+        <!-- Checkout button will be dynamically added here when the bag has items -->
+    </div>
+    
+    {{-- CSS and JS Dependencies --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/shopping-bag.css') }}">
+    <script src="{{ asset('assets/js/shopping-bag.js') }}"></script>
 </body>
 </html>
