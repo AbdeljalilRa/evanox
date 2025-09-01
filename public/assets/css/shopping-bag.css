@@ -1,0 +1,125 @@
+/* Shopping Bag Styles */
+#evanox-bag-panel {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Start off-screen */
+    width: 350px;
+    max-width: 90vw;
+    height: 100vh;
+    background-color: #000;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#evanox-bag-panel.active {
+    right: 0;
+}
+
+#bag-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#bag-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Bag Items Styling */
+.bag-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bag-quantity-controls button {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.bag-quantity-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Checkout button styling */
+#checkout-btn {
+    background-color: white;
+    color: black;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+#checkout-btn:active {
+    transform: translateY(0);
+}
+
+/* Add to bag animation */
+.add-to-bag-animation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    padding: 10px 16px;
+    border-radius: 8px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 2.5s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
