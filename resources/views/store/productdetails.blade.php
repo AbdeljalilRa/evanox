@@ -50,7 +50,7 @@
                         {{-- First Row: Design Feature and Instant Delivery --}}
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon1.png') }}" alt="Design Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon11.png') }}" alt="Design Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Designs You Won't Find Anywhere Else</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -62,7 +62,7 @@
                         
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon2.png') }}" alt="Delivery Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon22.png') }}" alt="Delivery Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Instant Digital Delivery</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -74,7 +74,7 @@
                         {{-- Second Row: Zero Setup and Real Creators --}}
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon3.png') }}" alt="Setup Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon33.png') }}" alt="Setup Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Zero Setup Needed</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -85,7 +85,7 @@
                         
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon4.png') }}" alt="Creators Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon44.png') }}" alt="Creators Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Made by Real Creators</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -97,7 +97,7 @@
                         {{-- Third Row: Lifetime Access and Program Compatibility --}}
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon5.png') }}" alt="Access Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon55.png') }}" alt="Access Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Lifetime Access, No Limits</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
@@ -108,7 +108,7 @@
                         
                         <div class="flex flex-col items-start">
                             <div class="mb-2">
-                                <img src="{{ asset('images/icon 6.png') }}" alt="Compatibility Icon" class="w-8 h-8">
+                                <img src="{{ asset('images/icon66.png') }}" alt="Compatibility Icon" class="w-8 h-8">
                             </div>
                             <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Program Compatibility</h4>
                             <p class="text-white font-montserrat font-semibold text-[8.64px]">
