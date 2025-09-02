@@ -15,6 +15,13 @@ Route::get('/home', function () {
     return view('store.index');
 });
 
+Route::get('/collections', function () {
+    return view('store.collections');
+})->name('collections');
+
+Route::get('/productdetails', function () {
+    return view('store.productdetails');
+})->name('productdetails');
 
 
 Route::middleware('auth')->group(function () {

@@ -36,11 +36,24 @@
             </header>
         @endisset
 
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
-</body>
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
 
+        <!-- Back to Top Button -->
+        <div x-data="backToTop()" x-show="showButton" x-transition class="fixed bottom-6 right-6 z-50">
+            <button 
+                @click="scrollToTop()" 
+                class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                aria-label="Back to top"
+                title="Back to top"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                </svg>
+            </button>
+        </div>
+    </body>
 </html>
