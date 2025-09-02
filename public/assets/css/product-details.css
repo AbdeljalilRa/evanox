@@ -1,0 +1,26 @@
+/* 
+* Product Details Styles
+* - Contains styles specific to the product details page
+*/
+
+/* Import Montserrat font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Font definitions */
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+/* Product image hover effects */
+.product-image-container:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Review card hover effect */
+.review-card:hover {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}

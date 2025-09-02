@@ -1,0 +1,14 @@
+/* Smooth scroll behavior for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Back to top button custom transitions */
+[x-cloak] { 
+    display: none !important; 
+}
+
+/* Custom shadow for the back to top button */
+.back-to-top-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
