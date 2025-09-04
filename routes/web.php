@@ -9,6 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 Route::get('/home', function () {
@@ -22,6 +25,15 @@ Route::get('/collections', function () {
 Route::get('/productdetails', function () {
     return view('store.productdetails');
 })->name('productdetails');
+
+
+Route::get('/code', function () {
+    return view('store.code');
+})->name('code');
+
+
+
+
 
 
 Route::middleware('auth')->group(function () {
