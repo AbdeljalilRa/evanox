@@ -13,7 +13,7 @@
 </div>
 
 <!-- Evanox Logo -->
-<div class="mb-16 flex justify-center -mt-16 relative" style="z-index: 20">
+<div class="mb-16 flex justify-center -mt-24 relative" style="z-index: 20">
     <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-64 h-auto">
 </div>
 
