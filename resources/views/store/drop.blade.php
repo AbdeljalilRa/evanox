@@ -5,7 +5,7 @@
 @section('content')
 <div class="flex flex-col items-center justify-center min-h-screen pt-20">
     <!-- Lamp Image in the Center -->
-    <div class="relative">
+    <div class="relative" style="z-index: 10">
     <!-- Lamp Image -->
     <div class="flex justify-center">
         <img src="{{ asset('images/LAMP.png') }}" alt="Lamp" class="w-64 h-auto">
@@ -13,7 +13,7 @@
 </div>
 
 <!-- Evanox Logo -->
-<div class="mb-16 flex justify-center -mt-10">
+<div class="mb-16 flex justify-center -mt-16 relative" style="z-index: 20">
     <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-64 h-auto">
 </div>
 
