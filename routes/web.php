@@ -31,7 +31,9 @@ Route::get('/code', function () {
     return view('store.code');
 })->name('code');
 
-
+Route::get('/drop', function () {
+    return view('store.drop');
+})->name('drop');
 
 
 
