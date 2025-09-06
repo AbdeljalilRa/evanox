@@ -26,7 +26,6 @@
                      <span class="nav-text"> Dashboard </span>
                  </a>
              </li>
-
              <li class="nav-item">
                  <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button"
                      aria-expanded="false" aria-controls="sidebarProducts">
@@ -38,19 +37,10 @@
                  <div class="collapse" id="sidebarProducts">
                      <ul class="nav sub-navbar-nav">
                          <li class="sub-nav-item">
-                             <a class="sub-nav-link" href="product-list.html">List</a>
+                             <a class="sub-nav-link" href="{{ route('admin.products.index') }}">List</a>
                          </li>
                          <li class="sub-nav-item">
-                             <a class="sub-nav-link" href="product-grid.html">Grid</a>
-                         </li>
-                         <li class="sub-nav-item">
-                             <a class="sub-nav-link" href="product-details.html">Details</a>
-                         </li>
-                         <li class="sub-nav-item">
-                             <a class="sub-nav-link" href="product-edit.html">Edit</a>
-                         </li>
-                         <li class="sub-nav-item">
-                             <a class="sub-nav-link" href="product-add.html">Create</a>
+                             <a class="sub-nav-link" href="{{ route('admin.products.create') }}">Create</a>
                          </li>
                      </ul>
                  </div>

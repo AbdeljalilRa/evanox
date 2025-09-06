@@ -30,7 +30,7 @@ class Product extends Model
         'discount_percentage' => 'decimal:2',
         'is_active' => 'boolean',
     ];
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'gallery_urls'];
     // Generate slug before saving
     protected static function boot()
     {
@@ -42,7 +42,6 @@ class Product extends Model
     }
 
 
-    // Relationships
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -50,7 +49,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductImage::class, 'product_id');
     }
 
     // Helper methods
@@ -64,20 +63,35 @@ class Product extends Model
 
 
 
-     // Accessor باش تولد temporary URLs للـ gallery images
-   public function getGalleryUrlsAttribute()
-{
-    return $this->images->map(function ($image) {
-        if ($image->image_path && strlen($image->image_path) > 0) {
+    // Accessor for main image URL
+    public function getImageUrlAttribute()
+    {
+        if ($this->file_path && strlen($this->file_path) > 0) {
             try {
                 /** @var FilesystemAdapter $disk */
                 $disk = Storage::disk('s3');
-                return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+                return $disk->temporaryUrl($this->file_path, now()->addMinutes(5));
             } catch (\Exception $e) {
                 return asset('images/no-image.png');
             }
         }
         return asset('images/no-image.png');
-    });
-}
+    }
+
+    // Accessor for gallery images URLs
+    public function getGalleryUrlsAttribute()
+    {
+        return $this->images->map(function ($image) {
+            if ($image->image_path && strlen($image->image_path) > 0) {
+                try {
+                    /** @var FilesystemAdapter $disk */
+                    $disk = Storage::disk('s3');
+                    return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+                } catch (\Exception $e) {
+                    return asset('images/no-image.png');
+                }
+            }
+            return asset('images/no-image.png');
+        });
+    }
 }

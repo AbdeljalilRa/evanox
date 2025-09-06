@@ -3,20 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
+
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
-Route::get('/home', function () {
-    return view('store.index');
-});
+// Store routes (for public/product pages)
+Route::get('/', [StoreController::class, 'index'])->name('store.index');
+Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
 
 Route::get('/collections', function () {
     return view('store.collections');

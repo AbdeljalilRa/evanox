@@ -36,8 +36,11 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
             'discount_percentage' => 'nullable|numeric',
-            'file_path' => 'required|file',
-            'images.*' => 'nullable|image|max:5120',
+            'file_path' => 'nullable|file',
+            'images_1' => 'nullable|image|max:20480',
+            'images_2' => 'nullable|image|max:20480',
+            'images_3' => 'nullable|image|max:20480',
+            'images_4' => 'nullable|image|max:20480',
             'is_active' => 'sometimes|boolean',
         ]);
 
@@ -61,9 +64,9 @@ class ProductController extends Controller
         ]);
 
         // Upload gallery images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('products/gallery', 's3');
+        foreach (['images_1', 'images_2', 'images_3', 'images_4'] as $imgField) {
+            if ($request->hasFile($imgField)) {
+                $path = $request->file($imgField)->store('products/gallery', 's3');
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
@@ -93,54 +96,75 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        // Eager load the image URLs
+        $product->load('images');
+        // Make sure the image_url and gallery_urls accessors are used
+        $product->append(['image_url', 'gallery_urls']);
+        $productImages = $product->images;
+        return view('admin.products.edit', compact('product', 'categories', 'productImages'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
-            'discount_percentage' => 'nullable|numeric|min:0|max:100',
-            'file_path' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'discount_percentage' => 'nullable|numeric',
+            'file_path' => 'nullable|file',
+            'images_1' => 'nullable|image|max:20480',
+            'images_2' => 'nullable|image|max:20480',
+            'images_3' => 'nullable|image|max:20480',
+            'images_4' => 'nullable|image|max:20480',
+            'is_active' => 'sometimes|boolean',
         ]);
 
-        $product->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'price' => $request->price,
-            'discount_percentage' => $request->discount_percentage ?? 0,
-            'stock' => $request->stock,
-            'is_active' => $request->has('is_active'),
-            'category_id' => $request->category_id,
-        ]);
+        $product = Product::findOrFail($id);
 
-        // Replace main image if uploaded
+        // Update main file if uploaded
         if ($request->hasFile('file_path')) {
-            if ($product->file_path) {
-                Storage::disk('s3')->delete($product->file_path);
-            }
-            $product->file_path = $request->file('file_path')->store('products/main', 's3');
-            $product->save();
+            // Optional: Delete old file from S3 if needed
+            // Storage::disk('s3')->delete($product->file_path);
+            $product->file_path = $request->file('file_path')->store('products/files', 's3');
         }
 
-        // Add new gallery images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $galleryPath = $image->store('products/gallery', 's3');
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'image_path' => $galleryPath,
-                ]);
+        // Update basic fields
+        $product->title = $request->title;
+        $product->slug = Str::slug($request->title) . '-' . uniqid();
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_percentage = $request->discount_percentage ?? 0;
+        $product->stock = $request->stock;
+        $product->is_active = $request->has('is_active') ? 1 : 0;
+        $product->category_id = $request->category_id;
+        $product->save();
+
+        // Update/Add gallery images
+        $galleryFields = ['images_1', 'images_2', 'images_3', 'images_4'];
+        $productImages = $product->images()->orderBy('id')->get();
+
+        foreach ($galleryFields as $index => $imgField) {
+            if ($request->hasFile($imgField)) {
+                $path = $request->file($imgField)->store('products/gallery', 's3');
+                // Update existing image or create new one
+                if (isset($productImages[$index])) {
+                    // Optional: Delete old image from S3
+                    // Storage::disk('s3')->delete($productImages[$index]->image_path);
+                    $productImages[$index]->image_path = $path;
+                    $productImages[$index]->save();
+                } else {
+                    \App\Models\ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_path' => $path,
+                    ]);
+                }
             }
         }
 
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Product updated successfully!');
     }
 
     public function destroy(Product $product)
