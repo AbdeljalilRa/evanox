@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Filesystem\FilesystemAdapter;
 
 class Product extends Model
@@ -63,28 +64,15 @@ class Product extends Model
 
 
 
-    // Accessor for main image URL
-    public function getImageUrlAttribute()
-    {
-        if ($this->file_path && strlen($this->file_path) > 0) {
-            try {
-                /** @var FilesystemAdapter $disk */
-                $disk = Storage::disk('s3');
-                return $disk->temporaryUrl($this->file_path, now()->addMinutes(5));
-            } catch (\Exception $e) {
-                return asset('images/no-image.png');
-            }
-        }
-        return asset('images/no-image.png');
-    }
-
+   
     // Accessor for gallery images URLs
     public function getGalleryUrlsAttribute()
-    {
-        return $this->images->map(function ($image) {
+{
+    return $this->images->map(function ($image) {
+        $cacheKey = 'product_image_temp_url_' . $image->id;
+        return Cache::remember($cacheKey, 60, function () use ($image) {
             if ($image->image_path && strlen($image->image_path) > 0) {
                 try {
-                    /** @var FilesystemAdapter $disk */
                     $disk = Storage::disk('s3');
                     return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
                 } catch (\Exception $e) {
@@ -93,5 +81,6 @@ class Product extends Model
             }
             return asset('images/no-image.png');
         });
-    }
+    });
+}
 }
