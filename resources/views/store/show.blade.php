@@ -56,7 +56,7 @@
                             </span>
                         </div>
                         <div>
-                            <button id="addToBagBtn"
+                            <button id="addToBagBtn" data-product-id="{{ $product->id }}"
                                 class="w-full bg-white text-black font-montserrat font-extrabold text-[16px] py-3 px-8 rounded-full hover:bg-white/90 transition-colors">
                                 Add to Bag
                             </button>

@@ -85,6 +85,8 @@ class EvanoxShoppingBag {
 
     addProductFromPage() {
         // Get product details from the page
+        const addToBagBtn = document.getElementById('addToBagBtn');
+        const productId = addToBagBtn?.getAttribute('data-product-id') || null;
         const productName = document.querySelector('h1')?.innerText.trim() || "Product";
         const productPrice = document.querySelector('.text-white.text-\\[19px\\].font-montserrat.font-extrabold')?.innerText.trim() || "$99.00";
         const productImage = document.getElementById('mainProductImage')?.getAttribute('src') || "";
@@ -92,6 +94,7 @@ class EvanoxShoppingBag {
         // Create product object
         const product = {
             id: this.generateUniqueId(),
+            product_id: productId, // Add the actual database product ID
             name: productName,
             price: productPrice,
             image: productImage,
@@ -218,9 +221,22 @@ class EvanoxShoppingBag {
     }
     
     proceedToCheckout() {
-        // You can replace this with a redirect to your checkout page
-        // For now, we'll show a notification that checkout is in progress
+        // Check if user is authenticated
+        const isAuthenticated = document.querySelector('meta[name="user-authenticated"]')?.getAttribute('content') === 'true';
         
+        if (!isAuthenticated) {
+            // Redirect to login with intended redirect
+            alert('Please log in to continue with checkout.');
+            window.location.href = '/login';
+            return;
+        }
+
+        // Check if cart has items
+        if (this.items.length === 0) {
+            alert('Your cart is empty.');
+            return;
+        }
+
         // Close the bag panel
         this.closeBag();
         
@@ -231,7 +247,7 @@ class EvanoxShoppingBag {
             <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
             </svg>
-            <span>Proceeding to checkout...</span>
+            <span>Redirecting to checkout...</span>
         `;
         
         document.body.appendChild(notification);
@@ -242,15 +258,14 @@ class EvanoxShoppingBag {
             notification.style.transition = 'opacity 0.3s ease';
             
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
                 
                 // Redirect to checkout page
-                // window.location.href = '/checkout';
-                
-                // For demo purposes, just show a message
-                alert('This would redirect to the checkout page in a real implementation.');
+                window.location.href = '/checkout';
             }, 300);
-        }, 2000);
+        }, 1000);
     }
     
     generateUniqueId() {
