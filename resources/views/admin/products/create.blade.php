@@ -68,15 +68,19 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <!-- Description -->
+                                    <!-- Description (WYSIWYG Editor) -->
                                     <div class="mb-3">
                                         <label for="description" class="form-label">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                            rows="4" required>{{ old('description') }}</textarea>
+                                            rows="6">{{ old('description') }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                        <small class="text-muted">You can style your description (bold, lists, etc). Use the
+                                            "Horizontal line" button (<strong>Insert horizontal line</strong>) to separate
+                                            paragraphs visually.</small>
                                     </div>
+
 
                                     <!-- Discount -->
                                     <div class="mb-3">
@@ -108,23 +112,27 @@
 
                                     <!-- Gallery Images with Progress + Preview -->
                                     @for ($i = 1; $i <= 4; $i++)
-                                    <div class="mb-3">
-                                        <label for="images_{{ $i }}" class="form-label">Gallery Image {{ $i }}</label>
-                                        <div class="input-group stylish-img-input">
-                                            <input type="file"
-                                                class="form-control stylish-file @error('images_'.$i) is-invalid @enderror"
-                                                id="images_{{ $i }}" name="images_{{ $i }}" accept="image/*"
-                                                onchange="previewImageWithProgress(this, 'preview_{{ $i }}', 'progress_images_{{ $i }}')">
-                                            <label class="input-group-text" for="images_{{ $i }}"><i class="bi bi-image"></i></label>
+                                        <div class="mb-3">
+                                            <label for="images_{{ $i }}" class="form-label">Gallery Image
+                                                {{ $i }}</label>
+                                            <div class="input-group stylish-img-input">
+                                                <input type="file"
+                                                    class="form-control stylish-file @error('images_' . $i) is-invalid @enderror"
+                                                    id="images_{{ $i }}" name="images_{{ $i }}"
+                                                    accept="image/*"
+                                                    onchange="previewImageWithProgress(this, 'preview_{{ $i }}', 'progress_images_{{ $i }}')">
+                                                <label class="input-group-text" for="images_{{ $i }}"><i
+                                                        class="bi bi-image"></i></label>
+                                            </div>
+                                            <div class="progress mt-2" style="height:10px;">
+                                                <div id="progress_images_{{ $i }}" class="progress-bar bg-info"
+                                                    role="progressbar" style="width:0%">0%</div>
+                                            </div>
+                                            <div id="preview_{{ $i }}" class="img-preview mt-2"></div>
+                                            @error('images_' . $i)
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <div class="progress mt-2" style="height:10px;">
-                                            <div id="progress_images_{{ $i }}" class="progress-bar bg-info" role="progressbar" style="width:0%">0%</div>
-                                        </div>
-                                        <div id="preview_{{ $i }}" class="img-preview mt-2"></div>
-                                        @error('images_'.$i)
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
                                     @endfor
 
                                     <!-- Status -->
@@ -155,12 +163,14 @@
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
+
         .stylish-img-input .input-group-text {
             background: #f4f6fb;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             cursor: pointer;
         }
+
         .img-preview img {
             max-width: 120px;
             max-height: 120px;
@@ -168,6 +178,7 @@
             box-shadow: 0 0 8px #d1d1d1;
             margin-right: 8px;
         }
+
         .stylish-file {
             border: 2px solid #d1e7dd;
         }
@@ -175,7 +186,25 @@
     <!-- Bootstrap Icons CDN (for image icon) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- CKEditor 5 CDN for Description field (with horizontal line plugin included by default) -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'bold', 'italic', 'underline', 'link', '|',
+                        'bulletedList', 'numberedList', '|',
+                        'blockQuote', 'insertTable', 'horizontalLine', '|',
+                        'undo', 'redo'
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         // Keep image preview after error, only update on change
         function previewImageWithProgress(input, previewId, progressId) {
             let preview = document.getElementById(previewId);
@@ -221,7 +250,6 @@
             progressBar.style.width = '0%';
             progressBar.textContent = '0%';
 
-           
             let formData = new FormData();
             formData.append('file', file);
             fetch('/api/s3-upload-signed-url', {
@@ -247,7 +275,7 @@
                     };
                     xhr.send(file);
                 });
-       
+
             // If no AJAX, fallback progress on submit
             form.addEventListener('submit', function() {
                 progressBar.style.width = '100%';

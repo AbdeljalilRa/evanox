@@ -39,14 +39,48 @@
                             </div>
                             <div class="col-md-6">
                                 <h5 class="fw-bold">Description</h5>
-                                <div class="bg-light rounded p-3 mb-2">
-                                    {!! nl2br(e($product->description)) !!}
+                                <div class="bg-light rounded p-3 mb-2 product-description">
+                                    {!! $product->description !!}
                                 </div>
+                                @if($product->whats_inside || $product->perfect_for || $product->format || $product->license)
+                                    <div class="bg-light rounded p-3 mb-2 mt-2">
+                                        @if($product->whats_inside)
+                                        <div class="mb-2">
+                                            <strong class="text-primary">What's Inside:</strong><br>
+                                            <ul>
+                                                @foreach(explode("\n", $product->whats_inside) as $line)
+                                                    @if(trim($line) != '')
+                                                        <li>{{ $line }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+                                        @if($product->perfect_for)
+                                        <div class="mb-2">
+                                            <strong class="text-primary">Perfect For:</strong><br>
+                                            <span>{{ $product->perfect_for }}</span>
+                                        </div>
+                                        @endif
+                                        @if($product->format)
+                                        <div class="mb-2">
+                                            <strong class="text-primary">Format:</strong><br>
+                                            <span>{{ $product->format }}</span>
+                                        </div>
+                                        @endif
+                                        @if($product->license)
+                                        <div class="mb-2">
+                                            <strong class="text-primary">License:</strong><br>
+                                            <span>{{ $product->license }}</span>
+                                        </div>
+                                        @endif
+                                    </div>
+                                @endif
                                 @if ($product->file_path)
                                     <div class="mb-2">
                                         <a href="{{ Storage::disk('s3')->url($product->file_path) }}"
                                             class="btn btn-sm btn-outline-info" target="_blank">
-                                            Download Main File
+                                            <i class="bi bi-cloud-arrow-down"></i> Download Main File
                                         </a>
                                     </div>
                                 @endif
@@ -67,7 +101,6 @@
                                     @else
                                         <p class="text-muted">No gallery images available.</p>
                                     @endif
-                                   
                                 </div>
                             </div>
                         </div>
@@ -90,6 +123,29 @@
         .gallery-img-box img {
             border-radius: 10px;
             box-shadow: 0 0 8px #d1d1d1;
+        }
+        .product-description h2, .product-description h3 {
+            color: #222;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            margin-top: 1.5em;
+        }
+        .product-description p {
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            margin-bottom: 1em;
+        }
+        .product-description ul, .product-description ol {
+            color: #333;
+            margin-left: 2em;
+            margin-bottom: 1em;
+        }
+        .product-description li {
+            margin-bottom: 0.3em;
+        }
+        .product-description strong {
+            color: #0d6efd;
         }
     </style>
 @endsection

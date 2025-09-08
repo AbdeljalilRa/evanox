@@ -16,8 +16,8 @@ Route::get('/collections', function () {
     return view('store.collections');
 })->name('collections');
 
-Route::get('/productdetails', function () {
-    return view('store.productdetails');
+Route::get('/show1', function () {
+    return view('store.show1');
 })->name('productdetails');
 
 Route::get('/code', function () {

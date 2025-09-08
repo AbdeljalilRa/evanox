@@ -37,10 +37,10 @@ class ProductController extends Controller
             'description' => 'required|string',
             'discount_percentage' => 'nullable|numeric',
             'file_path' => 'nullable|file',
-            'images_1' => 'nullable|image|max:20480',
-            'images_2' => 'nullable|image|max:20480',
-            'images_3' => 'nullable|image|max:20480',
-            'images_4' => 'nullable|image|max:20480',
+            'images_1' => 'nullable|image|max:25600',
+            'images_2' => 'nullable|image|max:25600',
+            'images_3' => 'nullable|image|max:25600',
+            'images_4' => 'nullable|image|max:25600',
             'is_active' => 'sometimes|boolean',
         ]);
 
