@@ -28,6 +28,13 @@ Route::get('/drop', function () {
     return view('store.drop');
 })->name('drop');
 
+Route::get('/drop2', function () {
+    return view('store.drop2');
+})->name('drop2');
+
+
+
+
 // Checkout and Payment routes (require authentication)
 Route::middleware('auth')->group(function () {
     Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
