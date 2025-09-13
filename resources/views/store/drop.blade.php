@@ -25,7 +25,7 @@
                 <h1 class="text-white font-bold italic tracking-wider mb-2 text-4xl" style="font-family: 'Neue Montreal', sans-serif;">ENTRER</h1>
             </div>
         </button>
-        <p class="text-white text-lg" style="font-family: 'Satoshi', sans-serif; font-weight: 500;">Enter The Archive</p>
+        <p class="text-white text-base" style="font-family: 'Satoshi', sans-serif; font-weight: 500;">Enter The Archive</p>
     </div>
     
     <!-- Social Media Icons -->
