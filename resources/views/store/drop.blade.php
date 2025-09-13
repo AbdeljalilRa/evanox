@@ -1,6 +1,6 @@
 @extends('layouts.store.blank')
 
-@section('title', 'EVANOX - The Drop')
+@section('title', 'EVANOX - Welcome')
 
 @section('content')
 <div class="flex flex-col items-center justify-center min-h-screen pt-4">
