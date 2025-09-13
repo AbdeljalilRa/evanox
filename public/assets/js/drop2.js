@@ -1,10 +1,13 @@
 /**
  * Drop2 Page JavaScript
- * Handles authentication form interactions and password toggle functionality
+ * Handles authentication form interactions, password toggle functionality, and sliding banner
  * Uses only Tailwind CSS classes for styling and animations
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize sliding banner
+    initializeSlidingBanner();
+    
     // Get DOM elements
     const passwordToggle = document.getElementById('passwordToggle');
     const passwordSection = document.getElementById('passwordSection');
@@ -86,6 +89,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+/**
+ * Initialize and manage the sliding "Coming Soon" marquee banner
+ */
+function initializeSlidingBanner() {
+    const banner = document.getElementById('comingSoonBanner');
+    const slidingText = document.getElementById('slidingText');
+    if (!banner || !slidingText) return;
+    
+    // Get the original span element
+    const originalSpan = slidingText.querySelector('span');
+    if (!originalSpan) return;
+    
+    // Clone the original span 14 more times (total of 15)
+    for (let i = 0; i < 20; i++) {
+        const clonedSpan = originalSpan.cloneNode(true);
+        slidingText.appendChild(clonedSpan);
+    }
+    
+    let position = 0;
+    const speed = 1.5; // pixels per frame
+    const textWidth = slidingText.scrollWidth;
+    
+    function animateSlide() {
+        position -= speed;
+        
+        // Reset position when text has completely scrolled out
+        // With 15 items, reset after 1/3 has passed to ensure seamless loop
+        if (position <= -textWidth / 3) {
+            position = 0;
+        }
+        
+        slidingText.style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(animateSlide);
+    }
+    
+    // Start the animation
+    animateSlide();
+}
 
 /**
  * Email validation helper function
