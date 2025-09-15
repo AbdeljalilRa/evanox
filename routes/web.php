@@ -32,6 +32,10 @@ Route::get('/drop2', function () {
     return view('store.drop2');
 })->name('drop2');
 
+Route::get('/archive', function () {
+    return view('store.archive');
+})->name('archive');
+
 
 
 
