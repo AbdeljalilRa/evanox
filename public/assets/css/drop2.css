@@ -1,0 +1,69 @@
+/**
+ * Drop2 Page Styles
+ * Custom CSS for authentication form animations and styling
+ */
+
+/* Fade in animation for password section */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Enhanced form input styling */
+#email:focus,
+#password:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+#joinBtn:hover,
+#enterBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Password toggle button styling */
+#passwordToggle:hover {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Smooth transitions for all interactive elements */
+input, button {
+    transition: all 0.3s ease;
+}
+
+/* Form container styling */
+.form-container {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

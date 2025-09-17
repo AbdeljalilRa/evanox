@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\PaymentController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,33 @@ Route::get('/show1', function () {
     return view('store.show1');
 })->name('productdetails');
 
+Route::get('/code', function () {
+    return view('store.code');
+})->name('code');
+
+Route::get('/drop', function () {
+    return view('store.drop');
+})->name('drop');
+
+Route::get('/drop2', function () {
+    return view('store.drop2');
+})->name('drop2');
+
+Route::get('/archive', function () {
+    return view('store.archive');
+})->name('archive');
+
+
+
+
+// Checkout and Payment routes (require authentication)
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('/payment/create-intent', [PaymentController::class, 'createPaymentIntent'])->name('payment.create-intent');
+    Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
+    Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
