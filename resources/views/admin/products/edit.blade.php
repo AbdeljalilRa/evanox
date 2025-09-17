@@ -22,7 +22,8 @@
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Product Title</label>
                                         <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                            id="title" name="title" value="{{ old('title', $product->title) }}" required>
+                                            id="title" name="title" value="{{ old('title', $product->title) }}"
+                                            required>
                                         @error('title')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -43,7 +44,8 @@
                                     <div class="mb-3">
                                         <label for="stock" class="form-label">Stock</label>
                                         <input type="number" class="form-control @error('stock') is-invalid @enderror"
-                                            id="stock" name="stock" value="{{ old('stock', $product->stock) }}" required>
+                                            id="stock" name="stock" value="{{ old('stock', $product->stock) }}"
+                                            required>
                                         @error('stock')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -69,14 +71,21 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <!-- Description -->
+                                    <!-- Description (CKEditor 5) -->
                                     <div class="mb-3">
                                         <label for="description" class="form-label">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                            rows="4" required>{{ old('description', $product->description) }}</textarea>
+                                            rows="6">{{ old('description', $product->description) }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                        <small class="text-muted">
+                                            You can style your description (bold, lists, etc). Use the "Horizontal line"
+                                            button (<strong>Insert horizontal line</strong>) to separate paragraphs
+                                            visually.<br>
+                                            <strong>Note:</strong> All titles/headings will be automatically underlined in
+                                            the product view.
+                                        </small>
                                     </div>
 
                                     <!-- Discount -->
@@ -121,14 +130,16 @@
                                     @endphp
                                     @for ($i = 1; $i <= 4; $i++)
                                         <div class="mb-3">
-                                            <label for="images_{{ $i }}" class="form-label">Gallery Image {{ $i }}</label>
+                                            <label for="images_{{ $i }}" class="form-label">Gallery Image
+                                                {{ $i }}</label>
                                             <div class="input-group stylish-img-input">
                                                 <input type="file"
                                                     class="form-control stylish-file @error('images_' . $i) is-invalid @enderror"
                                                     id="images_{{ $i }}" name="images_{{ $i }}"
                                                     accept="image/*"
                                                     onchange="previewImageWithProgress(this, 'preview_{{ $i }}', 'progress_images_{{ $i }}')">
-                                                <label class="input-group-text" for="images_{{ $i }}"><i class="bi bi-image"></i></label>
+                                                <label class="input-group-text" for="images_{{ $i }}"><i
+                                                        class="bi bi-image"></i></label>
                                             </div>
                                             <div class="progress mt-2" style="height:10px;">
                                                 <div id="progress_images_{{ $i }}"
@@ -197,7 +208,25 @@
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- CKEditor 5 CDN for Description field -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                toolbar: {
+                    items: [
+                        'heading', '|',
+                        'bold', 'italic', 'underline', 'link', '|',
+                        'bulletedList', 'numberedList', '|',
+                        'blockQuote', 'insertTable', 'horizontalLine', '|',
+                        'undo', 'redo'
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         function previewImageWithProgress(input, previewId, progressId) {
             let preview = document.getElementById(previewId);
             let progressBar = document.getElementById(progressId);
@@ -232,31 +261,7 @@
             reader.readAsDataURL(input.files[0]);
         }
 
-        // Function to refresh S3 temporary URLs
-        function refreshS3Urls() {
-            // Get all images with S3 URLs
-            const s3Images = document.querySelectorAll('img[src*="temporaryUrl"], a[href*="temporaryUrl"]');
-            
-            if (s3Images.length > 0) {
-                // In a real implementation, you would make an AJAX call to refresh the URLs
-                fetch('/api/refresh-s3-urls', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Update image sources and link hrefs with new temporary URLs
-                    console.log('S3 URLs refreshed successfully');
-                })
-                .catch(error => {
-                    console.error('Error refreshing S3 URLs:', error);
-                });
-            }
-        }
-
+        // S3 Progress Upload (AJAX + progress bar) for main file
         document.getElementById('file_path').addEventListener('change', function(e) {
             let file = e.target.files[0];
             if (!file) return;
@@ -265,8 +270,6 @@
             progressBar.style.width = '0%';
             progressBar.textContent = '0%';
 
-            // Uncomment this block if you have endpoint ready for S3 signed upload
-           
             let formData = new FormData();
             formData.append('file', file);
             fetch('/api/s3-upload-signed-url', {
@@ -291,20 +294,23 @@
                     };
                     xhr.send(file);
                 });
-           
+
             form.addEventListener('submit', function() {
                 progressBar.style.width = '100%';
                 progressBar.textContent = 'Uploaded!';
             });
         });
-
-        // Set up a timer to refresh S3 URLs every 4 minutes (before the 5-minute expiry)
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial refresh to ensure all URLs are valid
-            refreshS3Urls();
-            
-            // Set interval for regular refreshes
-            setInterval(refreshS3Urls, 4 * 60 * 1000);
-        });
     </script>
 @endsection
+
+@push('styles')
+    <style>
+        .product-description h1,
+        .product-description h2,
+        .product-description h3,
+        .product-description h4,
+        .product-description h5 {
+            text-decoration: underline;
+        }
+    </style>
+@endpush

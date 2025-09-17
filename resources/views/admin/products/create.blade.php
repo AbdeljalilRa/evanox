@@ -76,11 +76,11 @@
                                         @error('description')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="text-muted">You can style your description (bold, lists, etc). Use the
-                                            "Horizontal line" button (<strong>Insert horizontal line</strong>) to separate
-                                            paragraphs visually.</small>
+                                        <small class="text-muted">
+                                            You can style your description (bold, lists, etc). Use the "Horizontal line" button (<strong>Insert horizontal line</strong>) to separate paragraphs visually.<br>
+                                            <strong>Note:</strong> All titles/headings will be automatically underlined in the product view.
+                                        </small>
                                     </div>
-
 
                                     <!-- Discount -->
                                     <div class="mb-3">
@@ -284,3 +284,15 @@
         });
     </script>
 @endsection
+
+@push('styles')
+<style>
+    .product-description h1,
+    .product-description h2,
+    .product-description h3,
+    .product-description h4,
+    .product-description h5 {
+        text-decoration: underline;
+    }
+</style>
+@endpush

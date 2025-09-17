@@ -241,42 +241,57 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/product-details.css') }}">
     <style>
-        .product-description h2,
-        .product-description h3 {
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            margin-top: 1.5em;
-        }
-
-        .product-description p {
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            margin-bottom: 1em;
-        }
-
-        .product-description ul,
-        .product-description ol {
-            color: #fff;
-            margin-left: 2em;
-            margin-bottom: 1em;
-        }
-
-        .product-description li {
-            margin-bottom: 0.3em;
-        }
-
-        .product-description strong {
-            color: #ffffff;
-        }
-
         .product-description h1,
         .product-description h2,
         .product-description h3,
         .product-description h4,
         .product-description h5 {
             text-decoration: underline;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            line-height: 1.4;
+        }
+        .product-description p {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 1em;
+            line-height: 1.7;
+        }
+        .product-description ul,
+        .product-description ol {
+            color: #fff;
+            margin-left: 2em;
+            margin-bottom: 1em;
+            font-size: 15px;
+        }
+        .product-description li {
+            margin-bottom: 0.3em;
+        }
+        .product-description strong {
+            color: #ffffff;
+        }
+        .product-description hr {
+            border: none;
+            border-top: 1.5px solid #ffffff;
+            margin: 28px 0 18px 0;
+        }
+        .product-description a {
+            color: #ffffff;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .product-description a:hover {
+            color: #ffffff;
+        }
+        .product-description blockquote {
+            border-left: 3px solid #ffffff;
+            padding-left: 1em;
+            color: #f9e79f;
+            font-style: italic;
+            margin: 1em 0;
+            background: rgba(255, 255, 255, 0.03);
         }
     </style>
 @endpush
