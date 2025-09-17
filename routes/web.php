@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,13 +31,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware(['auth'])->group(function () {
+    // Dashboard redirect route (for Laravel Breeze compatibility)
+    Route::get('/dashboard', function () {
+        return redirect()->route('admin.dashboard');
+    })->name('dashboard');
+    
     // Admin dashboard
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     // Admin prefix group
     Route::prefix('admin')->name('admin.')->group(function () {
+        // Store status toggle
+        Route::post('/store-status/toggle', [AdminDashboardController::class, 'toggleStoreStatus'])
+            ->name('store-status.toggle');
+            
         // Categories Resource Routes
         Route::resource('categories', CategoryController::class);
 

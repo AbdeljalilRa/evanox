@@ -22,6 +22,11 @@
     <!-- App css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    @stack('styles')
+
     <!-- Theme Config js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
@@ -129,5 +134,6 @@
         }
     </script>
     @yield('scripts')
+    @stack('scripts')
 </body>
 </html>
