@@ -4,21 +4,20 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = \Illuminate\Support\Facades\Auth::user();
+        $user = Auth::user();
+        // Ila user ma kaynch wla role dyalo machi admin
         if (!$user || $user->role !== 'admin') {
-            return redirect()->route('dashboard')
-                ->with('error', 'Access denied. Admin only.');
+            abort(403, 'Access denied. Admin only.');
         }
 
         return $next($request);
