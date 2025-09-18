@@ -111,6 +111,15 @@
              <li class="menu-title mt-2">Other</li>
 
              <li class="nav-item">
+                 <a class="nav-link" href="{{ route('admin.access-requests.index') }}">
+                     <span class="nav-icon">
+                         <iconify-icon icon="solar:key-bold-duotone"></iconify-icon>
+                     </span>
+                     <span class="nav-text"> Access Requests </span>
+                 </a>
+             </li>
+
+             <li class="nav-item">
                  <a class="nav-link" href="pages-review.html">
                      <span class="nav-icon">
                          <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
