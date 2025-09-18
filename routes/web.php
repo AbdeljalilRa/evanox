@@ -3,25 +3,27 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\AccessRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Coming soon page (accessible without middleware)
+Route::get('/coming-soon', [StoreController::class, 'comingSoon'])->name('coming-soon');
 
+// Access request routes (accessible without middleware)
+Route::post('/access-request', [AccessRequestController::class, 'store'])->name('access-request.store');
+Route::post('/verify-password', [AccessRequestController::class, 'verifyPassword'])->name('verify-password');
 
-Route::get('/home', function () {
-    return view('store.index');
+// Store routes (protected by store access middleware)
+Route::middleware(['store.access'])->group(function () {
+    Route::get('/home', [StoreController::class, 'index'])->name('store.index');
+    Route::get('/collections', [StoreController::class, 'collections'])->name('collections');
+    Route::get('/productdetails', [StoreController::class, 'productDetails'])->name('productdetails');
 });
-
-Route::get('/collections', function () {
-    return view('store.collections');
-})->name('collections');
-
-Route::get('/productdetails', function () {
-    return view('store.productdetails');
-})->name('productdetails');
 
 
 Route::middleware('auth')->group(function () {
@@ -73,6 +75,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::patch('products/{product:slug}/toggle-status', [ProductController::class, 'toggleStatus'])
             ->name('products.toggle-status');
+
+        // Access Requests
+        Route::get('/access-requests', [AccessRequestController::class, 'index'])
+            ->name('access-requests.index');
+        Route::patch('/access-requests/{accessRequest}/approve', [AccessRequestController::class, 'approve'])
+            ->name('access-requests.approve');
+
+        // Store Settings
+        Route::patch('/store-settings', [App\Http\Controllers\SettingsController::class, 'updateStoreSettings'])
+            ->name('store-settings.update');
     });
 });
 
