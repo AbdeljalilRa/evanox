@@ -134,7 +134,23 @@
             </div>
         </div>
     </div>
+
+    <!-- What is Evanox Centum Section -->
+    <div class="text-center w-full mt-24 mb-16">
+        <h2 class="text-4xl font-bold mb-6 tracking-wide" style="font-family: 'Montserrat', sans-serif;">
+            WHAT IS EVANOX CENTUM?
+        </h2>
+        <div class="max-w-4xl mx-auto px-8">
+            <p class="text-xl font-medium italic mb-2" style="font-family: 'Montserrat', sans-serif;">
+                EVANOX CENTUM – THE COMPLETE LEGACY DROP
+            </p>
+            <p class="text-lg italic opacity-90" style="font-family: 'Montserrat', sans-serif;">
+                "100 DESIGNS. 100 LICENSES. SEALED FOREVER."
+            </p>
+        </div>
+    </div>
 </div>
+
 
 <script src="{{ asset('assets/js/archive.js') }}"></script>
 @endsection
