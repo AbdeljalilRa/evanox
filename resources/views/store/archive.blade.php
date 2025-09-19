@@ -4,9 +4,9 @@
 
 
 @section('content')
-<div class="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
+<div class="flex flex-col items-center justify-center min-h-screen bg-black text-white">
     <!-- Top Quote Section -->
-    <div class="text-center max-w-4xl mx-auto mb-16">
+    <div class="text-center w-full mx-auto mb-16">
         <!-- Main Quote -->
         <h1 class="font-extrabold italic mb-5 tracking-wide" style="font-family: 'Montserrat', sans-serif; font-size: 22px;">
             "YOU WEREN'T SUPPOSED TO BE HERE."
@@ -19,8 +19,8 @@
     </div>
 
     <!-- Content Section with Description and Video -->
-    <div class="max-w-7xl mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-8">
             <!-- Left Side - Description -->
             <div class="text-white space-y-6">
                 <div class="space-y-4">
@@ -52,8 +52,8 @@
             </div>
 
             <!-- Right Side - Video -->
-            <div class="flex justify-center">
-                <div class="w-full max-w-md bg-gray-900 rounded-lg overflow-hidden">
+            <div class="w-full">
+                <div class="w-full bg-gray-900 rounded-lg overflow-hidden">
                     <!-- Video Container -->
                     <div class="aspect-video bg-gray-800 relative">
                         <video 
