@@ -36,7 +36,9 @@ Route::get('/archive', function () {
     return view('store.archive');
 })->name('archive');
 
-
+Route::get('/order', function () {
+    return view('store.order');
+})->name('order');
 
 
 // Checkout and Payment routes (require authentication)
