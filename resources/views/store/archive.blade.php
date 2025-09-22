@@ -149,6 +149,18 @@
             </p>
         </div>
     </div>
+
+    <!-- Additional Description Section -->
+    <div class="text-left w-full mt-16 mb-16 px-8">
+        <div class="max-w-2xl">
+            <p class="mb-4" style="font-family: 'Montserrat', sans-serif; font-size: 18px; color: #fff; line-height: 1.6;">
+                It's not just a pack.
+            </p>
+            <p style="font-family: 'Montserrat', sans-serif; font-size: 18px; color: #fff; line-height: 1.6;">
+                It's the sealed archive of Evanox — a black box of pressure, power, and untouchable digital design history.
+            </p>
+        </div>
+    </div>
 </div>
 
 
