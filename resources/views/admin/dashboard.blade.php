@@ -172,9 +172,16 @@
     </div>
 </div>
 
+@php
+    // Jib status dyal store mn DB
+    $storeStatus = \Illuminate\Support\Facades\DB::table('settings')
+                    ->where('key', 'store_status')
+                    ->value('value');
+@endphp
+
 @if(session('success'))
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
-        <div class="toast show bg-success text-white" role="alert">
+        <div class="toast show {{ $storeStatus === 'on' ? 'bg-success' : 'bg-danger' }} text-white" role="alert">
             <div class="toast-body">
                 <i class="fas fa-check-circle me-2"></i>
                 {{ session('success') }}
@@ -182,6 +189,7 @@
         </div>
     </div>
 @endif
+
 @endsection
 
 @push('styles')

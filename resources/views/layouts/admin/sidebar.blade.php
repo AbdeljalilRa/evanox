@@ -20,17 +20,37 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:monitor-dashboard" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Dashboard </span>
                 </a>
             </li>
 
+            <!-- Orders -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="sidebarProducts">
+                <a class="nav-link" href="#">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:cart-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Orders </span>
+                </a>
+            </li>
+
+            <!-- Coupons -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:ticket-percent-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Coupons </span>
+                </a>
+            </li>
+
+            <!-- Products -->
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProducts">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:package-variant-closed" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Products </span>
                 </a>
@@ -46,11 +66,11 @@
                 </div>
             </li>
 
+            <!-- Categories -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="sidebarCategory">
+                <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCategory">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:shape-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Category </span>
                 </a>
@@ -66,22 +86,23 @@
                 </div>
             </li>
 
+            <!-- Users -->
             <li class="menu-title mt-2">Users</li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('profile.show') }}">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:account-circle-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Profile </span>
                 </a>
             </li>
 
+            <!-- Customers -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="sidebarCustomers">
+                <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCustomers">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:users-group-two-rounded-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:account-multiple-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Customers </span>
                 </a>
@@ -97,12 +118,33 @@
                 </div>
             </li>
 
-            <li class="menu-title mt-2">Other</li>
+            <!-- Access Requests -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.access-requests.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:email-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Access Requests </span>
+                </a>
+            </li>
 
+            <!-- Store Settings -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="mdi:cog-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Store Settings </span>
+                </a>
+            </li>
+
+            <li class="menu-title mt-2">Other</li>
+
+            <!-- Reviews -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:star-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Reviews </span>
                 </a>

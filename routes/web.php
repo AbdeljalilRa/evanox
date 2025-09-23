@@ -8,6 +8,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StoreStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ComingSoonController;
+use App\Http\Controllers\StoreAccessRequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStoreStatus;
 use App\Http\Middleware\AdminMiddleware;
@@ -59,6 +60,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('access-requests', StoreAccessRequestController::class)->only(['index', 'destroy']);
+        Route::post('access-requests/{id}/send-password', [StoreAccessRequestController::class, 'sendPassword'])->name('access-requests.send-password');
+        Route::post('access-requests/bulk-send-password', [StoreAccessRequestController::class, 'bulkSendPassword'])
+            ->name('access-requests.bulk-send-password');
 
         // Store Status toggle (on/off)
         Route::post('/store-status', [StoreStatusController::class, 'toggle'])->name('store-status.toggle');
