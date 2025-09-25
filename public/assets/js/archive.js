@@ -46,4 +46,39 @@ document.addEventListener('DOMContentLoaded', function() {
         playIcon.classList.remove('hidden');
         pauseIcon.classList.add('hidden');
     });
+
+    // Initialize Swiper for products showcase
+    if (typeof Swiper !== 'undefined') {
+        new Swiper('.product-slider', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            },
+            navigation: {
+                nextEl: '.product-slider .swiper-button-next',
+                prevEl: '.product-slider .swiper-button-prev'
+            },
+            pagination: {
+                el: '.product-slider .swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 40
+                }
+            }
+        });
+    }
 });
