@@ -180,10 +180,101 @@
             TOTAL DESIGNS: +100 ARTWORKS
         </p>
     </div>
+
+    <!-- Product Section with Slider -->
+    <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Static Products Based on Your Image -->
+                <div class="swiper-slide">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                        <div class="relative">
+                            <img src="{{ asset('images/21 savage.png') }}" alt="BIG FACE CENT - Hustler Glow Drop" class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-white text-14px font-bold mb-2 uppercase">BIG FACE CENT - Hustler Glow Drop</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-500 star-rating">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                </div>
+                                <span class="text-gray-400 text-10px ml-2">(45)</span>
+                            </div>
+                            <p class="text-14.42px font-bold text-white">29.99 $</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                        <div class="relative">
+                            <img src="{{ asset('images/BOX FACE.png') }}" alt="Big Face FUTURE - Codeine Glare Edition" class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-white text-14px font-bold mb-2 uppercase">Big Face FUTURE - Codeine Glare Edition</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-500 star-rating">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                </div>
+                                <span class="text-gray-400 text-10px ml-2">(45)</span>
+                            </div>
+                            <p class="text-14.42px font-bold text-white">29.99 $</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                        <div class="relative">
+                            <img src="{{ asset('images/stephen.png') }}" alt="MAMBA X-RAY - 5 Rings of Vengeance" class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-white text-14px font-bold mb-2 uppercase">MAMBA X-RAY - 5 Rings of Vengeance</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-500 star-rating">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                </div>
+                                <span class="text-gray-400 text-10px ml-2">(45)</span>
+                            </div>
+                            <p class="text-14.42px font-bold text-white">29.99 $</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                        <div class="relative">
+                            <img src="{{ asset('images/catch me bleu.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-white text-14px font-bold mb-2 uppercase">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-500 star-rating">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                </div>
+                                <span class="text-gray-400 text-10px ml-2">(45)</span>
+                            </div>
+                            <p class="text-14.42px font-bold text-white">29.99 $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next text-white"></div>
+            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    
 </div>
 
 
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/archive.css') }}">
+@endpush
 
-<script src="{{ asset('assets/js/archive.js') }}"></script>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="{{ asset('assets/js/archive.js') }}"></script>
+@endpush
+
 @endsection
