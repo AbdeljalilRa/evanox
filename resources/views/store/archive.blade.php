@@ -161,7 +161,18 @@
             </p>
         </div>
     </div>
+
+    <!-- EVANOX CENTUM Package Image -->
+    <div class="text-center w-full mt-16 mb-16 px-8">
+        <div class="flex justify-center">
+            <img src="{{ asset('images/ex limted pack.png') }}" 
+                 alt="EVANOX CENTUM - The Complete Legacy Package" 
+                 class="max-w-lg w-full h-auto object-contain">
+        </div>
+    </div>
 </div>
+
+
 
 
 <script src="{{ asset('assets/js/archive.js') }}"></script>
