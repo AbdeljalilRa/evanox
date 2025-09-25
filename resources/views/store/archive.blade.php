@@ -176,7 +176,7 @@
         <h2 class="font-bold mb-4 tracking-wide" style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 22px; color: #fff;">
             WHAT'S IN THE BOX?
         </h2>
-        <p class="font-medium italic" style="font-family: 'Montserrat', sans-serif; font-size: 16px; color: #999;">
+        <p class="font-medium italic" style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-style: italic; font-size: 16px; color: #f9f9f9;">
             TOTAL DESIGNS: +100 ARTWORKS
         </p>
     </div>
