@@ -173,7 +173,7 @@
 
     <!-- What's in the Box Section -->
     <div class="text-center w-full mt-16 mb-16 px-8">
-        <h2 class="font-bold mb-4 tracking-wide" style="font-family: 'Montserrat', sans-serif; font-size: 24px; color: #fff;">
+        <h2 class="font-bold mb-4 tracking-wide" style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 22px; color: #fff;">
             WHAT'S IN THE BOX?
         </h2>
         <p class="font-medium italic" style="font-family: 'Montserrat', sans-serif; font-size: 16px; color: #999;">
