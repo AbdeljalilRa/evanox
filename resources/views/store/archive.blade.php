@@ -538,6 +538,36 @@
             </div>
         </div>
     </section>
+
+    {{-- Customer Reviews Section --}}
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-white font-montserrat font-bold italic text-[14.37px] mb-8 text-center">Customer Reviews</h2>
+        <div class="flex items-center justify-center mb-8">
+            <div class="flex text-white text-2xl">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="rounded-lg p-6 review-card">
+                <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason B.</span>
+                <p class="text-white font-montserrat font-semibold text-[8.64px] mt-2">
+                    This design hits hard. Clean, crisp, and consistent — just how I like it.
+                </p>
+            </div>
+            <div class="rounded-lg p-6 review-card">
+                <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason P.</span>
+                <p class="text-white font-montserrat font-semibold text-[8.64px] mt-2">
+                    Perfect for our merch line. Bold and unique.
+                </p>
+            </div>
+            <div class="rounded-lg p-6 review-card">
+                <span class="text-white font-montserrat font-black italic text-[9.6px]">Mason R.</span>
+                <p class="text-white font-montserrat font-semibold text-[8.64px] mt-2">
+                    The contrast between message and design makes it powerful.
+                </p>
+            </div>
+        </div>
+    </section>
     
 </div>
 
