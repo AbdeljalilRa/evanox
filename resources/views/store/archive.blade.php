@@ -263,6 +263,117 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
+    <!-- What's Included Section -->
+    <div class="w-full bg-black py-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+                <h2 class="font-bold mb-4 tracking-wide" style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 22px; color: #fff;">
+                    WHAT'S INCLUDED
+                </h2>
+                <p class="font-medium italic" style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-style: italic; font-size: 16px; color: #f9f9f9;">
+                    (SECTION BLOCK)
+                </p>
+            </div>
+
+            <!-- Collections Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- LEGENDS NEVER DIE -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        LEGENDS NEVER DIE
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Cold chains. Crowned heads. Eternal bars.<br>
+                        This ain't nostalgia — it's sacred digital memory.<br>
+                        From the booth to your canvas, legends live forever.<br>
+                        LEGENDS NEVER DIE — 100 licenses. No returns.
+                    </p>
+                </div>
+
+                <!-- EVANOX BASKETBALL LAB -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        EVANOX BASKETBALL LAB
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Where greatness is studied, crafted, and sealed.<br>
+                        From rings to legends, each piece is built in the lab —<br>
+                        forged under pressure.<br>
+                        Only 100 licenses. No edits. No mercy.<br>
+                        EVANOX BASKETBALL LAB - pure legacy, digitized.
+                    </p>
+                </div>
+
+                <!-- EYE CONTACT: HIP-HOP ICONS -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        EYE CONTACT: HIP-HOP ICONS
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Evanox delivers limited-edition digital art<br>
+                        crafted to disrupt the ordinary. Each piece<br>
+                        is bold, exclusive, and made to elevate your<br>
+                        identity — whether it's for fashion, music, or<br>
+                        content creation.
+                    </p>
+                </div>
+
+                <!-- GRID GODS COLLECTION -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        GRID GODS COLLECTION
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Evanox delivers limited-edition digital art<br>
+                        crafted to disrupt the ordinary. Each piece<br>
+                        is bold, exclusive, and made to elevate your<br>
+                        identity — whether it's for fashion, music, or<br>
+                        content creation.
+                    </p>
+                </div>
+
+                <!-- AIRBRUSH DREAMS -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        AIRBRUSH DREAMS
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Evanox delivers limited-edition digital art<br>
+                        crafted to disrupt the ordinary. Each piece<br>
+                        is bold, exclusive, and made to elevate your<br>
+                        identity — whether it's for fashion, music, or<br>
+                        content creation.
+                    </p>
+                </div>
+
+                <!-- COLLECTION NEVER SEEN -->
+                <div class="p-6">
+                    <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                        COLLECTION NEVER SEEN
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
+                        Evanox delivers limited-edition digital art<br>
+                        crafted to disrupt the ordinary. Each piece<br>
+                        is bold, exclusive, and made to elevate your<br>
+                        identity — whether it's for fashion, music, or<br>
+                        content creation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- WORDS THAT HIT Section -->
+            <div class="p-8">
+                <h3 class="text-white font-bold text-2xl mb-6 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                    WORDS THAT HIT
+                </h3>
+                <p class="text-gray-300 leading-relaxed text-lg" style="font-family: 'Montserrat', sans-serif; font-weight: 600; line-height: 1.6;">
+                    Evanox delivers limited-edition digital art crafted to disrupt the ordinary. Each piece is bold, exclusive, and made to elevate your identity — whether it's for fashion, music, or content creation.
+                </p>
+            </div>
+        </div>
+    </div>
     
 </div>
 
