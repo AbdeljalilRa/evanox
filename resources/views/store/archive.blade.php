@@ -383,6 +383,161 @@
                     (FEW EVER KEEP IT.)
                 </p>
             </div>
+
+
+            <section class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row">
+            <!-- Product Images Gallery (Left Side) -->
+            <div class="w-full md:w-1/2 md:pr-8">
+                <!-- Main Product Image -->
+                <div class="mb-4">
+                    <div class="bg-black overflow-hidden product-image-container">
+                        <img id="mainProductImage"
+                            src="{{ asset('images/ex limted pack.png') }}"
+                            alt="EVANOX CENTUM Package" class="w-full h-auto object-contain">
+                    </div>
+                </div>
+
+                
+
+                {{-- Feature Icons Section --}}
+                <div class="mt-10 bg-black px-4">
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-12">
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon11.png') }}" alt="Design Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Designs You Won't
+                                Find Anywhere Else</h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                Evanox delivers limited-edition digital art crafted to disrupt the ordinary.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon22.png') }}" alt="Delivery Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Instant Digital
+                                Delivery</h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                Buy it. Download it. Use it. All your files are delivered instantly.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon33.png') }}" alt="Setup Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Zero Setup Needed
+                            </h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                Ready-to-use files with no plugins, no confusion. Just download and create.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon44.png') }}" alt="Creators Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Made by Real Creators
+                            </h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                Crafted by professionals from streetwear, music, and visual culture.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon55.png') }}" alt="Access Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Lifetime Access</h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                Forever access. Re-download anytime, from anywhere — your files are always yours.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-start">
+                            <div class="mb-2">
+                                <img src="{{ asset('images/icon66.png') }}" alt="Compatibility Icon" class="w-8 h-8">
+                            </div>
+                            <h4 class="text-white font-montserrat font-black italic text-[9.6px] mb-1">Program Compatibility
+                            </h4>
+                            <p class="text-white font-montserrat font-semibold text-[8.64px]">
+                                All EVANOX designs are built for Adobe Photoshop in layered PSD format.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details (Right Side) -->
+            <div class="w-full md:w-1/2 mt-8 md:mt-0">
+                <div class="bg-black py-5 px-0">
+                    <div class="max-w-lg">
+                        <h1 class="text-[23px] font-montserrat font-semibold text-white mb-2">
+                            EVANOX CENTUM - THE COMPLETE LEGACY DROP
+                        </h1>
+                        <div class="flex items-center mb-5">
+                            <div class="flex text-yellow-500 mr-2">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="text-white text-[15px] font-montserrat font-black">(100)</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-white text-[19px] font-montserrat font-extrabold">
+                                999.00 USD
+                            </span>
+                        </div>
+                        <div>
+                            <button id="addToBagBtn" data-product-id="centum-package"
+                                class="w-full bg-white text-black font-montserrat font-extrabold text-[16px] py-3 px-8 rounded-full hover:bg-white/90 transition-colors">
+                                Add to Bag
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description Section -->
+                <div class="pt-6 mb-6">
+                    <h3 class="text-white font-montserrat font-semibold italic text-[18px] mb-3">• Description</h3>
+                    <div class="text-white font-montserrat font-bold italic text-[12px] mb-4 product-description">
+                        The ultimate evolution of human consciousness lies within the mysterious compound known as EVANOX CENTUM. 
+                        This isn't just a design pack — it's the sealed archive of Evanox, a black box of pressure, power, 
+                        and untouchable digital design history.
+                    </div>
+                    
+                    <div class="text-white mb-4">
+                        <span class="text-white font-montserrat font-extrabold text-[12px] underline">What's Inside:</span><br>
+                        <ul>
+                            <li class="font-montserrat font-semibold text-[12px]">• 100+ Exclusive Digital Artworks</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• LEGENDS NEVER DIE Collection</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• EVANOX BASKETBALL LAB Series</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• EYE CONTACT: HIP-HOP ICONS</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• GRID GODS COLLECTION</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• AIRBRUSH DREAMS</li>
+                            <li class="font-montserrat font-semibold text-[12px]">• COLLECTION NEVER SEEN</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-white mb-4">
+                        <span class="text-white font-montserrat font-extrabold text-[12px] underline">Perfect For:</span><br>
+                        <span class="font-montserrat font-semibold text-[12px]">Fashion designers, music artists, content creators, and those who demand exclusive digital art that disrupts the ordinary.</span>
+                    </div>
+                    
+                    <div class="text-white mb-4">
+                        <span class="text-white font-montserrat font-extrabold text-[12px] underline">Format:</span><br>
+                        <span class="font-montserrat font-semibold text-[12px]">Adobe Photoshop PSD files with layers, PNG files, high-resolution formats</span>
+                    </div>
+                    
+                    <div class="text-white mb-4">
+                        <span class="text-white font-montserrat font-extrabold text-[12px] underline">License:</span><br>
+                        <span class="font-montserrat font-semibold text-[12px]">Limited commercial license - Only 100 copies available. Forever access, no returns.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 </div>
 
