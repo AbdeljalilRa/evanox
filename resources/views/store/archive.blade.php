@@ -365,10 +365,10 @@
 
             <!-- WORDS THAT HIT Section -->
             <div class="p-8">
-                <h3 class="text-white font-bold text-2xl mb-6 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
+                <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                     WORDS THAT HIT
                 </h3>
-                <p class="text-gray-300 leading-relaxed text-lg" style="font-family: 'Montserrat', sans-serif; font-weight: 600; line-height: 1.6;">
+                <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
                     Evanox delivers limited-edition digital art crafted to disrupt the ordinary. Each piece is bold, exclusive, and made to elevate your identity — whether it's for fashion, music, or content creation.
                 </p>
             </div>
