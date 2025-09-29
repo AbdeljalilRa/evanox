@@ -278,9 +278,9 @@
             </div>
 
             <!-- Collections Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div class="collections-grid mb-16">
                 <!-- LEGENDS NEVER DIE -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         LEGENDS NEVER DIE
                     </h3>
@@ -293,21 +293,21 @@
                 </div>
 
                 <!-- EVANOX BASKETBALL LAB -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         EVANOX BASKETBALL LAB
                     </h3>
                     <p class="text-gray-300 leading-relaxed" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.6;">
-                        Where greatness is studied, crafted, and sealed.<br>
-                        From rings to legends, each piece is built in the lab —<br>
-                        forged under pressure.<br>
-                        Only 100 licenses. No edits. No mercy.<br>
+                        Where greatness is studied, crafted, and sealed.
+                        From rings to legends, each piece is built in the lab —
+                        forged under pressure.
+                        Only 100 licenses. No edits. No mercy.
                         EVANOX BASKETBALL LAB - pure legacy, digitized.
                     </p>
                 </div>
 
                 <!-- EYE CONTACT: HIP-HOP ICONS -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         EYE CONTACT: HIP-HOP ICONS
                     </h3>
@@ -321,7 +321,7 @@
                 </div>
 
                 <!-- GRID GODS COLLECTION -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         GRID GODS COLLECTION
                     </h3>
@@ -335,7 +335,7 @@
                 </div>
 
                 <!-- AIRBRUSH DREAMS -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         AIRBRUSH DREAMS
                     </h3>
@@ -349,7 +349,7 @@
                 </div>
 
                 <!-- COLLECTION NEVER SEEN -->
-                <div class="p-6">
+                <div class="collection-card">
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide italic" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;">
                         COLLECTION NEVER SEEN
                     </h3>
