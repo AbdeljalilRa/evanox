@@ -8,6 +8,7 @@ use App\Models\StoreAccessRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class StoreAccessRequestController extends Controller
 {
@@ -17,28 +18,29 @@ class StoreAccessRequestController extends Controller
         return view('admin.access_requests.index', compact('requests'));
     }
 
-    public function sendPassword($id)
-    {
-        $request = StoreAccessRequest::findOrFail($id);
+   public function sendPassword($id)
+{
+    $request = StoreAccessRequest::findOrFail($id);
 
-        // generate random password
-        $password = Str::random(10);
+    // Generate random password
+    $rawPassword = Str::random(10);
 
-        // update request with hashed password
-        $request->update([
-            'password' => bcrypt($password)
-        ]);
+    // Store hashed password in DB
+    $request->update([
+        'password' => Hash::make($rawPassword)
+    ]);
 
-        // send mail
-        Mail::send('emails.access_password', [
-            'email' => $request->email,
-            'password' => $password
-        ], function ($message) use ($request) {
-            $message->to($request->email)->subject('Your Store Access Password');
-        });
+    // Send raw password via email
+    Mail::send('emails.access_password', [
+        'email' => $request->email,
+        'password' => $rawPassword
+    ], function ($message) use ($request) {
+        $message->to($request->email)
+                ->subject('Your Store Access Password');
+    });
 
-        return back()->with('success', 'Password sent to ' . $request->email);
-    }
+    return back()->with('success', 'Password sent to ' . $request->email);
+}
 
     public function bulkSendPassword(Request $request)
     {

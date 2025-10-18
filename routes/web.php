@@ -12,6 +12,7 @@ use App\Http\Controllers\StoreAccessRequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStoreStatus;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\OrderController;
 
 // ======================
 // Public Store routes
@@ -80,6 +81,12 @@ Route::middleware(['auth'])->group(function () {
         // Toggle product status
         Route::patch('products/{product:slug}/toggle-status', [ProductController::class, 'toggleStatus'])
             ->name('products.toggle-status');
+
+        // Orders
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::post('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])
+            ->name('orders.update-status');
     });
 });
 

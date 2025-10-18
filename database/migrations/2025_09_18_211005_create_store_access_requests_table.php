@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('store_access_requests', function (Blueprint $table) {
             $table->id();
-              $table->string('email')->unique();
-        $table->string('password')->nullable(); // later for manual assign
+            $table->string('email')->unique();
+            $table->string('password')->nullable(); // later for manual assign
             $table->timestamps();
         });
     }

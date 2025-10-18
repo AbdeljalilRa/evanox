@@ -28,13 +28,14 @@
 
             <!-- Orders -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:cart-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Orders </span>
                 </a>
             </li>
+
 
             <!-- Coupons -->
             <li class="nav-item">
@@ -48,7 +49,8 @@
 
             <!-- Products -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProducts">
+                <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarProducts">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:package-variant-closed" class="fs-20"></iconify-icon>
                     </span>
@@ -68,7 +70,8 @@
 
             <!-- Categories -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCategory">
+                <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarCategory">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:shape-outline" class="fs-20"></iconify-icon>
                     </span>
@@ -100,7 +103,8 @@
 
             <!-- Customers -->
             <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCustomers">
+                <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarCustomers">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:account-multiple-outline" class="fs-20"></iconify-icon>
                     </span>
