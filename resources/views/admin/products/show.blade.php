@@ -90,12 +90,13 @@
                             <div class="col-12">
                                 <h5 class="fw-bold">Gallery</h5>
                                 <div class="d-flex flex-wrap align-items-center gap-3">
-                                    @if($product->gallery_urls && count($product->gallery_urls) > 0)
-                                        @foreach ($product->gallery_urls as $url)
+                                    @if($product->images && $product->images->count() > 0)
+                                        @foreach ($product->images as $image)
                                             <div class="gallery-img-box text-center">
-                                                <img src="{{ $url }}" alt="{{ $product->title }}"
-                                                    class="rounded shadow-sm"
-                                                    style="max-width:150px; max-height:150px;">
+                                                <img src="{{ asset('storage/' . $image->image_path) }}" 
+                                                     alt="{{ $product->title }}"
+                                                     class="rounded shadow-sm"
+                                                     style="max-width:150px; max-height:150px; object-fit: cover;">
                                             </div>
                                         @endforeach
                                     @else

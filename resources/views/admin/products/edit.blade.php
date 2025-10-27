@@ -16,6 +16,7 @@
                             @csrf
                             @method('PUT')
 
+                            <!-- First column remains unchanged -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <!-- Product Title -->
@@ -71,7 +72,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <!-- Description (CKEditor 5) -->
+                                    <!-- Description -->
                                     <div class="mb-3">
                                         <label for="description" class="form-label">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
@@ -100,7 +101,7 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Main File (Large) -->
+                                    <!-- Main File (Large) - Stays on S3 -->
                                     <div class="mb-3">
                                         <label for="file_path" class="form-label">Main File (Large)</label>
                                         @if ($product->file_path)
@@ -148,7 +149,7 @@
                                             </div>
                                             <div id="preview_{{ $i }}" class="img-preview mt-2">
                                                 @if (isset($productImages[$i - 1]))
-                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($productImages[$i - 1]->image_path, now()->addMinutes(5)) }}"
+                                                    <img src="{{ asset('storage/' . $productImages[$i - 1]->image_path) }}"
                                                         alt="Gallery Image {{ $i }}">
                                                 @endif
                                             </div>
@@ -200,6 +201,7 @@
             border-radius: 10px;
             box-shadow: 0 0 8px #d1d1d1;
             margin-right: 8px;
+            object-fit: cover;
         }
 
         .stylish-file {
