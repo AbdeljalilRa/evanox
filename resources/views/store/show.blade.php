@@ -21,17 +21,18 @@
                 <div class="mb-4">
                     <div class="bg-black overflow-hidden product-image-container">
                         <img id="mainProductImage"
-                            src="{{ $product->gallery_urls->first() ?? asset('images/default.png') }}"
+                            src="{{ $product->images->count() > 0 ? asset('storage/' . $product->images->first()->image_path) : asset('images/default.png') }}"
                             alt="{{ $product->title }}" class="w-full h-auto object-contain">
                     </div>
                 </div>
 
                 {{-- Thumbnail Gallery --}}
                 <div class="grid grid-cols-4 gap-2">
-                    @foreach ($product->gallery_urls as $url)
+                    @foreach ($product->images as $image)
                         <div class="rounded cursor-pointer hover:opacity-80 transition-all thumbnail-image"
-                            data-img="{{ $url }}">
-                            <img src="{{ $url }}" alt="{{ $product->title }}" class="w-full h-auto">
+                            data-img="{{ asset('storage/' . $image->image_path) }}">
+                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->title }}"
+                                class="w-full h-auto object-cover rounded">
                         </div>
                     @endforeach
                 </div>
@@ -219,8 +220,8 @@
                 <div class="group">
                     <div
                         class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg mb-3">
-                        <img src="{{ $related->gallery_urls->first() ?? asset('images/default.png') }}"
-                            alt="{{ $related->title }}" class="w-full h-auto">
+                        <img src="{{ $related->images->count() > 0 ? asset('storage/' . $related->images->first()->image_path) : asset('images/default.png') }}"
+                            alt="{{ $related->title }}" class="w-full h-auto object-cover">
                     </div>
                     <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">{{ $related->title }}</h3>
                     <div class="flex items-center mb-2">
@@ -241,19 +242,24 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/product-details.css') }}">
     <style>
+        .product-description h1,
         .product-description h2,
-        .product-description h3 {
+        .product-description h3,
+        .product-description h4,
+        .product-description h5 {
+            text-decoration: underline;
             color: #fff;
-            font-family: 'Montserrat', sans-serif;
             font-weight: bold;
             margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            line-height: 1.4;
         }
 
         .product-description p {
             color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             margin-bottom: 1em;
+            line-height: 1.7;
         }
 
         .product-description ul,
@@ -261,6 +267,7 @@
             color: #fff;
             margin-left: 2em;
             margin-bottom: 1em;
+            font-size: 15px;
         }
 
         .product-description li {
@@ -271,12 +278,29 @@
             color: #ffffff;
         }
 
-        .product-description h1,
-        .product-description h2,
-        .product-description h3,
-        .product-description h4,
-        .product-description h5 {
+        .product-description hr {
+            border: none;
+            border-top: 1.5px solid #ffffff;
+            margin: 28px 0 18px 0;
+        }
+
+        .product-description a {
+            color: #ffffff;
             text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .product-description a:hover {
+            color: #ffffff;
+        }
+
+        .product-description blockquote {
+            border-left: 3px solid #ffffff;
+            padding-left: 1em;
+            color: #f9e79f;
+            font-style: italic;
+            margin: 1em 0;
+            background: rgba(255, 255, 255, 0.03);
         }
     </style>
 @endpush

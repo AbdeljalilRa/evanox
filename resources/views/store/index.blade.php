@@ -46,21 +46,20 @@
             <div class="swiper-wrapper">
                 @forelse($products as $product)
                     <div class="swiper-slide">
-                        <!-- Make product clickable to its details page -->
                         <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                            <div
-                                class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                 <div class="relative">
-                                    @if ($product->gallery_urls && count($product->gallery_urls) > 0)
-                                        <img src="{{ $product->gallery_urls[0] }}" alt="{{ $product->title }}"
-                                            class="w-full h-auto rounded-lg">
+                                    @if($product->images && $product->images->count() > 0)
+                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
+                                             alt="{{ $product->title }}"
+                                             class="w-full h-auto rounded-lg">
                                     @else
-                                        <img src="{{ asset('images/no-image.png') }}" alt="No image"
-                                            class="w-full h-auto rounded-lg">
+                                        <img src="{{ asset('images/no-image.png') }}" 
+                                             alt="No image"
+                                             class="w-full h-auto rounded-lg">
                                     @endif
                                     @php
-                                        $finalPrice =
-                                            $product->price - ($product->price * $product->discount_percentage) / 100;
+                                        $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
                                     @endphp
                                 </div>
                                 <div class="p-4">
@@ -69,11 +68,10 @@
                                         <div class="flex text-yellow-500 star-rating">
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>
-                                        <span
-                                            class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                        <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                     </div>
                                     <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
-                                    @if ($product->discount_percentage > 0)
+                                    @if($product->discount_percentage > 0)
                                         <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                     @endif
                                 </div>
@@ -92,7 +90,8 @@
         </div>
     </section>
 
-    @foreach ($categories as $category)
+   <!-- Category Products Sections -->
+    @foreach($categories as $category)
         <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
             <h2 class="text-18px font-bold text-white text-center mb-1 uppercase tracking-wide font-montserrat">
                 {{ $category->title }}
@@ -104,37 +103,32 @@
                 <div class="swiper-wrapper">
                     @forelse($category->products as $product)
                         <div class="swiper-slide">
-                            <!-- Make category product clickable to its details page -->
                             <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                                <div
-                                    class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                                <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                     <div class="relative">
-                                        @if ($product->gallery_urls && count($product->gallery_urls) > 0)
-                                            <img src="{{ $product->gallery_urls[0] }}" alt="{{ $product->title }}"
-                                                class="w-full h-auto rounded-lg">
+                                        @if($product->images && $product->images->count() > 0)
+                                            <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
+                                                 alt="{{ $product->title }}"
+                                                 class="w-full h-auto rounded-lg">
                                         @else
-                                            <img src="{{ asset('images/no-image.png') }}" alt="No image"
-                                                class="w-full h-auto rounded-lg">
+                                            <img src="{{ asset('images/no-image.png') }}" 
+                                                 alt="No image"
+                                                 class="w-full h-auto rounded-lg">
                                         @endif
                                         @php
-                                            $finalPrice =
-                                                $product->price -
-                                                ($product->price * $product->discount_percentage) / 100;
+                                            $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
                                         @endphp
                                     </div>
                                     <div class="p-4">
-                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}
-                                        </h3>
+                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}</h3>
                                         <div class="flex items-center mb-3">
                                             <div class="flex text-yellow-500 star-rating">
                                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                             </div>
-                                            <span
-                                                class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                            <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                         </div>
-                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $
-                                        </p>
-                                        @if ($product->discount_percentage > 0)
+                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
+                                        @if($product->discount_percentage > 0)
                                             <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                         @endif
                                     </div>

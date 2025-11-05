@@ -35,9 +35,12 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar-sm">
-                                                        @if($product->gallery_urls && count($product->gallery_urls) > 0)
+                                                        @if($product->images && $product->images->count() > 0)
                                                             <span class="avatar-title bg-light rounded">
-                                                                <img src="{{ $product->gallery_urls[0] }}" alt="{{ $product->title }}" class="img-fluid rounded" style="width:40px; height:40px;">
+                                                                <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
+                                                                     alt="{{ $product->title }}" 
+                                                                     class="img-fluid rounded" 
+                                                                     style="width:40px; height:40px; object-fit: cover;">
                                                             </span>
                                                         @else
                                                             <span class="avatar-title bg-light text-muted rounded">

@@ -14,9 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        // جبد المنتجات مع الصور
         $products = Product::with(['category', 'images'])->latest()->paginate(10);
-
         return view('admin.products.index', compact('products'));
     }
 
@@ -44,7 +42,7 @@ class ProductController extends Controller
             'is_active' => 'sometimes|boolean',
         ]);
 
-        // Upload main file
+        // Upload main file to S3
         $filePath = null;
         if ($request->hasFile('file_path')) {
             $filePath = $request->file('file_path')->store('products/files', 's3');
@@ -63,10 +61,11 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        // Upload gallery images
+        // Upload gallery images to local storage
         foreach (['images_1', 'images_2', 'images_3', 'images_4'] as $imgField) {
             if ($request->hasFile($imgField)) {
-                $path = $request->file($imgField)->store('products/gallery', 's3');
+                // Store image in local storage
+                $path = $request->file($imgField)->store('products/gallery', 'public');
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
@@ -87,7 +86,6 @@ class ProductController extends Controller
             ->with('success', 'Product created successfully!');
     }
 
-
     public function show(Product $product)
     {
         return view('admin.products.show', compact('product'));
@@ -96,9 +94,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        // Eager load the image URLs
         $product->load('images');
-        // Make sure the image_url and gallery_urls accessors are used
         $product->append(['image_url', 'gallery_urls']);
         $productImages = $product->images;
         return view('admin.products.edit', compact('product', 'categories', 'productImages'));
@@ -123,10 +119,12 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        // Update main file if uploaded
+        // Update main file if uploaded (stays on S3)
         if ($request->hasFile('file_path')) {
-            // Optional: Delete old file from S3 if needed
-            // Storage::disk('s3')->delete($product->file_path);
+            // Delete old file from S3 if exists
+            if ($product->file_path) {
+                Storage::disk('s3')->delete($product->file_path);
+            }
             $product->file_path = $request->file('file_path')->store('products/files', 's3');
         }
 
@@ -141,21 +139,25 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        // Update/Add gallery images
+        // Update/Add gallery images in local storage
         $galleryFields = ['images_1', 'images_2', 'images_3', 'images_4'];
         $productImages = $product->images()->orderBy('id')->get();
 
         foreach ($galleryFields as $index => $imgField) {
             if ($request->hasFile($imgField)) {
-                $path = $request->file($imgField)->store('products/gallery', 's3');
+                // Store new image in local storage
+                $path = $request->file($imgField)->store('products/gallery', 'public');
+                
                 // Update existing image or create new one
                 if (isset($productImages[$index])) {
-                    // Optional: Delete old image from S3
-                    // Storage::disk('s3')->delete($productImages[$index]->image_path);
+                    // Delete old image from local storage if exists
+                    if ($productImages[$index]->image_path) {
+                        Storage::disk('public')->delete($productImages[$index]->image_path);
+                    }
                     $productImages[$index]->image_path = $path;
                     $productImages[$index]->save();
                 } else {
-                    \App\Models\ProductImage::create([
+                    ProductImage::create([
                         'product_id' => $product->id,
                         'image_path' => $path,
                     ]);
@@ -169,6 +171,18 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        // Delete images from local storage before deleting product
+        foreach ($product->images as $image) {
+            if ($image->image_path) {
+                Storage::disk('public')->delete($image->image_path);
+            }
+        }
+
+        // Delete main file from S3 if exists
+        if ($product->file_path) {
+            Storage::disk('s3')->delete($product->file_path);
+        }
+
         $product->delete(); // Soft delete
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
