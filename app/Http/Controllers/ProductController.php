@@ -14,9 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        // جبد المنتجات مع الصور
         $products = Product::with(['category', 'images'])->latest()->paginate(10);
-
         return view('admin.products.index', compact('products'));
     }
 
@@ -36,12 +34,15 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
             'discount_percentage' => 'nullable|numeric',
-            'file_path' => 'required|file',
-            'images.*' => 'nullable|image|max:5120',
+            'file_path' => 'nullable|file',
+            'images_1' => 'nullable|image|max:25600',
+            'images_2' => 'nullable|image|max:25600',
+            'images_3' => 'nullable|image|max:25600',
+            'images_4' => 'nullable|image|max:25600',
             'is_active' => 'sometimes|boolean',
         ]);
 
-        // Upload main file
+        // Upload main file to S3
         $filePath = null;
         if ($request->hasFile('file_path')) {
             $filePath = $request->file('file_path')->store('products/files', 's3');
@@ -60,10 +61,11 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        // Upload gallery images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('products/gallery', 's3');
+        // Upload gallery images to local storage
+        foreach (['images_1', 'images_2', 'images_3', 'images_4'] as $imgField) {
+            if ($request->hasFile($imgField)) {
+                // Store image in local storage
+                $path = $request->file($imgField)->store('products/gallery', 'public');
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
@@ -84,7 +86,6 @@ class ProductController extends Controller
             ->with('success', 'Product created successfully!');
     }
 
-
     public function show(Product $product)
     {
         return view('admin.products.show', compact('product'));
@@ -93,58 +94,95 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        $product->load('images');
+        $product->append(['image_url', 'gallery_urls']);
+        $productImages = $product->images;
+        return view('admin.products.edit', compact('product', 'categories', 'productImages'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string',
-            'discount_percentage' => 'nullable|numeric|min:0|max:100',
-            'file_path' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'discount_percentage' => 'nullable|numeric',
+            'file_path' => 'nullable|file',
+            'images_1' => 'nullable|image|max:20480',
+            'images_2' => 'nullable|image|max:20480',
+            'images_3' => 'nullable|image|max:20480',
+            'images_4' => 'nullable|image|max:20480',
+            'is_active' => 'sometimes|boolean',
         ]);
 
-        $product->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'price' => $request->price,
-            'discount_percentage' => $request->discount_percentage ?? 0,
-            'stock' => $request->stock,
-            'is_active' => $request->has('is_active'),
-            'category_id' => $request->category_id,
-        ]);
+        $product = Product::findOrFail($id);
 
-        // Replace main image if uploaded
+        // Update main file if uploaded (stays on S3)
         if ($request->hasFile('file_path')) {
+            // Delete old file from S3 if exists
             if ($product->file_path) {
                 Storage::disk('s3')->delete($product->file_path);
             }
-            $product->file_path = $request->file('file_path')->store('products/main', 's3');
-            $product->save();
+            $product->file_path = $request->file('file_path')->store('products/files', 's3');
         }
 
-        // Add new gallery images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $galleryPath = $image->store('products/gallery', 's3');
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'image_path' => $galleryPath,
-                ]);
+        // Update basic fields
+        $product->title = $request->title;
+        $product->slug = Str::slug($request->title) . '-' . uniqid();
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_percentage = $request->discount_percentage ?? 0;
+        $product->stock = $request->stock;
+        $product->is_active = $request->has('is_active') ? 1 : 0;
+        $product->category_id = $request->category_id;
+        $product->save();
+
+        // Update/Add gallery images in local storage
+        $galleryFields = ['images_1', 'images_2', 'images_3', 'images_4'];
+        $productImages = $product->images()->orderBy('id')->get();
+
+        foreach ($galleryFields as $index => $imgField) {
+            if ($request->hasFile($imgField)) {
+                // Store new image in local storage
+                $path = $request->file($imgField)->store('products/gallery', 'public');
+                
+                // Update existing image or create new one
+                if (isset($productImages[$index])) {
+                    // Delete old image from local storage if exists
+                    if ($productImages[$index]->image_path) {
+                        Storage::disk('public')->delete($productImages[$index]->image_path);
+                    }
+                    $productImages[$index]->image_path = $path;
+                    $productImages[$index]->save();
+                } else {
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_path' => $path,
+                    ]);
+                }
             }
         }
 
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Product updated successfully!');
     }
 
     public function destroy(Product $product)
     {
+        // Delete images from local storage before deleting product
+        foreach ($product->images as $image) {
+            if ($image->image_path) {
+                Storage::disk('public')->delete($image->image_path);
+            }
+        }
+
+        // Delete main file from S3 if exists
+        if ($product->file_path) {
+            Storage::disk('s3')->delete($product->file_path);
+        }
+
         $product->delete(); // Soft delete
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }

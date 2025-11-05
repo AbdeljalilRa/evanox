@@ -1,0 +1,98 @@
+/* Archive Page Styles */
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: white !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px !important;
+}
+
+.swiper-pagination-bullet {
+    background: white !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffffff !important;
+}
+
+.product-slider {
+    padding-bottom: 60px;
+}
+
+.star-rating span {
+    margin-right: 3px;
+}
+
+/* Equal height cards for What's Included section */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.collection-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 280px;
+    padding: 1.5rem;
+}
+
+.collection-card h3 {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.collection-card p {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .product-slider {
+        padding: 0 5px 50px 5px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 16px !important;
+    }
+
+    .swiper-pagination {
+        bottom: 10px !important;
+    }
+
+    .swiper-slide .p-4 {
+        padding: 0.75rem !important;
+    }
+
+    .swiper-slide .flex.text-yellow-500 span {
+        font-size: 0.75rem !important;
+    }
+    
+    .collections-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .collection-card {
+        min-height: 220px;
+        padding: 1rem;
+    }
+}

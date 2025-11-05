@@ -29,7 +29,13 @@ class Category extends Model
      */
     protected $dates = ['deleted_at'];
 
-      public function getRouteKeyName()
+   // Category.php
+public function products()
+{
+    return $this->hasMany(Product::class);
+}
+
+    public function getRouteKeyName()
     {
         return 'slug';
     }

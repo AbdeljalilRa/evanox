@@ -22,6 +22,8 @@
     <!-- App css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <!-- Theme Config js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
@@ -128,6 +130,7 @@
             });
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
 </body>
 </html>

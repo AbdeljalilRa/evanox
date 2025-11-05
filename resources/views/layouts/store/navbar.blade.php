@@ -2,7 +2,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="h-20">
-                    <img src="images/svg.png" alt="EX Logo" class="h-full">
+                    <img src="{{ asset('images/svg.png') }}" alt="EX Logo" class="h-full">
                 </div>
 
                 <!-- Navigation Links -->

@@ -9,10 +9,11 @@ class Kernel extends HttpKernel
     /**
      * The application's global HTTP middleware stack.
      *
+     * These middleware are run during every request to your application.
+     *
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // Basic middleware that should run on every request
         \Illuminate\Http\Middleware\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -34,13 +35,15 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
     /**
      * The application's middleware aliases.
+     *
+     * These aliases may be used in routes and controllers to assign middleware to specific routes.
      *
      * @var array<string, class-string|string>
      */
@@ -53,7 +56,11 @@ class Kernel extends HttpKernel
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
         // Custom admin middleware
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
+
+        // ✅ Custom store status middleware
+        'check.store' => \App\Http\Middleware\CheckStoreStatus::class,
     ];
 }
