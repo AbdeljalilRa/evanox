@@ -1,0 +1,130 @@
+/* Homepage Styles */
+
+/* Custom rounded corners */
+.rounded-custom {
+    border-radius: 30px !important;
+}
+
+/* Typography */
+h2 {
+    letter-spacing: 0.02em;
+    word-spacing: 0.05em;
+}
+
+p {
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    word-spacing: 0.03em;
+}
+
+/* Swiper Styles */
+.swiper-button-next,
+.swiper-button-prev {
+    color: white !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px !important;
+}
+
+.swiper-pagination-bullet {
+    background: white !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffffff !important;
+}
+
+.product-slider {
+    padding-bottom: 60px;
+}
+
+.star-rating span {
+    margin-right: 3px;
+}
+
+/* Newsletter Popup Styles */
+#newsletter-popup {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#newsletter-popup .relative {
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+#newsletter-popup .rounded-3xl {
+    min-height: 500px;
+    width: 100%;
+    max-width: 400px;
+}
+
+#newsletter-popup input {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#newsletter-popup input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+#newsletter-popup button[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#newsletter-popup h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 767px) {
+    .product-slider {
+        padding: 0 5px 50px 5px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 16px !important;
+    }
+
+    .swiper-pagination {
+        bottom: 10px !important;
+    }
+
+    .swiper-slide .p-4 {
+        padding: 0.75rem !important;
+    }
+
+    .swiper-slide .flex.text-yellow-500 span {
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Newsletter Popup Mobile Responsive */
+@media (max-width: 640px) {
+    #newsletter-popup .rounded-3xl {
+        margin: 1rem;
+        min-height: 450px;
+        max-width: calc(100% - 2rem);
+    }
+    
+    #newsletter-popup .p-8 {
+        padding: 2rem 1.5rem;
+    }
+    
+    #newsletter-popup h2 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+}
