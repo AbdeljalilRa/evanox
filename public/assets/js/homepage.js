@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Newsletter Pop-up Functionality
     initNewsletterPopup();
+
+    // Limited Edition Pop-up Functionality
+    initLimitedEditionPopup();
 });
 
 function initCategorySliders() {
@@ -186,5 +189,95 @@ function initNewsletterPopup() {
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+}
+
+function initLimitedEditionPopup() {
+    const popup = document.getElementById('limited-edition-popup');
+    const closeBtn = document.getElementById('close-limited-popup');
+    
+    console.log('Limited Edition popup elements:', { popup, closeBtn });
+    
+    // Check if popup was already closed in this session
+    if (sessionStorage.getItem('limited-edition-popup-closed') === 'true') {
+        console.log('Limited Edition popup already closed in this session');
+        return;
+    }
+
+    // Show popup after 8 seconds (after newsletter popup has had time to show)
+    setTimeout(() => {
+        // Only show if newsletter popup is not currently visible
+        const newsletterPopup = document.getElementById('newsletter-popup');
+        if (newsletterPopup && newsletterPopup.classList.contains('hidden')) {
+            console.log('Showing Limited Edition popup...');
+            showLimitedEditionPopup();
+        } else {
+            // Try again after 5 more seconds
+            setTimeout(() => {
+                if (newsletterPopup && newsletterPopup.classList.contains('hidden')) {
+                    showLimitedEditionPopup();
+                }
+            }, 5000);
+        }
+    }, 8000);
+
+    // Close popup handlers
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            console.log('Limited Edition close button clicked');
+            e.preventDefault();
+            e.stopPropagation();
+            hideLimitedEditionPopup();
+        });
+    } else {
+        console.error('Limited Edition close button not found!');
+    }
+
+
+    
+    // Close when clicking outside the modal
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            hideLimitedEditionPopup();
+        }
+    });
+
+    // Keyboard accessibility
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+            hideLimitedEditionPopup();
+        }
+    });
+
+    function showLimitedEditionPopup() {
+        popup.classList.remove('hidden');
+        setTimeout(() => {
+            popup.classList.remove('opacity-0');
+            const relativeElement = popup.querySelector('.relative');
+            if (relativeElement) {
+                relativeElement.classList.remove('scale-95');
+                relativeElement.classList.add('scale-100');
+            }
+        }, 10);
+    }
+
+    function hideLimitedEditionPopup() {
+        console.log('hideLimitedEditionPopup called');
+        popup.classList.add('opacity-0');
+        const relativeElement = popup.querySelector('.relative');
+        if (relativeElement) {
+            relativeElement.classList.remove('scale-100');
+            relativeElement.classList.add('scale-95');
+        } else {
+            console.error('Relative element not found for scaling');
+        }
+        
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            console.log('Limited Edition popup hidden');
+        }, 300);
+
+        // Remember that popup was closed
+        sessionStorage.setItem('limited-edition-popup-closed', 'true');
     }
 }
