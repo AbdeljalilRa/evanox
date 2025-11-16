@@ -53,6 +53,53 @@
         </div>
     </div>
 
+    <!-- Limited Edition Pop-up -->
+    <div id="limited-edition-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background Image with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden" style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+                
+                <!-- Close Button -->
+                <button id="close-limited-popup" class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+                
+                <!-- Content -->
+                <div class="relative z-10 text-left p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
+                        LIMITED EDITION<br>ONLY 100 LICENSES
+                    </h2>
+                    
+                    <div class="space-y-4 mb-8">
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            This design isn't mass-produced.<br>
+                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong class="text-white">100 licenses worldwide</strong>.
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            Once it's gone, it's gone<br>
+                            <strong class="text-white">No re-releases. No second chances.</strong>
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            We believe in creating art that holds value<br>
+                            <strong class="text-white">for the few, not for everyone</strong>.<br>
+                            Own something rare. Own something real.
+                        </p>
+                    </div>
+                    
+                    <!-- EVANOX Logo/Brand positioned bottom right -->
+                    <div class="absolute bottom-4 right-4">
+                        <div class="text-white font-bold text-lg font-montserrat tracking-wider">
+                            EV<span class="text-gray-300">X</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-16">
         <div class="flex justify-center items-center min-h-screen">
