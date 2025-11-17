@@ -20,9 +20,9 @@ use App\Http\Controllers\OrderController;
 Route::middleware(CheckStoreStatus::class)->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('store.index');
     Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
-    Route::get('/collections', fn() => view('store.collections'))->name('collections');
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
 });
+Route::get('/collections', fn() => view('store.collections'))->name('collections');
 
 // Routes coming soon بدون middleware
 Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming.soon');
