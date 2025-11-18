@@ -88,13 +88,6 @@
                             Own something rare. Own something real.
                         </p>
                     </div>
-                    
-                    <!-- EVANOX Logo/Brand positioned bottom right -->
-                    <div class="absolute bottom-4 right-4">
-                        <div class="text-white font-bold text-lg font-montserrat tracking-wider">
-                            EV<span class="text-gray-300">X</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
