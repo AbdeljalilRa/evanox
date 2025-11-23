@@ -17,7 +17,8 @@ class AdminMiddleware
         $user = Auth::user();
         // Ila user ma kaynch wla role dyalo machi admin
         if (!$user || $user->role !== 'admin') {
-            abort(403, 'Access denied. Admin only.');
+            // Redirect l-page li ja menha b message flash
+            return redirect()->back()->with('error', 'Access denied. Admin only.');
         }
 
         return $next($request);

@@ -54,9 +54,11 @@
                     <div class="dropdown-menu dropdown-menu-end shadow">
                         <h6 class="dropdown-header">Welcome, {{ Auth::user()->name ?? 'Guest' }}!</h6>
 
-                        <a class="dropdown-item" href="{{ route('profile.show') }}">
-                            <i class="bx bx-user-circle text-muted me-2"></i> Profile
-                        </a>
+                        @auth
+                            <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                <i class="bx bx-user-circle text-muted me-2"></i> Profile
+                            </a>
+                        @endauth
 
                         <div class="dropdown-divider"></div>
 

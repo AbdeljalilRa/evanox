@@ -53,19 +53,19 @@ Route::middleware(['auth'])->group(function () {
     // ======================
     // Profile
     // ======================
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');       // عرض البروفايل
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');   // تعديل البروفايل
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');  // تحديث
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // حذف
-
+     // Mla kan href kayst3ml profile.show
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.show');
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    // Delete user account
+    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // ======================
     // Admin routes
     // ======================
     Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
 
-        // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('access-requests', StoreAccessRequestController::class)->only(['index', 'destroy']);
         Route::post('access-requests/{id}/send-password', [StoreAccessRequestController::class, 'sendPassword'])->name('access-requests.send-password');
