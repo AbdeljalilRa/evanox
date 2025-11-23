@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStoreStatus;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\admin\CouponController;
 
 // ======================
 // Public Store routes
@@ -87,6 +88,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
         Route::post('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])
             ->name('orders.update-status');
+
+        // Coupons
+        Route::resource('coupons', CouponController::class)
+            ->scoped([
+                'coupon' => 'slug'
+            ]);
     });
 });
 
