@@ -114,14 +114,12 @@
                 <div class="collapse" id="sidebarCustomers">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="#">List</a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="#">Details</a>
+                            <a class="sub-nav-link" href="{{ route('admin.customers.index') }}">List</a>
                         </li>
                     </ul>
                 </div>
             </li>
+
 
             <!-- Access Requests -->
             <li class="nav-item">

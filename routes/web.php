@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStoreStatus;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\CouponController;
 
 // ======================
@@ -24,8 +25,7 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
     // Newsletter subscription route coupons
     Route::post('/newsletter/coupon', [StoreController::class, 'newsletterCoupon'])
-    ->name('newsletter.coupon');
-
+        ->name('newsletter.coupon');
 });
 Route::get('/collections', fn() => view('store.collections'))->name('collections');
 
@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
     // ======================
     // Profile
     // ======================
-     // Mla kan href kayst3ml profile.show
+    // Mla kan href kayst3ml profile.show
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.show');
     Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     // ======================
     Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
 
-         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('access-requests', StoreAccessRequestController::class)->only(['index', 'destroy']);
         Route::post('access-requests/{id}/send-password', [StoreAccessRequestController::class, 'sendPassword'])->name('access-requests.send-password');
@@ -86,6 +86,17 @@ Route::middleware(['auth'])->group(function () {
         // Toggle product status
         Route::patch('products/{product:slug}/toggle-status', [ProductController::class, 'toggleStatus'])
             ->name('products.toggle-status');
+
+        // Customers
+        Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('customers/create', [CustomerController::class, 'create'])->name('customers.create');
+        Route::post('customers', [CustomerController::class, 'store'])->name('customers.store');
+        Route::get('customers/{customer:slug}', [CustomerController::class, 'show'])->name('customers.show');
+        Route::get('customers/{customer:slug}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+        Route::put('customers/{customer:slug}', [CustomerController::class, 'update'])->name('customers.update');
+        Route::delete('customers/{customer:slug}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+
 
         // Orders
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
