@@ -3,6 +3,96 @@
 @section('title', 'EVANOX - Home')
 
 @section('content')
+    <!-- Newsletter Subscription Pop-up -->
+    <div id="newsletter-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background Image with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden" style="background-image: url('{{ asset('images/Artboard 8.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+                
+                <!-- Close Button -->
+                <button id="close-popup" class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+                
+                <!-- Content -->
+                <div class="relative z-10 text-center p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
+                        WANT 20% OFF<br>YOUR FIRST DROP?
+                    </h2>
+                    
+                    <p class="text-gray-200 text-sm mb-4 font-nunito leading-relaxed">
+                        Join the EVANOX newsletter and get 20% off your first design pack — plus early access to our limited drops, creative breakdowns, and exclusive store content.
+                    </p>
+                    
+                    <p class="text-gray-300 text-sm mb-8 font-nunito">
+                        Just drop your email below — no spam, no clutter.<br>Only real design heat.
+                    </p>
+                    
+                    <!-- Email Form -->
+                    <form id="newsletter-form" class="space-y-4">
+                        <div>
+                            <input 
+                                type="email" 
+                                id="newsletter-email" 
+                                placeholder="Email" 
+                                required
+                                class="w-full px-6 py-4 rounded-full bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 text-center font-nunito"
+                            >
+                        </div>
+                        
+                        <button 
+                            type="submit" 
+                            class="bg-transparent border-2 border-white text-white py-3 px-8 rounded-full font-montserrat font-semibold text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+                        >
+                            SUBMIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limited Edition Pop-up -->
+    <div id="limited-edition-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background Image with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden" style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+                
+                <!-- Close Button -->
+                <button id="close-limited-popup" class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+                
+                <!-- Content -->
+                <div class="relative z-10 text-left p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
+                        LIMITED EDITION<br>ONLY 100 LICENSES
+                    </h2>
+                    
+                    <div class="space-y-4 mb-8">
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            This design isn't mass-produced.<br>
+                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong class="text-white">100 licenses worldwide</strong>.
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            Once it's gone, it's gone<br>
+                            <strong class="text-white">No re-releases. No second chances.</strong>
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            We believe in creating art that holds value<br>
+                            <strong class="text-white">for the few, not for everyone</strong>.<br>
+                            Own something rare. Own something real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-16">
         <div class="flex justify-center items-center min-h-screen">
@@ -151,154 +241,10 @@
 @endsection
 
 @push('styles')
-    <style>
-        .rounded-custom {
-            border-radius: 30px !important;
-        }
-
-        h2 {
-            letter-spacing: 0.02em;
-            word-spacing: 0.05em;
-        }
-
-        p {
-            line-height: 1.6;
-            letter-spacing: 0.01em;
-            word-spacing: 0.03em;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: white !important;
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 40px !important;
-            height: 40px !important;
-            border-radius: 50%;
-        }
-
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 20px !important;
-        }
-
-        .swiper-pagination-bullet {
-            background: white !important;
-        }
-
-        .swiper-pagination-bullet-active {
-            background: #ffffff !important;
-        }
-
-        .product-slider {
-            padding-bottom: 60px;
-        }
-
-        .star-rating span {
-            margin-right: 3px;
-        }
-
-        @media (max-width: 767px) {
-            .product-slider {
-                padding: 0 5px 50px 5px;
-            }
-
-            .swiper-button-next,
-            .swiper-button-prev {
-                width: 30px !important;
-                height: 30px !important;
-            }
-
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-                font-size: 16px !important;
-            }
-
-            .swiper-pagination {
-                bottom: 10px !important;
-            }
-
-            .swiper-slide .p-4 {
-                padding: 0.75rem !important;
-            }
-
-            .swiper-slide .flex.text-yellow-500 span {
-                font-size: 0.75rem !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}">
 @endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // First main products slider
-            new Swiper('.product-slider', {
-                slidesPerView: 3,
-                spaceBetween: 10,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false
-                },
-                navigation: {
-                    nextEl: '.product-slider .swiper-button-next',
-                    prevEl: '.product-slider .swiper-button-prev'
-                },
-                pagination: {
-                    el: '.product-slider .swiper-pagination',
-                    clickable: true
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30
-                    },
-                    1280: {
-                        slidesPerView: 4,
-                        spaceBetween: 40
-                    }
-                }
-            });
-
-            // Dynamically initialize Swiper for each category slider
-            @foreach ($categories as $category)
-                new Swiper('.product-slider-{{ $category->id }}', {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                    loop: true,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false
-                    },
-                    navigation: {
-                        nextEl: '.product-slider-{{ $category->id }} .swiper-button-next',
-                        prevEl: '.product-slider-{{ $category->id }} .swiper-button-prev'
-                    },
-                    pagination: {
-                        el: '.product-slider-{{ $category->id }} .swiper-pagination',
-                        clickable: true
-                    },
-                    breakpoints: {
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 20
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                            spaceBetween: 30
-                        },
-                        1280: {
-                            slidesPerView: 4,
-                            spaceBetween: 40
-                        }
-                    }
-                });
-            @endforeach
-        });
-    </script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
 @endpush
