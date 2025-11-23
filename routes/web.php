@@ -22,6 +22,10 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     Route::get('/', [StoreController::class, 'index'])->name('store.index');
     Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
+    // Newsletter subscription route coupons
+    Route::post('/newsletter/coupon', [StoreController::class, 'newsletterCoupon'])
+    ->name('newsletter.coupon');
+
 });
 Route::get('/collections', fn() => view('store.collections'))->name('collections');
 

@@ -4,84 +4,87 @@
 
 @section('content')
     <!-- Newsletter Subscription Pop-up -->
-    <div id="newsletter-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div id="newsletter-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
         <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
             <!-- Background Image with Dark Overlay -->
-            <div class="relative rounded-3xl overflow-hidden" style="background-image: url('{{ asset('images/Artboard 8.png') }}'); background-size: cover; background-position: center;">
+            <div class="relative rounded-3xl overflow-hidden"
+                style="background-image: url('{{ asset('images/Artboard 8.png') }}'); background-size: cover; background-position: center;">
                 <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-                
+
                 <!-- Close Button -->
-                <button id="close-popup" class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                <button id="close-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
                     ×
                 </button>
-                
+
                 <!-- Content -->
                 <div class="relative z-10 text-center p-8 text-white">
                     <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
                         WANT 20% OFF<br>YOUR FIRST DROP?
                     </h2>
-                    
+
                     <p class="text-gray-200 text-sm mb-4 font-nunito leading-relaxed">
-                        Join the EVANOX newsletter and get 20% off your first design pack — plus early access to our limited drops, creative breakdowns, and exclusive store content.
+                        Join the EVANOX newsletter and get 20% off your first design pack — plus early access to our limited
+                        drops, creative breakdowns, and exclusive store content.
                     </p>
-                    
+
                     <p class="text-gray-300 text-sm mb-8 font-nunito">
                         Just drop your email below — no spam, no clutter.<br>Only real design heat.
                     </p>
-                    
+
                     <!-- Email Form -->
-                    <form id="newsletter-form" class="space-y-4">
+                    <form  class="space-y-4" method="POST" action="{{ route('newsletter.coupon') }}">
+                        @csrf
                         <div>
-                            <input 
-                                type="email" 
-                                id="newsletter-email" 
-                                placeholder="Email" 
-                                required
-                                class="w-full px-6 py-4 rounded-full bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 text-center font-nunito"
-                            >
+                            <input type="email" id="newsletter-email" name="email" placeholder="Email" required
+                                class="w-full px-6 py-4 rounded-full bg-white text-black">
                         </div>
-                        
-                        <button 
-                            type="submit" 
-                            class="bg-transparent border-2 border-white text-white py-3 px-8 rounded-full font-montserrat font-semibold text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-                        >
+
+                        <button type="submit"
+                            class="bg-transparent border-2 border-white text-white py-3 px-8 rounded-full">
                             SUBMIT
                         </button>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Limited Edition Pop-up -->
-    <div id="limited-edition-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div id="limited-edition-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
         <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
             <!-- Background Image with Dark Overlay -->
-            <div class="relative rounded-3xl overflow-hidden" style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
+            <div class="relative rounded-3xl overflow-hidden"
+                style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
                 <div class="absolute inset-0 bg-black bg-opacity-70"></div>
-                
+
                 <!-- Close Button -->
-                <button id="close-limited-popup" class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                <button id="close-limited-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
                     ×
                 </button>
-                
+
                 <!-- Content -->
                 <div class="relative z-10 text-left p-8 text-white">
                     <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
                         LIMITED EDITION<br>ONLY 100 LICENSES
                     </h2>
-                    
+
                     <div class="space-y-4 mb-8">
                         <p class="text-gray-200 text-sm font-nunito leading-relaxed">
                             This design isn't mass-produced.<br>
-                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong class="text-white">100 licenses worldwide</strong>.
+                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong
+                                class="text-white">100 licenses worldwide</strong>.
                         </p>
-                        
+
                         <p class="text-gray-200 text-sm font-nunito leading-relaxed">
                             Once it's gone, it's gone<br>
                             <strong class="text-white">No re-releases. No second chances.</strong>
                         </p>
-                        
+
                         <p class="text-gray-200 text-sm font-nunito leading-relaxed">
                             We believe in creating art that holds value<br>
                             <strong class="text-white">for the few, not for everyone</strong>.<br>
@@ -137,19 +140,19 @@
                 @forelse($products as $product)
                     <div class="swiper-slide">
                         <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                            <div
+                                class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                 <div class="relative">
-                                    @if($product->images && $product->images->count() > 0)
-                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                             alt="{{ $product->title }}"
-                                             class="w-full h-auto rounded-lg">
+                                    @if ($product->images && $product->images->count() > 0)
+                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}"
+                                            alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                     @else
-                                        <img src="{{ asset('images/no-image.png') }}" 
-                                             alt="No image"
-                                             class="w-full h-auto rounded-lg">
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No image"
+                                            class="w-full h-auto rounded-lg">
                                     @endif
                                     @php
-                                        $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
+                                        $finalPrice =
+                                            $product->price - ($product->price * $product->discount_percentage) / 100;
                                     @endphp
                                 </div>
                                 <div class="p-4">
@@ -158,10 +161,11 @@
                                         <div class="flex text-yellow-500 star-rating">
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>
-                                        <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                        <span
+                                            class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                     </div>
                                     <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
-                                    @if($product->discount_percentage > 0)
+                                    @if ($product->discount_percentage > 0)
                                         <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                     @endif
                                 </div>
@@ -180,8 +184,8 @@
         </div>
     </section>
 
-   <!-- Category Products Sections -->
-    @foreach($categories as $category)
+    <!-- Category Products Sections -->
+    @foreach ($categories as $category)
         <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
             <h2 class="text-18px font-bold text-white text-center mb-1 uppercase tracking-wide font-montserrat">
                 {{ $category->title }}
@@ -194,32 +198,37 @@
                     @forelse($category->products as $product)
                         <div class="swiper-slide">
                             <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                                <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                                <div
+                                    class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                     <div class="relative">
-                                        @if($product->images && $product->images->count() > 0)
-                                            <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                                 alt="{{ $product->title }}"
-                                                 class="w-full h-auto rounded-lg">
+                                        @if ($product->images && $product->images->count() > 0)
+                                            <img src="{{ asset('storage/' . $product->images->first()->image_path) }}"
+                                                alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                         @else
-                                            <img src="{{ asset('images/no-image.png') }}" 
-                                                 alt="No image"
-                                                 class="w-full h-auto rounded-lg">
+                                            <img src="{{ asset('images/no-image.png') }}" alt="No image"
+                                                class="w-full h-auto rounded-lg">
                                         @endif
                                         @php
-                                            $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
+                                            $finalPrice =
+                                                $product->price -
+                                                ($product->price * $product->discount_percentage) / 100;
                                         @endphp
                                     </div>
                                     <div class="p-4">
-                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}</h3>
+                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}
+                                        </h3>
                                         <div class="flex items-center mb-3">
                                             <div class="flex text-yellow-500 star-rating">
                                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                             </div>
-                                            <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                            <span
+                                                class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                         </div>
-                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
-                                        @if($product->discount_percentage > 0)
-                                            <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
+                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $
+                                        </p>
+                                        @if ($product->discount_percentage > 0)
+                                            <span
+                                                class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                         @endif
                                     </div>
                                 </div>

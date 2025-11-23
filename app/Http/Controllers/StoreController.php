@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Str;
+use App\Models\Coupon;
 
 class StoreController extends Controller
 {
@@ -24,7 +26,7 @@ class StoreController extends Controller
         return view('store.index', compact('categories', 'products'));
     }
 
-     public function show($slug)
+    public function show($slug)
     {
         // جيب المنتج عبر الـ slug
         $product = Product::with('images')->where('slug', $slug)->firstOrFail();
@@ -35,5 +37,45 @@ class StoreController extends Controller
             ->get();
 
         return view('store.show', compact('product', 'relatedProducts'));
+    }
+
+    public function newsletterCoupon(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // Check if already has coupon
+        $existing = Coupon::where('email', $request->email)->first();
+        if ($existing) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Coupon already created.',
+                'code' => $existing->code
+            ]);
+        }
+
+        // Create unique coupon code
+        $code = 'WELCOME20-' . strtoupper(Str::random(6));
+
+        $coupon = Coupon::create([
+            'code' => $code,
+            'type' => 'percent',
+            'value' => 20,
+            'usage_limit' => 1,
+            'used_count' => 0,
+            'min_order_amount' => null,
+            'starts_at' => now(),
+            'expires_at' => now()->addDays(7),
+            'is_active' => true,
+            'email' => $request->email,
+            'slug' => Str::slug($code)
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Coupon created successfully',
+            'code' => $coupon->code
+        ]);
     }
 }
