@@ -18,10 +18,26 @@ use App\Http\Controllers\OrderController;
 // Public Store routes
 // ======================
 Route::middleware(CheckStoreStatus::class)->group(function () {
+    // Homepage
     Route::get('/', [StoreController::class, 'index'])->name('store.index');
+    
+    // Product pages
     Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
+    
+    // Collections page
     Route::get('/collections', fn() => view('store.collections'))->name('collections');
+    
+    // Drop page
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
+    
+    // Archive page
+    Route::get('/archive', fn() => view('store.archive'))->name('archive');
+    
+    // Code page
+    Route::get('/code', fn() => view('store.code'))->name('code');
+    
+    // Order page (for viewing orders)
+    Route::get('/order/{id}', fn($id) => view('store.order', compact('id')))->name('order.view');
 });
 
 // Routes coming soon بدون middleware
