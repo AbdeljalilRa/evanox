@@ -38,6 +38,21 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     
     // Order page (for viewing orders)
     Route::get('/order/{id}', fn($id) => view('store.order', compact('id')))->name('order.view');
+    
+    // Contact Us page
+    Route::get('/contact', fn() => view('store.contactus'))->name('contact');
+    
+    // FAQs page
+    Route::get('/faqs', fn() => view('store.FAQS'))->name('faqs');
+    
+    // Terms of Service page
+    Route::get('/terms-of-service', fn() => view('store.terms'))->name('terms.service');
+    
+    // Privacy Policy page
+    Route::get('/privacy-policy', fn() => view('store.privacy'))->name('privacy.policy');
+    
+    // Refund Policy page
+    Route::get('/refund-policy', fn() => view('store.refund'))->name('refund.policy');
 });
 
 // Routes coming soon بدون middleware
