@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="absolute bottom-0 left-0 transform translate-y-1/2 ml-4 md:ml-16">
-                        <a href="#"
+                        <a href="{{ route('drop') }}"
                             class="bg-white text-black px-5 py-2 md:px-8 md:py-3 rounded-full font-montserrat font-semibold text-sm md:text-lg uppercase hover:bg-black hover:text-white transition-colors inline-block">
                             GET THE DROP
                         </a>
