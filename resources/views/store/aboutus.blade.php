@@ -7,10 +7,10 @@
     <div class="container mx-auto px-4 py-8">
         <!-- Header Section -->
         <div class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-3 tracking-wide font-montserrat">
+            <h1 class="text-3xl md:text-4xl mb-3 tracking-wide font-montserrat" style="font-weight: 900;">
                 ABOUT US
             </h1>
-            <h2 class="text-base md:text-lg font-montserrat text-gray-300 tracking-wider">
+            <h2 class="text-base md:text-lg font-montserrat text-white tracking-wider font-bold">
                 ORIGINATOR OF EVANOX
             </h2>
         </div>
@@ -31,14 +31,14 @@
                 <h3 class="text-2xl md:text-3xl font-bold font-montserrat mb-1 tracking-wider">
                     SAAD KANI
                 </h3>
-                <p class="text-lg md:text-xl font-montserrat text-gray-300 tracking-widest">
+                <p class="text-lg md:text-xl font-montserrat text-white tracking-widest font-bold">
                     EVANOX
                 </p>
             </div>
 
             <!-- Quote Section -->
             <div class="max-w-2xl mx-auto">
-                <blockquote class="text-gray-300 text-base md:text-lg leading-relaxed font-nunito italic">
+                <blockquote class="text-white text-base md:text-lg leading-relaxed font-montserrat italic" style="font-weight: 600;">
                     "Saad Kani, the founder of Evanox, brings extensive experience in graphic design. He established the company to offer high-quality digital products with a modern and attractive approach that stands out from what's currently available in the market."
                 </blockquote>
             </div>
@@ -57,7 +57,7 @@ blockquote {
     position: relative;
 }
 
-blockquote::before {
+/* blockquote::before {
     content: '"';
     position: absolute;
     left: -0.5rem;
@@ -75,7 +75,7 @@ blockquote::after {
     font-size: 3rem;
     color: #374151;
     font-family: 'Montserrat', sans-serif;
-}
+} */
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
