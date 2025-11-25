@@ -42,6 +42,9 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     // Contact Us page
     Route::get('/contact', fn() => view('store.contactus'))->name('contact');
     
+    // About Us page
+    Route::get('/about-us', fn() => view('store.aboutus'))->name('about.us');
+    
     // FAQs page
     Route::get('/faqs', fn() => view('store.FAQS'))->name('faqs');
     
