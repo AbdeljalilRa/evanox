@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckStoreStatus;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\admin\CustomerController;
+use App\Http\Controllers\admin\CouponController;
 
 // ======================
 // Public Store routes
@@ -23,40 +25,10 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     
     // Product pages
     Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
-    
-    // Collections page
     Route::get('/collections', fn() => view('store.collections'))->name('collections');
-    
-    // Drop page
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
-    
-    // Archive page
-    Route::get('/archive', fn() => view('store.archive'))->name('archive');
-    
-    // Code page
-    Route::get('/code', fn() => view('store.code'))->name('code');
-    
-    // Order page (for viewing orders)
-    Route::get('/order/{id}', fn($id) => view('store.order', compact('id')))->name('order.view');
-    
-    // Contact Us page
-    Route::get('/contact', fn() => view('store.contactus'))->name('contact');
-    
-    // About Us page
-    Route::get('/about-us', fn() => view('store.aboutus'))->name('about.us');
-    
-    // FAQs page
-    Route::get('/faqs', fn() => view('store.FAQS'))->name('faqs');
-    
-    // Terms of Service page
-    Route::get('/terms-of-service', fn() => view('store.terms'))->name('terms.service');
-    
-    // Privacy Policy page
-    Route::get('/privacy-policy', fn() => view('store.privacy'))->name('privacy.policy');
-    
-    // Refund Policy page
-    Route::get('/refund-policy', fn() => view('store.refund'))->name('refund.policy');
 });
+Route::get('/collections', fn() => view('store.collections'))->name('collections');
 
 // Routes coming soon بدون middleware
 Route::get('/coming-soon', [ComingSoonController::class, 'index'])->name('coming.soon');
@@ -82,18 +54,18 @@ Route::middleware(['auth'])->group(function () {
     // ======================
     // Profile
     // ======================
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');       // عرض البروفايل
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');   // تعديل البروفايل
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');  // تحديث
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // حذف
-
+    // Mla kan href kayst3ml profile.show
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.show');
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    // Delete user account
+    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // ======================
     // Admin routes
     // ======================
     Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
 
-        // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('access-requests', StoreAccessRequestController::class)->only(['index', 'destroy']);
@@ -116,11 +88,28 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('products/{product:slug}/toggle-status', [ProductController::class, 'toggleStatus'])
             ->name('products.toggle-status');
 
+        // Customers
+        Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('customers/create', [CustomerController::class, 'create'])->name('customers.create');
+        Route::post('customers', [CustomerController::class, 'store'])->name('customers.store');
+        Route::get('customers/{customer:slug}', [CustomerController::class, 'show'])->name('customers.show');
+        Route::get('customers/{customer:slug}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+        Route::put('customers/{customer:slug}', [CustomerController::class, 'update'])->name('customers.update');
+        Route::delete('customers/{customer:slug}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+
+
         // Orders
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
         Route::post('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])
             ->name('orders.update-status');
+
+        // Coupons
+        Route::resource('coupons', CouponController::class)
+            ->scoped([
+                'coupon' => 'slug'
+            ]);
     });
 });
 

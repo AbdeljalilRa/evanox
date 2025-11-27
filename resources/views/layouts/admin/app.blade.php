@@ -46,7 +46,7 @@
         <!-- End Page Content -->
     </div>
     <!-- END Wrapper -->
-
+    
     <!-- Vendor Javascript -->
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
 
@@ -60,9 +60,9 @@
 
     <!-- Dashboard Js -->
     <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
- <!-- Add this just before your closing body tag -->
+    <!-- Add this just before your closing body tag -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
-    
+
     <script>
         // Global SweetAlert2 configuration
         const Toast = Swal.mixin({
@@ -78,28 +78,28 @@
         });
 
         // Show toast messages for session alerts
-        @if(session('success'))
+        @if (session('success'))
             Toast.fire({
                 icon: 'success',
                 title: "{{ session('success') }}"
             });
         @endif
 
-        @if(session('error'))
+        @if (session('error'))
             Toast.fire({
                 icon: 'error',
                 title: "{{ session('error') }}"
             });
         @endif
 
-        @if(session('warning'))
+        @if (session('warning'))
             Toast.fire({
                 icon: 'warning',
                 title: "{{ session('warning') }}"
             });
         @endif
 
-        @if(session('info'))
+        @if (session('info'))
             Toast.fire({
                 icon: 'info',
                 title: "{{ session('info') }}"
@@ -133,4 +133,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
 </body>
+
 </html>

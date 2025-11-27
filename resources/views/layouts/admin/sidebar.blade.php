@@ -26,26 +26,27 @@
                 </a>
             </li>
 
-            <!-- Orders -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.orders.index') }}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="mdi:cart-outline" class="fs-20"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> Orders </span>
-                </a>
-            </li>
-
-
             <!-- Coupons -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link menu-arrow" href="#sidebarCoupons" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarCoupons">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:ticket-percent-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Coupons </span>
                 </a>
+                <div class="collapse" id="sidebarCoupons">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('admin.coupons.index') }}">List</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('admin.coupons.create') }}">Create</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
 
             <!-- Products -->
             <li class="nav-item">
@@ -113,14 +114,12 @@
                 <div class="collapse" id="sidebarCustomers">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="#">List</a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <a class="sub-nav-link" href="#">Details</a>
+                            <a class="sub-nav-link" href="{{ route('admin.customers.index') }}">List</a>
                         </li>
                     </ul>
                 </div>
             </li>
+
 
             <!-- Access Requests -->
             <li class="nav-item">
