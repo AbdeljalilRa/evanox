@@ -25,8 +25,43 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
     
     // Product pages
     Route::get('/product/{slug}', [StoreController::class, 'show'])->name('store.show');
+    
+    // Collections page
     Route::get('/collections', fn() => view('store.collections'))->name('collections');
+    
+    // Drop page
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
+    
+    // Archive page
+    Route::get('/archive', fn() => view('store.archive'))->name('archive');
+    
+    // Code page
+    Route::get('/code', fn() => view('store.code'))->name('code');
+    
+    // Order page (for viewing orders)
+    Route::get('/order/{id}', fn($id) => view('store.order', compact('id')))->name('order.view');
+    
+    // Contact Us page
+    Route::get('/contact', fn() => view('store.contactus'))->name('contact');
+    
+    // About Us page
+    Route::get('/about-us', fn() => view('store.aboutus'))->name('about.us');
+    
+    // FAQs page
+    Route::get('/faqs', fn() => view('store.FAQS'))->name('faqs');
+    
+    // Terms of Service page
+    Route::get('/terms-of-service', fn() => view('store.terms'))->name('terms.service');
+    
+    // Privacy Policy page
+    Route::get('/privacy-policy', fn() => view('store.privacy'))->name('privacy.policy');
+    
+    // Refund Policy page
+    Route::get('/refund-policy', fn() => view('store.refund'))->name('refund.policy');
+    
+    // Newsletter subscription route coupons
+    Route::post('/newsletter/coupon', [StoreController::class, 'newsletterCoupon'])
+        ->name('newsletter.coupon');
 });
 Route::get('/collections', fn() => view('store.collections'))->name('collections');
 
@@ -52,14 +87,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 
     // ======================
-    // Profile
     // ======================
-    // Mla kan href kayst3ml profile.show
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.show');
+    // Customer Profile (for buyers/visitors)
+    // ======================
+    Route::get('/profile', fn() => view('store.profile'))->name('profile.show');
     Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
     // Delete user account
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Customer Downloads
+    Route::get('/my-downloads', fn() => view('store.downloads'))->name('profile.downloads');
 
     // ======================
     // Admin routes
