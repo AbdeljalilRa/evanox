@@ -126,17 +126,50 @@ function initNewsletterPopup() {
     });
 
     // Handle form submission
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = emailInput.value.trim();
         
         if (email && isValidEmail(email)) {
             console.log('Newsletter subscription:', email);
             
-            // Show success message (you can customize this)
-            alert('Thank you for subscribing! Your 20% discount will be sent to your email.');
-            
-            hidePopup();
+            try {
+                // Get CSRF token
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                                document.querySelector('input[name="_token"]')?.value;
+                
+                // Make AJAX request to backend
+                const response = await fetch('/newsletter/coupon', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    console.log('Newsletter subscription successful:', data);
+                    
+                    // Hide newsletter popup first
+                    hidePopup();
+                    
+                    // Show success popup after a brief delay
+                    setTimeout(() => {
+                        showNewsletterSuccessPopup();
+                    }, 300);
+                } else {
+                    console.error('Newsletter subscription failed:', data);
+                    alert(data.message || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Newsletter subscription error:', error);
+                alert('Network error. Please check your connection and try again.');
+            }
         } else {
             alert('Please enter a valid email address.');
         }
@@ -281,3 +314,81 @@ function initLimitedEditionPopup() {
         sessionStorage.setItem('limited-edition-popup-closed', 'true');
     }
 }
+
+// Newsletter Success Popup Functions
+function showNewsletterSuccessPopup() {
+    const successPopup = document.getElementById('newsletter-success-popup');
+    if (!successPopup) {
+        console.error('Newsletter success popup not found');
+        return;
+    }
+    
+    successPopup.classList.remove('hidden');
+    setTimeout(() => {
+        successPopup.classList.remove('opacity-0');
+        const relativeElement = successPopup.querySelector('.relative');
+        if (relativeElement) {
+            relativeElement.classList.remove('scale-95');
+            relativeElement.classList.add('scale-100');
+        }
+    }, 10);
+}
+
+function hideNewsletterSuccessPopup() {
+    const successPopup = document.getElementById('newsletter-success-popup');
+    if (!successPopup) {
+        console.error('Newsletter success popup not found');
+        return;
+    }
+    
+    successPopup.classList.add('opacity-0');
+    const relativeElement = successPopup.querySelector('.relative');
+    if (relativeElement) {
+        relativeElement.classList.remove('scale-100');
+        relativeElement.classList.add('scale-95');
+    }
+    
+    setTimeout(() => {
+        successPopup.classList.add('hidden');
+    }, 300);
+}
+
+// Initialize Newsletter Success Popup Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const successPopup = document.getElementById('newsletter-success-popup');
+    const closeBtn = document.getElementById('close-newsletter-success-popup');
+    const okBtn = document.getElementById('newsletter-success-ok');
+    
+    if (successPopup && closeBtn) {
+        // Close button event
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            hideNewsletterSuccessPopup();
+        });
+    }
+    
+    if (successPopup && okBtn) {
+        // OK button event
+        okBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideNewsletterSuccessPopup();
+        });
+    }
+    
+    if (successPopup) {
+        // Close when clicking outside the modal
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                hideNewsletterSuccessPopup();
+            }
+        });
+        
+        // Keyboard accessibility (ESC key)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !successPopup.classList.contains('hidden')) {
+                hideNewsletterSuccessPopup();
+            }
+        });
+    }
+});
