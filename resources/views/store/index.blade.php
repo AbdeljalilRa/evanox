@@ -34,7 +34,7 @@
                     </p>
 
                     <!-- Email Form -->
-                    <form  class="space-y-4" method="POST" action="{{ route('newsletter.coupon') }}">
+                    <form id="newsletter-form" class="space-y-4">
                         @csrf
                         <div>
                             <input type="email" id="newsletter-email" name="email" placeholder="Email" required
@@ -90,6 +90,52 @@
                             <strong class="text-white">for the few, not for everyone</strong>.<br>
                             Own something rare. Own something real.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Success Pop-up -->
+    <div id="newsletter-success-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-black">
+                <!-- Close Button -->
+                <button id="close-newsletter-success-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+
+                <!-- Content -->
+                <div class="relative z-10 text-left p-8 text-white">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 tracking-wide font-montserrat leading-tight">
+                            SUCCESS!
+                        </h2>
+                    </div>
+
+                    <div class="text-center space-y-4">
+                        <p class="text-gray-200 text-base font-nunito leading-relaxed">
+                            <strong class="text-white">Coupon created successfully!</strong>
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            Check your email for your <strong class="text-white">20% discount code</strong> and exclusive access to our newsletter.
+                        </p>
+                        
+                        <div class="pt-4">
+                            <button id="newsletter-success-ok" 
+                                class="bg-white text-black py-3 px-8 rounded-full font-semibold hover:bg-gray-200 transition-colors duration-200">
+                                GOT IT
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
