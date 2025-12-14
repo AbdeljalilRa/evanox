@@ -26,9 +26,10 @@ class StoreAccessRequestController extends Controller
         // Generate random password
         $rawPassword = Str::random(10);
 
-        // Store hashed password in DB
+        // Store password in DB (model will hash it automatically)
         $request->update([
-            'password' => Hash::make($rawPassword)
+            'password' => $rawPassword,
+            'email' => strtolower(trim($request->email))
         ]);
 
         // Send raw password via email
@@ -55,9 +56,9 @@ class StoreAccessRequestController extends Controller
             // Generate safe 10-char password (hex)
             $plainPassword = bin2hex(random_bytes(5));
 
-            // Save proper bcrypt hash and normalized email
+            // Save password and normalized email (model will hash password automatically)
             $item->update([
-                'password' => Hash::make($plainPassword),
+                'password' => $plainPassword,
                 'email' => strtolower(trim($item->email))
             ]);
             // Optional: log for debugging
