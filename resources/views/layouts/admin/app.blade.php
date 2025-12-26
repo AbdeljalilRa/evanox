@@ -10,9 +10,6 @@
     <meta name="author" content="Techzaa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-
     <!-- Vendor css -->
     <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
@@ -24,6 +21,24 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <style>
+        /* Default: sidebar large = show text */
+        .logo-box .brand-text {
+            display: inline;
+        }
+
+        /* When sidebar is collapsed → hide brand name */
+        [data-sidebar-size="sm"] .logo-box .brand-text,
+        .sidebar-collapsed .logo-box .brand-text {
+            display: none;
+        }
+
+        /* Adjust logo size */
+        .logo-box .logo-sm {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
     <!-- Theme Config js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
@@ -46,7 +61,7 @@
         <!-- End Page Content -->
     </div>
     <!-- END Wrapper -->
-    
+
     <!-- Vendor Javascript -->
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
 

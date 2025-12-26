@@ -1,16 +1,20 @@
 <div class="main-nav">
     <!-- Sidebar Logo -->
-    <div class="logo-box">
-        <a href="{{ route('admin.dashboard') }}" class="logo-dark">
-            <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
-            <img src="{{ asset('assets/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
-        </a>
+    <div class="logo-box d-flex align-items-center">
+        <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2 text-decoration-none">
 
-        <a href="{{ route('admin.dashboard') }}" class="logo-light">
-            <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
-            <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-lg" alt="logo light">
+            <!-- Small Logo -->
+            <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo">
+
+            <!-- Brand Text -->
+            <span class="brand-text fw-bold fs-4 text-uppercase">
+                Evanox
+            </span>
+
         </a>
     </div>
+
+
 
     <div class="scrollbar" data-simplebar>
         <ul class="navbar-nav" id="navbar-nav">

@@ -34,7 +34,7 @@
                     </p>
 
                     <!-- Email Form -->
-                    <form  class="space-y-4" method="POST" action="{{ route('newsletter.coupon') }}">
+                    <form class="space-y-4" method="POST" action="{{ route('newsletter.coupon') }}">
                         @csrf
                         <div>
                             <input type="email" id="newsletter-email" name="email" placeholder="Email" required
@@ -144,7 +144,7 @@
                                 class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                 <div class="relative">
                                     @if ($product->images && $product->images->count() > 0)
-                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}"
+                                        <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                             alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                     @else
                                         <img src="{{ asset('images/no-image.png') }}" alt="No image"
@@ -184,6 +184,8 @@
         </div>
     </section>
 
+
+
     <!-- Category Products Sections -->
     @foreach ($categories as $category)
         <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
@@ -202,7 +204,7 @@
                                     class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                     <div class="relative">
                                         @if ($product->images && $product->images->count() > 0)
-                                            <img src="{{ asset('storage/' . $product->images->first()->image_path) }}"
+                                            <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                                 alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                         @else
                                             <img src="{{ asset('images/no-image.png') }}" alt="No image"
@@ -246,7 +248,6 @@
             </div>
         </section>
     @endforeach
-
 @endsection
 
 @push('styles')

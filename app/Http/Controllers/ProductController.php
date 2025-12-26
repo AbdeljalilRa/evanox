@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Category;
 use App\Models\ProductImage;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Filesystem\FilesystemAdapter;
 
 class ProductController extends Controller
 {
@@ -26,7 +25,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // Validation
         $request->validate([
             'title' => 'required|string|max:255',
             'price' => 'required|numeric',
@@ -61,11 +59,10 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        // Upload gallery images to local storage
+        // Upload gallery images directly to S3
         foreach (['images_1', 'images_2', 'images_3', 'images_4'] as $imgField) {
             if ($request->hasFile($imgField)) {
-                // Store image in local storage
-                $path = $request->file($imgField)->store('products/gallery', 'public');
+                $path = $request->file($imgField)->store('products/gallery', 's3');
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
@@ -73,15 +70,6 @@ class ProductController extends Controller
             }
         }
 
-        // AJAX response
-        if ($request->ajax()) {
-            return response()->json([
-                'success' => true,
-                'redirect' => route('admin.products.index')
-            ]);
-        }
-
-        // Fallback redirect
         return redirect()->route('admin.products.index')
             ->with('success', 'Product created successfully!');
     }
@@ -95,9 +83,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $product->load('images');
-        $product->append(['image_url', 'gallery_urls']);
-        $productImages = $product->images;
-        return view('admin.products.edit', compact('product', 'categories', 'productImages'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -110,18 +96,17 @@ class ProductController extends Controller
             'description' => 'required|string',
             'discount_percentage' => 'nullable|numeric',
             'file_path' => 'nullable|file',
-            'images_1' => 'nullable|image|max:20480',
-            'images_2' => 'nullable|image|max:20480',
-            'images_3' => 'nullable|image|max:20480',
-            'images_4' => 'nullable|image|max:20480',
+            'images_1' => 'nullable|image|max:25600',
+            'images_2' => 'nullable|image|max:25600',
+            'images_3' => 'nullable|image|max:25600',
+            'images_4' => 'nullable|image|max:25600',
             'is_active' => 'sometimes|boolean',
         ]);
 
         $product = Product::findOrFail($id);
 
-        // Update main file if uploaded (stays on S3)
+        // Update main file on S3
         if ($request->hasFile('file_path')) {
-            // Delete old file from S3 if exists
             if ($product->file_path) {
                 Storage::disk('s3')->delete($product->file_path);
             }
@@ -129,33 +114,30 @@ class ProductController extends Controller
         }
 
         // Update basic fields
-        $product->title = $request->title;
-        $product->slug = Str::slug($request->title) . '-' . uniqid();
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->discount_percentage = $request->discount_percentage ?? 0;
-        $product->stock = $request->stock;
-        $product->is_active = $request->has('is_active') ? 1 : 0;
-        $product->category_id = $request->category_id;
-        $product->save();
+        $product->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title) . '-' . uniqid(),
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount_percentage' => $request->discount_percentage ?? 0,
+            'stock' => $request->stock,
+            'is_active' => $request->has('is_active') ? 1 : 0,
+            'category_id' => $request->category_id,
+        ]);
 
-        // Update/Add gallery images in local storage
+        // Update/Add gallery images on S3
         $galleryFields = ['images_1', 'images_2', 'images_3', 'images_4'];
         $productImages = $product->images()->orderBy('id')->get();
 
         foreach ($galleryFields as $index => $imgField) {
             if ($request->hasFile($imgField)) {
-                // Store new image in local storage
-                $path = $request->file($imgField)->store('products/gallery', 'public');
-                
-                // Update existing image or create new one
+                $path = $request->file($imgField)->store('products/gallery', 's3');
+
                 if (isset($productImages[$index])) {
-                    // Delete old image from local storage if exists
                     if ($productImages[$index]->image_path) {
-                        Storage::disk('public')->delete($productImages[$index]->image_path);
+                        Storage::disk('s3')->delete($productImages[$index]->image_path);
                     }
-                    $productImages[$index]->image_path = $path;
-                    $productImages[$index]->save();
+                    $productImages[$index]->update(['image_path' => $path]);
                 } else {
                     ProductImage::create([
                         'product_id' => $product->id,
@@ -171,14 +153,14 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // Delete images from local storage before deleting product
+        // Delete all images from S3
         foreach ($product->images as $image) {
             if ($image->image_path) {
-                Storage::disk('public')->delete($image->image_path);
+                Storage::disk('s3')->delete($image->image_path);
             }
         }
 
-        // Delete main file from S3 if exists
+        // Delete main file from S3
         if ($product->file_path) {
             Storage::disk('s3')->delete($product->file_path);
         }
