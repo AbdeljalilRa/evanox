@@ -10,9 +10,6 @@
     <meta name="author" content="Techzaa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-
     <!-- Vendor css -->
     <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
 
@@ -24,6 +21,24 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <style>
+        /* Default: sidebar large = show text */
+        .logo-box .brand-text {
+            display: inline;
+        }
+
+        /* When sidebar is collapsed → hide brand name */
+        [data-sidebar-size="sm"] .logo-box .brand-text,
+        .sidebar-collapsed .logo-box .brand-text {
+            display: none;
+        }
+
+        /* Adjust logo size */
+        .logo-box .logo-sm {
+            width: 32px;
+            height: 32px;
+        }
+    </style>
     <!-- Theme Config js -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
 </head>
@@ -60,9 +75,9 @@
 
     <!-- Dashboard Js -->
     <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
- <!-- Add this just before your closing body tag -->
+    <!-- Add this just before your closing body tag -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
-    
+
     <script>
         // Global SweetAlert2 configuration
         const Toast = Swal.mixin({
@@ -78,28 +93,28 @@
         });
 
         // Show toast messages for session alerts
-        @if(session('success'))
+        @if (session('success'))
             Toast.fire({
                 icon: 'success',
                 title: "{{ session('success') }}"
             });
         @endif
 
-        @if(session('error'))
+        @if (session('error'))
             Toast.fire({
                 icon: 'error',
                 title: "{{ session('error') }}"
             });
         @endif
 
-        @if(session('warning'))
+        @if (session('warning'))
             Toast.fire({
                 icon: 'warning',
                 title: "{{ session('warning') }}"
             });
         @endif
 
-        @if(session('info'))
+        @if (session('info'))
             Toast.fire({
                 icon: 'info',
                 title: "{{ session('info') }}"
@@ -133,4 +148,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
 </body>
+
 </html>

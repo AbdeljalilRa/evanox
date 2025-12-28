@@ -7,7 +7,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
+                    <a href="{{ route('store.index') }}" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
                         <span>ENTER</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -17,12 +17,12 @@
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
+                    <a href="{{ route('archive') }}" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
                         <span>THE ARCHIVE</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
+                    <a href="{{ route('code') }}" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
                         <span>THE CODE</span>
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -31,13 +31,54 @@
 
                 <!-- Right Icons -->
                 <div class="flex items-center space-x-4">
-                    <button class="text-white hover:text-gray-300 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </button>
+                    <!-- Profile Dropdown -->
+                    <div class="relative" id="profile-dropdown">
+                        <button class="text-white hover:text-gray-300 transition-colors" id="profile-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </button>
+                        
+                        <!-- Profile Dropdown Menu -->
+                        <div class="absolute right-0 mt-2 w-48 bg-black border border-gray-700 rounded-lg shadow-lg opacity-0 invisible transform scale-95 transition-all duration-200 ease-in-out z-50" id="profile-menu">
+                            <div class="py-2">
+                                @auth
+                                    <!-- Profile Section -->
+                                    <div class="px-4 py-2 border-b border-gray-700">
+                                        <div class="text-white font-montserrat font-bold text-xs uppercase tracking-wider mb-1">Profile</div>
+                                        <a href="{{ route('profile.show') }}" class="block text-gray-300 hover:text-white text-xs font-montserrat transition-colors duration-200 py-1">
+                                            My Profile
+                                        </a>
+                                        <a href="{{ route('profile.downloads') }}" class="block text-gray-300 hover:text-white text-xs font-montserrat transition-colors duration-200 py-1">
+                                            Access My Downloads
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Sign Out Section -->
+                                    <div class="px-4 py-2">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="block w-full text-left text-gray-300 hover:text-white text-xs font-montserrat transition-colors duration-200 py-1">
+                                                Sign Out
+                                            </button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <!-- Guest User -->
+                                    <div class="px-4 py-2">
+                                        <a href="{{ route('login') }}" class="block text-gray-300 hover:text-white text-xs font-montserrat transition-colors duration-200 py-1 mb-2">
+                                            Sign In
+                                        </a>
+                                        <a href="{{ route('register') }}" class="block text-gray-300 hover:text-white text-xs font-montserrat transition-colors duration-200 py-1">
+                                            Sign Up
+                                        </a>
+                                    </div>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
                     <button class="text-white hover:text-gray-300 transition-colors bag-icon relative" id="bag-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -72,22 +113,42 @@
                 <div class="flex flex-col space-y-3 mt-3">
                     <!-- Main Navigation -->
                     <div class="border-b border-gray-700 pb-3">
-                        <a href="#"
-                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm">HOME</a>
-                        <a href="#"
-                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm">PRODUCT</a>
-                        <a href="#"
-                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm">STORE</a>
-                        <a href="#"
-                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm">ABOUT US</a>
+                        <a href="{{ route('store.index') }}"
+                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">ENTER</a>
+                        <a href="{{ route('collections') }}"
+                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">COLLECTIONS</a>
+                        <a href="{{ route('archive') }}"
+                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">THE ARCHIVE</a>
+                        <a href="{{ route('code') }}"
+                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">THE CODE</a>
                     </div>
-                    <!-- Additional Mobile Menu Items (for future dropdowns) -->
-                    <div class="pt-4">
-                        <!-- Placeholder for dropdown menu items -->
-                        <div class="space-y-4">
-                            <!-- Add your dropdown menu items here -->
+                    
+                    <!-- Profile Section for Mobile -->
+                    @auth
+                        <div class="border-b border-gray-700 pb-3">
+                            <div class="text-white font-montserrat font-bold text-xs uppercase tracking-wider mb-2">Profile</div>
+                            <a href="{{ route('profile.show') }}"
+                                class="text-gray-300 hover:text-white transition-colors py-1 block text-sm font-montserrat ml-2">My Profile</a>
+                            <a href="{{ route('profile.downloads') }}"
+                                class="text-gray-300 hover:text-white transition-colors py-1 block text-sm font-montserrat ml-2">Access My Downloads</a>
                         </div>
-                    </div>
+                        
+                        <div class="pt-2">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">
+                                    Sign Out
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="pt-2">
+                            <a href="{{ route('login') }}"
+                                class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">Sign In</a>
+                            <a href="{{ route('register') }}"
+                                class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">Sign Up</a>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </nav>

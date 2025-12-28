@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class StoreAccessRequestController extends Controller
 {
@@ -18,58 +19,67 @@ class StoreAccessRequestController extends Controller
         return view('admin.access_requests.index', compact('requests'));
     }
 
-   public function sendPassword($id)
-{
-    $request = StoreAccessRequest::findOrFail($id);
+    public function sendPassword($id)
+    {
+        $request = StoreAccessRequest::findOrFail($id);
 
-    // Generate random password
-    $rawPassword = Str::random(10);
+        // Generate random password
+        $rawPassword = Str::random(10);
 
-    // Store hashed password in DB
-    $request->update([
-        'password' => Hash::make($rawPassword)
-    ]);
+        // Store password in DB (model will hash it automatically)
+        $request->update([
+            'password' => $rawPassword,
+            'email' => strtolower(trim($request->email))
+        ]);
 
-    // Send raw password via email
-    Mail::send('emails.access_password', [
-        'email' => $request->email,
-        'password' => $rawPassword
-    ], function ($message) use ($request) {
-        $message->to($request->email)
+        // Send raw password via email
+        Mail::send('emails.access_password', [
+            'email' => $request->email,
+            'password' => $rawPassword
+        ], function ($message) use ($request) {
+            $message->to($request->email)
                 ->subject('Your Store Access Password');
-    });
+        });
 
-    return back()->with('success', 'Password sent to ' . $request->email);
-}
+        return back()->with('success', 'Password sent to ' . $request->email);
+    }
 
-    public function bulkSendPassword(Request $request)
+      public function bulkSendPassword(Request $request)
     {
         $requestIds = json_decode($request->request_ids);
 
-        $requests = StoreAccessRequest::whereIn('id', $requestIds)
-            ->whereNull('password')
+        $items = StoreAccessRequest::whereIn('id', $requestIds)
             ->get();
 
-        foreach ($requests as $request) {
-            // Generate random password
-            $password = Str::random(10);
+        foreach ($items as $item) {
 
-            // Update request with hashed password
-            $request->update([
-                'password' => bcrypt($password)
+            // Generate safe 10-char password (hex)
+            $plainPassword = bin2hex(random_bytes(5));
+
+            // Save password and normalized email (model will hash password automatically)
+            $item->update([
+                'password' => $plainPassword,
+                'email' => strtolower(trim($item->email))
+            ]);
+            // Optional: log for debugging
+            Log::info('store-access-password', [
+                'id' => $item->id,
+                'email' => $item->email,
+                'plain' => $plainPassword
             ]);
 
-            // Send mail
+            // Send email with exact plain password
             Mail::send('emails.access_password', [
-                'email' => $request->email,
-                'password' => $password
-            ], function ($message) use ($request) {
-                $message->to($request->email)->subject('Your Store Access Password');
+                'email' => $item->email,
+                'password' => $plainPassword,
+            ], function ($message) use ($item) {
+                $message->to($item->email)->subject('Your Store Access Password');
             });
         }
 
-        return back()->with('success', 'Passwords sent to selected users successfully.');
+        return back()->with('success', 'Passwords sent successfully.');
     }
+
 
     public function destroy($id)
     {

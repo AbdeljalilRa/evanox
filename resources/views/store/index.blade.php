@@ -3,6 +3,145 @@
 @section('title', 'EVANOX - Home')
 
 @section('content')
+    <!-- Newsletter Subscription Pop-up -->
+    <div id="newsletter-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background Image with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden"
+                style="background-image: url('{{ asset('images/Artboard 8.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+
+                <!-- Close Button -->
+                <button id="close-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+
+                <!-- Content -->
+                <div class="relative z-10 text-center p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
+                        WANT 20% OFF<br>YOUR FIRST DROP?
+                    </h2>
+
+                    <p class="text-gray-200 text-sm mb-4 font-nunito leading-relaxed">
+                        Join the EVANOX newsletter and get 20% off your first design pack — plus early access to our limited
+                        drops, creative breakdowns, and exclusive store content.
+                    </p>
+
+                    <p class="text-gray-300 text-sm mb-8 font-nunito">
+                        Just drop your email below — no spam, no clutter.<br>Only real design heat.
+                    </p>
+
+                    <!-- Email Form -->
+                    <form id="newsletter-form" class="space-y-4">
+                        @csrf
+                        <div>
+                            <input type="email" id="newsletter-email" name="email" placeholder="Email" required
+                                class="w-full px-6 py-4 rounded-full bg-white text-black">
+                        </div>
+
+                        <button type="submit"
+                            class="bg-transparent border-2 border-white text-white py-3 px-8 rounded-full">
+                            SUBMIT
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limited Edition Pop-up -->
+    <div id="limited-edition-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background Image with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden"
+                style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+
+                <!-- Close Button -->
+                <button id="close-limited-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+
+                <!-- Content -->
+                <div class="relative z-10 text-left p-8 text-white">
+                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
+                        LIMITED EDITION<br>ONLY 100 LICENSES
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            This design isn't mass-produced.<br>
+                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong
+                                class="text-white">100 licenses worldwide</strong>.
+                        </p>
+
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            Once it's gone, it's gone<br>
+                            <strong class="text-white">No re-releases. No second chances.</strong>
+                        </p>
+
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            We believe in creating art that holds value<br>
+                            <strong class="text-white">for the few, not for everyone</strong>.<br>
+                            Own something rare. Own something real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Success Pop-up -->
+    <div id="newsletter-success-popup"
+        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+            <!-- Background with Dark Overlay -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-black">
+                <!-- Close Button -->
+                <button id="close-newsletter-success-popup"
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
+                    ×
+                </button>
+
+                <!-- Content -->
+                <div class="relative z-10 text-left p-8 text-white">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-4 tracking-wide font-montserrat leading-tight">
+                            SUCCESS!
+                        </h2>
+                    </div>
+
+                    <div class="text-center space-y-4">
+                        <p class="text-gray-200 text-base font-nunito leading-relaxed">
+                            <strong class="text-white">Coupon created successfully!</strong>
+                        </p>
+                        
+                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                            Check your email for your <strong class="text-white">20% discount code</strong> and exclusive access to our newsletter.
+                        </p>
+                        
+                        <div class="pt-4">
+                            <button id="newsletter-success-ok" 
+                                class="bg-white text-black py-3 px-8 rounded-full font-semibold hover:bg-gray-200 transition-colors duration-200">
+                                GOT IT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-16">
         <div class="flex justify-center items-center min-h-screen">
@@ -27,7 +166,7 @@
                         </div>
                     </div>
                     <div class="absolute bottom-0 left-0 transform translate-y-1/2 ml-4 md:ml-16">
-                        <a href="#"
+                        <a href="{{ route('drop') }}"
                             class="bg-white text-black px-5 py-2 md:px-8 md:py-3 rounded-full font-montserrat font-semibold text-sm md:text-lg uppercase hover:bg-black hover:text-white transition-colors inline-block">
                             GET THE DROP
                         </a>
@@ -47,19 +186,19 @@
                 @forelse($products as $product)
                     <div class="swiper-slide">
                         <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                            <div
+                                class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                 <div class="relative">
-                                    @if($product->images && $product->images->count() > 0)
-                                        <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                             alt="{{ $product->title }}"
-                                             class="w-full h-auto rounded-lg">
+                                    @if ($product->images && $product->images->count() > 0)
+                                        <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
+                                            alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                     @else
-                                        <img src="{{ asset('images/no-image.png') }}" 
-                                             alt="No image"
-                                             class="w-full h-auto rounded-lg">
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No image"
+                                            class="w-full h-auto rounded-lg">
                                     @endif
                                     @php
-                                        $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
+                                        $finalPrice =
+                                            $product->price - ($product->price * $product->discount_percentage) / 100;
                                     @endphp
                                 </div>
                                 <div class="p-4">
@@ -68,10 +207,11 @@
                                         <div class="flex text-yellow-500 star-rating">
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>
-                                        <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                        <span
+                                            class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                     </div>
                                     <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
-                                    @if($product->discount_percentage > 0)
+                                    @if ($product->discount_percentage > 0)
                                         <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                     @endif
                                 </div>
@@ -90,8 +230,10 @@
         </div>
     </section>
 
-   <!-- Category Products Sections -->
-    @foreach($categories as $category)
+
+
+    <!-- Category Products Sections -->
+    @foreach ($categories as $category)
         <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
             <h2 class="text-18px font-bold text-white text-center mb-1 uppercase tracking-wide font-montserrat">
                 {{ $category->title }}
@@ -104,32 +246,37 @@
                     @forelse($category->products as $product)
                         <div class="swiper-slide">
                             <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                                <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
+                                <div
+                                    class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
                                     <div class="relative">
-                                        @if($product->images && $product->images->count() > 0)
-                                            <img src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                                 alt="{{ $product->title }}"
-                                                 class="w-full h-auto rounded-lg">
+                                        @if ($product->images && $product->images->count() > 0)
+                                            <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
+                                                alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
                                         @else
-                                            <img src="{{ asset('images/no-image.png') }}" 
-                                                 alt="No image"
-                                                 class="w-full h-auto rounded-lg">
+                                            <img src="{{ asset('images/no-image.png') }}" alt="No image"
+                                                class="w-full h-auto rounded-lg">
                                         @endif
                                         @php
-                                            $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
+                                            $finalPrice =
+                                                $product->price -
+                                                ($product->price * $product->discount_percentage) / 100;
                                         @endphp
                                     </div>
                                     <div class="p-4">
-                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}</h3>
+                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}
+                                        </h3>
                                         <div class="flex items-center mb-3">
                                             <div class="flex text-yellow-500 star-rating">
                                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                             </div>
-                                            <span class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                            <span
+                                                class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
                                         </div>
-                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
-                                        @if($product->discount_percentage > 0)
-                                            <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
+                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $
+                                        </p>
+                                        @if ($product->discount_percentage > 0)
+                                            <span
+                                                class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
                                         @endif
                                     </div>
                                 </div>
@@ -147,158 +294,13 @@
             </div>
         </section>
     @endforeach
-
 @endsection
 
 @push('styles')
-    <style>
-        .rounded-custom {
-            border-radius: 30px !important;
-        }
-
-        h2 {
-            letter-spacing: 0.02em;
-            word-spacing: 0.05em;
-        }
-
-        p {
-            line-height: 1.6;
-            letter-spacing: 0.01em;
-            word-spacing: 0.03em;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: white !important;
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 40px !important;
-            height: 40px !important;
-            border-radius: 50%;
-        }
-
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 20px !important;
-        }
-
-        .swiper-pagination-bullet {
-            background: white !important;
-        }
-
-        .swiper-pagination-bullet-active {
-            background: #ffffff !important;
-        }
-
-        .product-slider {
-            padding-bottom: 60px;
-        }
-
-        .star-rating span {
-            margin-right: 3px;
-        }
-
-        @media (max-width: 767px) {
-            .product-slider {
-                padding: 0 5px 50px 5px;
-            }
-
-            .swiper-button-next,
-            .swiper-button-prev {
-                width: 30px !important;
-                height: 30px !important;
-            }
-
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-                font-size: 16px !important;
-            }
-
-            .swiper-pagination {
-                bottom: 10px !important;
-            }
-
-            .swiper-slide .p-4 {
-                padding: 0.75rem !important;
-            }
-
-            .swiper-slide .flex.text-yellow-500 span {
-                font-size: 0.75rem !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}">
 @endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // First main products slider
-            new Swiper('.product-slider', {
-                slidesPerView: 3,
-                spaceBetween: 10,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false
-                },
-                navigation: {
-                    nextEl: '.product-slider .swiper-button-next',
-                    prevEl: '.product-slider .swiper-button-prev'
-                },
-                pagination: {
-                    el: '.product-slider .swiper-pagination',
-                    clickable: true
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30
-                    },
-                    1280: {
-                        slidesPerView: 4,
-                        spaceBetween: 40
-                    }
-                }
-            });
-
-            // Dynamically initialize Swiper for each category slider
-            @foreach ($categories as $category)
-                new Swiper('.product-slider-{{ $category->id }}', {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                    loop: true,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false
-                    },
-                    navigation: {
-                        nextEl: '.product-slider-{{ $category->id }} .swiper-button-next',
-                        prevEl: '.product-slider-{{ $category->id }} .swiper-button-prev'
-                    },
-                    pagination: {
-                        el: '.product-slider-{{ $category->id }} .swiper-pagination',
-                        clickable: true
-                    },
-                    breakpoints: {
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 20
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                            spaceBetween: 30
-                        },
-                        1280: {
-                            slidesPerView: 4,
-                            spaceBetween: 40
-                        }
-                    }
-                });
-            @endforeach
-        });
-    </script>
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
 @endpush

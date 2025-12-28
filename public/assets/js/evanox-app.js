@@ -46,6 +46,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Profile dropdown functionality
+    const profileButton = document.getElementById('profile-button');
+    const profileMenu = document.getElementById('profile-menu');
+    
+    if (profileButton && profileMenu) {
+        profileButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            
+            if (profileMenu.classList.contains('opacity-0')) {
+                // Show menu
+                profileMenu.classList.remove('opacity-0', 'invisible', 'scale-95');
+                profileMenu.classList.add('opacity-100', 'visible', 'scale-100');
+            } else {
+                // Hide menu
+                profileMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                profileMenu.classList.remove('opacity-100', 'visible', 'scale-100');
+            }
+        });
+        
+        // Close profile menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+                profileMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                profileMenu.classList.remove('opacity-100', 'visible', 'scale-100');
+            }
+        });
+    }
+
     // Header scroll effect
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;

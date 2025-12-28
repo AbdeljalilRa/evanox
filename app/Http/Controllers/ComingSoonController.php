@@ -42,39 +42,43 @@ class ComingSoonController extends Controller
         return back()->with('success', 'Thanks! You will be notified when we launch.');
     }
 
-    // إدخال password للدخول
-    public function enter(Request $request)
+   public function enter(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
-        $email = strtolower($request->email);
-        $access = StoreAccessRequest::whereRaw('LOWER(email) = ?', [$email])->first();
+        // Normalize email and trim password
+        $email = strtolower(trim($request->email));
+        $plainPassword = trim($request->password);
+
+        $access = StoreAccessRequest::where('email', $email)->first();
 
         if (!$access) {
             return back()->withErrors(['email' => 'Email not found. Please sign up first.']);
         }
 
         if (empty($access->password)) {
-            return back()->withErrors(['password' => 'No password set for this email. Please sign up again.']);
+            return back()->withErrors(['password' => 'No password set for this email.']);
+        }
+       
+
+        // Check password
+        if (!Hash::check($plainPassword, $access->password)) {
+            return back()->withErrors(['password' => 'Invalid password. Please re-check.']);
         }
 
-        // debug مؤقت باش نشوف القيم
-        if (!Hash::check($request->password, $access->password)) {
-            return back()->withErrors(['password' => 'Invalid password. Please check your email for the correct password.']);
-        }
-
-        // نجاح
+        // Successful login
         session([
             'store_access' => true,
             'user_email' => $access->email,
             'store_access_time' => now()
         ]);
 
-        $access->last_login_at = now();
-        $access->save();
+        $access->update([
+            'last_login_at' => now(),
+        ]);
 
         return redirect('/')->with('success', 'Welcome back!');
     }
