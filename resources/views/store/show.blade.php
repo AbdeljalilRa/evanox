@@ -21,7 +21,7 @@
                 <div class="mb-4">
                     <div class="bg-black overflow-hidden product-image-container">
                         <img id="mainProductImage"
-                            src="{{ $product->images->count() > 0 ? asset('storage/' . $product->images->first()->image_path) : asset('images/default.png') }}"
+                            src="{{ $product->images->count() > 0 ? Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) : asset('images/default.png') }}"
                             alt="{{ $product->title }}" class="w-full h-auto object-contain">
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                 <div class="grid grid-cols-4 gap-2">
                     @foreach ($product->images as $image)
                         <div class="rounded cursor-pointer hover:opacity-80 transition-all thumbnail-image"
-                            data-img="{{ asset('storage/' . $image->image_path) }}">
-                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $product->title }}"
-                                class="w-full h-auto object-cover rounded">
+                            data-img="{{ Storage::disk('s3')->temporaryUrl($image->image_path, now()->addMinutes(5)) }}">
+                            <img src="{{ Storage::disk('s3')->temporaryUrl($image->image_path, now()->addMinutes(5)) }}"
+                                alt="{{ $product->title }}" class="w-full h-auto object-cover rounded">
                         </div>
                     @endforeach
                 </div>
@@ -220,7 +220,7 @@
                 <div class="group">
                     <div
                         class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg mb-3">
-                        <img src="{{ $related->images->count() > 0 ? asset('storage/' . $related->images->first()->image_path) : asset('images/default.png') }}"
+                        <img src="{{ $related->images->count() > 0 ? Storage::disk('s3')->temporaryUrl($related->images->first()->image_path, now()->addMinutes(5)) : asset('images/default.png') }}"
                             alt="{{ $related->title }}" class="w-full h-auto object-cover">
                     </div>
                     <h3 class="text-white font-montserrat font-medium text-[14px] mb-2">{{ $related->title }}</h3>

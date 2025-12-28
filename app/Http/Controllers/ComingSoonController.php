@@ -62,6 +62,7 @@ class ComingSoonController extends Controller
         if (empty($access->password)) {
             return back()->withErrors(['password' => 'No password set for this email.']);
         }
+       
 
         // Check password
         if (!Hash::check($plainPassword, $access->password)) {

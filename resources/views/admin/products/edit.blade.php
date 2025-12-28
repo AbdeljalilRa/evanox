@@ -125,7 +125,6 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Gallery Images with Progress + Preview -->
                                     @php
                                         $productImages = $product->images()->orderBy('id')->get();
                                     @endphp
@@ -149,8 +148,9 @@
                                             </div>
                                             <div id="preview_{{ $i }}" class="img-preview mt-2">
                                                 @if (isset($productImages[$i - 1]))
-                                                    <img src="{{ asset('storage/' . $productImages[$i - 1]->image_path) }}"
-                                                        alt="Gallery Image {{ $i }}">
+                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($productImages[$i - 1]->image_path, now()->addMinutes(5)) }}"
+                                                        alt="Gallery Image {{ $i }}" class="rounded shadow-sm"
+                                                        style="max-width:150px; max-height:150px; object-fit: cover;">
                                                 @endif
                                             </div>
                                             @error('images_' . $i)
@@ -158,6 +158,7 @@
                                             @enderror
                                         </div>
                                     @endfor
+
 
                                     <!-- Status -->
                                     <div class="mb-3">

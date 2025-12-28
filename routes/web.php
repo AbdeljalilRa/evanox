@@ -115,8 +115,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store-status', [StoreStatusController::class, 'toggle'])->name('store-status.toggle');
 
         // Categories (resource routes)
-        Route::resource('categories', CategoryController::class);
-
+        Route::resource('categories', CategoryController::class)
+            ->parameters([
+                'categories' => 'category:slug'
+            ]);
         // Products (resource routes with slug parameter)
         Route::resource('products', ProductController::class)->parameters([
             'products' => 'product:slug'

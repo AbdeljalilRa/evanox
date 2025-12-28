@@ -42,37 +42,37 @@
                                 <div class="bg-light rounded p-3 mb-2 product-description">
                                     {!! $product->description !!}
                                 </div>
-                                @if($product->whats_inside || $product->perfect_for || $product->format || $product->license)
+                                @if ($product->whats_inside || $product->perfect_for || $product->format || $product->license)
                                     <div class="bg-light rounded p-3 mb-2 mt-2">
-                                        @if($product->whats_inside)
-                                        <div class="mb-2">
-                                            <strong class="text-primary">What's Inside:</strong><br>
-                                            <ul>
-                                                @foreach(explode("\n", $product->whats_inside) as $line)
-                                                    @if(trim($line) != '')
-                                                        <li>{{ $line }}</li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                        @if ($product->whats_inside)
+                                            <div class="mb-2">
+                                                <strong class="text-primary">What's Inside:</strong><br>
+                                                <ul>
+                                                    @foreach (explode("\n", $product->whats_inside) as $line)
+                                                        @if (trim($line) != '')
+                                                            <li>{{ $line }}</li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         @endif
-                                        @if($product->perfect_for)
-                                        <div class="mb-2">
-                                            <strong class="text-primary">Perfect For:</strong><br>
-                                            <span>{{ $product->perfect_for }}</span>
-                                        </div>
+                                        @if ($product->perfect_for)
+                                            <div class="mb-2">
+                                                <strong class="text-primary">Perfect For:</strong><br>
+                                                <span>{{ $product->perfect_for }}</span>
+                                            </div>
                                         @endif
-                                        @if($product->format)
-                                        <div class="mb-2">
-                                            <strong class="text-primary">Format:</strong><br>
-                                            <span>{{ $product->format }}</span>
-                                        </div>
+                                        @if ($product->format)
+                                            <div class="mb-2">
+                                                <strong class="text-primary">Format:</strong><br>
+                                                <span>{{ $product->format }}</span>
+                                            </div>
                                         @endif
-                                        @if($product->license)
-                                        <div class="mb-2">
-                                            <strong class="text-primary">License:</strong><br>
-                                            <span>{{ $product->license }}</span>
-                                        </div>
+                                        @if ($product->license)
+                                            <div class="mb-2">
+                                                <strong class="text-primary">License:</strong><br>
+                                                <span>{{ $product->license }}</span>
+                                            </div>
                                         @endif
                                     </div>
                                 @endif
@@ -90,13 +90,13 @@
                             <div class="col-12">
                                 <h5 class="fw-bold">Gallery</h5>
                                 <div class="d-flex flex-wrap align-items-center gap-3">
-                                    @if($product->images && $product->images->count() > 0)
+                                    @if ($product->images && $product->images->count() > 0)
                                         @foreach ($product->images as $image)
                                             <div class="gallery-img-box text-center">
-                                                <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                                     alt="{{ $product->title }}"
-                                                     class="rounded shadow-sm"
-                                                     style="max-width:150px; max-height:150px; object-fit: cover;">
+                                                <img src="{{ Storage::disk('s3')->temporaryUrl($image->image_path, now()->addMinutes(5)) }}"
+                                                    alt="{{ $product->title }}" class="rounded shadow-sm"
+                                                    style="max-width:150px; max-height:150px; object-fit: cover;"
+                                                    loading="lazy">
                                             </div>
                                         @endforeach
                                     @else
@@ -105,6 +105,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="text-end mt-4">
                             <a href="{{ route('admin.products.edit', $product->slug) }}" class="btn btn-warning">
                                 <i class="bi bi-pencil"></i> Edit
@@ -125,26 +126,33 @@
             border-radius: 10px;
             box-shadow: 0 0 8px #d1d1d1;
         }
-        .product-description h2, .product-description h3 {
+
+        .product-description h2,
+        .product-description h3 {
             color: #222;
             font-family: 'Montserrat', sans-serif;
             font-weight: bold;
             margin-top: 1.5em;
         }
+
         .product-description p {
             color: #333;
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             margin-bottom: 1em;
         }
-        .product-description ul, .product-description ol {
+
+        .product-description ul,
+        .product-description ol {
             color: #333;
             margin-left: 2em;
             margin-bottom: 1em;
         }
+
         .product-description li {
             margin-bottom: 0.3em;
         }
+
         .product-description strong {
             color: #0d6efd;
         }
