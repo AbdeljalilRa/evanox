@@ -48,6 +48,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id');
@@ -64,23 +69,23 @@ class Product extends Model
 
 
 
-   
+
     // Accessor for gallery images URLs
     public function getGalleryUrlsAttribute()
-{
-    return $this->images->map(function ($image) {
-        $cacheKey = 'product_image_temp_url_' . $image->id;
-        return Cache::remember($cacheKey, 60, function () use ($image) {
-            if ($image->image_path && strlen($image->image_path) > 0) {
-                try {
-                    $disk = Storage::disk('s3');
-                    return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
-                } catch (\Exception $e) {
-                    return asset('images/no-image.png');
+    {
+        return $this->images->map(function ($image) {
+            $cacheKey = 'product_image_temp_url_' . $image->id;
+            return Cache::remember($cacheKey, 60, function () use ($image) {
+                if ($image->image_path && strlen($image->image_path) > 0) {
+                    try {
+                        $disk = Storage::disk('s3');
+                        return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+                    } catch (\Exception $e) {
+                        return asset('images/no-image.png');
+                    }
                 }
-            }
-            return asset('images/no-image.png');
+                return asset('images/no-image.png');
+            });
         });
-    });
-}
+    }
 }
