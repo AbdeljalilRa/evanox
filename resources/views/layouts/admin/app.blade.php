@@ -121,25 +121,35 @@
             });
         @endif
 
-        // Global delete confirmation
-        window.confirmDelete = function(formId) {
+        // Global delete confirmation with enhanced UX
+        window.confirmDelete = function(formId, itemName = 'this item') {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Delete ' + itemName + '?',
+                html: '<p style="margin: 0; color: #6c757d;">This action cannot be undone. Please confirm you want to permanently delete <strong>' + itemName + '</strong>.</p>',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, delete permanently',
                 cancelButtonText: 'Cancel',
                 reverseButtons: true,
+                allowOutsideClick: false,
+                allowEscapeKey: true,
                 customClass: {
-                    confirmButton: 'btn btn-danger me-2',
-                    cancelButton: 'btn btn-light'
+                    confirmButton: 'btn btn-danger me-2 px-4',
+                    cancelButton: 'btn btn-secondary px-4',
+                    title: 'fw-bold fs-18',
+                    htmlContainer: 'fs-14'
                 },
-                buttonsStyling: false
+                buttonsStyling: false,
+                didOpen: (modal) => {
+                    // Focus cancel button by default for safety
+                    modal.querySelector('.btn-secondary').focus();
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
+                    // Show loading state on button
+                    Swal.showLoading();
                     document.getElementById(formId).submit();
                 }
             });

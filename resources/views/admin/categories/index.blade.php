@@ -67,7 +67,7 @@
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-soft-danger btn-sm"
                                                                 data-bs-toggle="tooltip" title="Delete"
-                                                                onclick="confirmDelete('delete-form-{{ $category->id }}')">
+                                                                onclick="confirmDelete('delete-form-{{ $category->id }}', '{{ $category->title }}')">
                                                                 <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                     class="align-middle fs-18"></iconify-icon>
                                                             </button>

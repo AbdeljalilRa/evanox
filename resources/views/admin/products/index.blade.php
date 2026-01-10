@@ -96,7 +96,7 @@
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-soft-danger btn-sm"
                                                             data-bs-toggle="tooltip" title="Delete"
-                                                            onclick="confirmDelete('delete-form-{{ $product->id }}')">
+                                                            onclick="confirmDelete('delete-form-{{ $product->id }}', '{{ $product->title }}')">
                                                             <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
                                                                 class="align-middle fs-18"></iconify-icon>
                                                         </button>
@@ -141,11 +141,5 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             });
         });
-
-        function confirmDelete(formId) {
-            if (confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
-                document.getElementById(formId).submit();
-            }
-        }
     </script>
 @endsection

@@ -1,6 +1,6 @@
 <div class="main-nav">
     <!-- Sidebar Logo -->
-    <div class="logo-box">
+    {{-- <div class="logo-box">
         <a href="{{ route('admin.dashboard') }}" class="logo-dark">
             <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
             <img src="{{ asset('assets/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
@@ -10,7 +10,7 @@
             <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
             <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-lg" alt="logo light">
         </a>
-    </div>
+    </div> --}}
 
 
 
@@ -157,14 +157,14 @@
             </li>
 
             <!-- Store Settings -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:cog-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Store Settings </span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-title mt-2">Other</li>
 
