@@ -234,7 +234,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
                 </svg>
             </div>
-            <div class="swiper-pagination"></div>
+        </div>
+        <div class="flex justify-center mt-8">
+            <a href="{{ route('collections') }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-lg">
+                View All
+            </a>
         </div>
     </section>
 
@@ -306,7 +310,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
                     </svg>
                 </div>
-                <div class="swiper-pagination"></div>
+            </div>
+            <div class="flex justify-center mt-8">
+                <a href="{{ route('collections.show', $category->slug) }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-lg">
+                    View All
+                </a>
             </div>
         </section>
     @endforeach
