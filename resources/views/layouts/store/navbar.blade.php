@@ -32,8 +32,8 @@
                 <!-- Right Icons -->
                 <div class="flex items-center space-x-4">
                     <!-- Profile Dropdown -->
-                    <div class="relative" id="profile-dropdown">
-                        <button class="text-white hover:text-gray-300 transition-colors" id="profile-button">
+                    <div class="relative flex items-center" id="profile-dropdown">
+                        <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="profile-button">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="text-white hover:text-gray-300 transition-colors bag-icon relative" id="bag-icon">
+                    <button class="text-white hover:text-gray-300 transition-colors bag-icon relative flex items-center" id="bag-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -88,7 +88,7 @@
                         <span class="bag-count absolute -top-1 -right-1 bg-white text-black text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold hidden">0</span>
                     </button>
                     <!-- Desktop Dropdown Menu Button -->
-                    <button class="hidden md:block text-white hover:text-gray-300 transition-colors"
+                    <button class="hidden md:flex items-center text-white hover:text-gray-300 transition-colors"
                         id="dropdown-menu-button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -97,7 +97,7 @@
                         </svg>
                     </button>
                     <!-- Mobile Menu Button -->
-                    <button class="text-white hover:text-gray-300 transition-colors md:hidden" id="mobile-menu-button">
+                    <button class="text-white hover:text-gray-300 transition-colors md:hidden flex items-center" id="mobile-menu-button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
