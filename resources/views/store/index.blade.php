@@ -224,8 +224,16 @@
                     </div>
                 @endforelse
             </div>
-            <div class="swiper-button-next text-white"></div>
-            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-button-next !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </div>
+            <div class="swiper-button-prev !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                </svg>
+            </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
@@ -288,8 +296,16 @@
                         </div>
                     @endforelse
                 </div>
-                <div class="swiper-button-next text-white"></div>
-                <div class="swiper-button-prev text-white"></div>
+                <div class="swiper-button-next !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </div>
+                <div class="swiper-button-prev !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                    </svg>
+                </div>
                 <div class="swiper-pagination"></div>
             </div>
         </section>
