@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\Coupon;
 
@@ -37,6 +38,19 @@ class StoreController extends Controller
             ->get();
 
         return view('store.show', compact('product', 'relatedProducts'));
+    }
+
+    public function showCollection($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        
+        $products = Product::with('images')
+            ->where('category_id', $category->id)
+            ->where('is_active', 1)
+            ->latest()
+            ->paginate(12);
+
+        return view('store.collection', compact('category', 'products'));
     }
 
     public function newsletterCoupon(Request $request)
