@@ -1,9 +1,9 @@
  <nav class="container mx-auto px-4 pt-2">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="h-20">
+                <a href="{{ route('store.index') }}" class="h-20">
                     <img src="{{ asset('images/svg.png') }}" alt="EX Logo" class="h-full">
-                </div>
+                </a>
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-6">
