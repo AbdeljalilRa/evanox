@@ -12,11 +12,31 @@
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="{{ route('collections') }}" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
-                        <span>COLLECTIONS</span>
-                        <span
-                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+                    <div class="relative" id="collections-dropdown">
+                        <button class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm flex items-center" id="collections-button">
+                            <span>COLLECTIONS</span>
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" id="collections-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                        </button>
+                        
+                        <!-- Collections Dropdown Menu -->
+                        <div class="absolute left-0 mt-2 w-56 bg-black border border-gray-700 rounded-lg shadow-lg opacity-0 invisible transform scale-95 transition-all duration-200 ease-in-out z-50" id="collections-menu">
+                            <div class="py-2">
+                                <a href="{{ route('collections') }}" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800 text-xs font-montserrat transition-colors duration-200 uppercase tracking-wider border-b border-gray-700">
+                                    View All Collections
+                                </a>
+                                @isset($navCategories)
+                                    @foreach($navCategories as $category)
+                                        <a href="{{ route('collections.show', $category->slug) }}" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800 text-xs font-montserrat transition-colors duration-200">
+                                            {{ $category->title }}
+                                        </a>
+                                    @endforeach
+                                @endisset
+                            </div>
+                        </div>
+                    </div>
                     <a href="{{ route('archive') }}" class="text-white hover:text-gray-300 transition-colors relative group font-medium text-sm">
                         <span>THE ARCHIVE</span>
                         <span
@@ -115,8 +135,25 @@
                     <div class="border-b border-gray-700 pb-3">
                         <a href="{{ route('store.index') }}"
                             class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">ENTER</a>
-                        <a href="{{ route('collections') }}"
-                            class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">COLLECTIONS</a>
+                        
+                        <!-- Mobile Collections Dropdown -->
+                        <div class="py-1">
+                            <button class="text-white hover:text-gray-300 transition-colors font-medium flex items-center justify-between w-full text-sm font-montserrat" id="mobile-collections-button">
+                                <span>COLLECTIONS</span>
+                                <svg class="w-3 h-3 transition-transform duration-200" id="mobile-collections-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div class="hidden pl-4 mt-1 space-y-1" id="mobile-collections-menu">
+                                <a href="{{ route('collections') }}" class="text-gray-300 hover:text-white transition-colors py-1 block text-xs font-montserrat">View All</a>
+                                @isset($navCategories)
+                                    @foreach($navCategories as $category)
+                                        <a href="{{ route('collections.show', $category->slug) }}" class="text-gray-300 hover:text-white transition-colors py-1 block text-xs font-montserrat">{{ $category->title }}</a>
+                                    @endforeach
+                                @endisset
+                            </div>
+                        </div>
+                        
                         <a href="{{ route('archive') }}"
                             class="text-white hover:text-gray-300 transition-colors py-1 font-medium block text-sm font-montserrat">THE ARCHIVE</a>
                         <a href="{{ route('code') }}"
