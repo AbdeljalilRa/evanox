@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:products',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
@@ -62,13 +62,13 @@ class ProductController extends Controller
         // Upload main file to S3
         $filePath = null;
         if ($request->hasFile('file_path')) {
-            $filePath = $request->file('file_path')->store('products/files', 's3');
+            $filePath = $request->file('file_path')->store('products/files', 's3', 'public');
         }
 
         // Create product
         $product = Product::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title) . '-' . uniqid(),
+            'slug' => $this->generateUniqueSlug($request->title),
             'description' => $request->description,
             'price' => $request->price,
             'discount_percentage' => $request->discount_percentage ?? 0,
@@ -81,7 +81,7 @@ class ProductController extends Controller
         // Upload gallery images directly to S3
         foreach (['images_1', 'images_2', 'images_3', 'images_4'] as $imgField) {
             if ($request->hasFile($imgField)) {
-                $path = $request->file($imgField)->store('products/gallery', 's3');
+                $path = $request->file($imgField)->store('products/gallery', 's3', 'public');
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
@@ -107,8 +107,10 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $product = Product::findOrFail($id);
+
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:products,title,' . $product->id,
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
@@ -122,20 +124,32 @@ class ProductController extends Controller
             'is_active' => 'sometimes|boolean',
         ]);
 
-        $product = Product::findOrFail($id);
+        // Handle image removal
+        if ($request->filled('remove_images')) {
+            $imagesToRemove = ProductImage::whereIn('id', $request->remove_images)
+                ->where('product_id', $product->id)
+                ->get();
+
+            foreach ($imagesToRemove as $image) {
+                if ($image->image_path) {
+                    Storage::disk('s3')->delete($image->image_path);
+                }
+                $image->delete();
+            }
+        }
 
         // Update main file on S3
         if ($request->hasFile('file_path')) {
             if ($product->file_path) {
                 Storage::disk('s3')->delete($product->file_path);
             }
-            $product->file_path = $request->file('file_path')->store('products/files', 's3');
+            $product->file_path = $request->file('file_path')->store('products/files', 's3', 'public');
         }
 
         // Update basic fields
         $product->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title) . '-' . uniqid(),
+            'slug' => $this->generateUniqueSlug($request->title, $product->id),
             'description' => $request->description,
             'price' => $request->price,
             'discount_percentage' => $request->discount_percentage ?? 0,
@@ -150,7 +164,7 @@ class ProductController extends Controller
 
         foreach ($galleryFields as $index => $imgField) {
             if ($request->hasFile($imgField)) {
-                $path = $request->file($imgField)->store('products/gallery', 's3');
+                $path = $request->file($imgField)->store('products/gallery', 's3', 'public');
 
                 if (isset($productImages[$index])) {
                     if ($productImages[$index]->image_path) {
@@ -192,5 +206,35 @@ class ProductController extends Controller
     {
         $product->update(['is_active' => !$product->is_active]);
         return back()->with('success', 'Product status updated successfully.');
+    }
+
+    /**
+     * Generate a unique slug for a product.
+     *
+     * @param string $title
+     * @param int|null $ignoreId Product ID to exclude from uniqueness check (used during updates)
+     * @return string
+     */
+    private function generateUniqueSlug($title, $ignoreId = null)
+    {
+        $baseSlug = Str::slug($title);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        while (true) {
+            $query = Product::where('slug', $slug);
+
+            // Ignore current product ID if provided (for updates)
+            if ($ignoreId !== null) {
+                $query->where('id', '!=', $ignoreId);
+            }
+
+            if (!$query->exists()) {
+                return $slug;
+            }
+
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
     }
 }

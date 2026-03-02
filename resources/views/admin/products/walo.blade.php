@@ -16,14 +16,15 @@
                             @csrf
                             @method('PUT')
 
+                            <!-- First column remains unchanged -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <!-- Product Title -->
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Product Title</label>
                                         <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                            id="title" name="title" 
-                                            value="{{ old('title', $product->title) }}" required>
+                                            id="title" name="title" value="{{ old('title', $product->title) }}"
+                                            required>
                                         @error('title')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -44,7 +45,8 @@
                                     <div class="mb-3">
                                         <label for="stock" class="form-label">Stock</label>
                                         <input type="number" class="form-control @error('stock') is-invalid @enderror"
-                                            id="stock" name="stock" value="{{ old('stock', $product->stock) }}" required>
+                                            id="stock" name="stock" value="{{ old('stock', $product->stock) }}"
+                                            required>
                                         @error('stock')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -70,7 +72,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <!-- Description (WYSIWYG Editor) -->
+                                    <!-- Description -->
                                     <div class="mb-3">
                                         <label for="description" class="form-label">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
@@ -79,8 +81,11 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         <small class="text-muted">
-                                            You can style your description (bold, lists, etc). Use the "Horizontal line" button (<strong>Insert horizontal line</strong>) to separate paragraphs visually.<br>
-                                            <strong>Note:</strong> All titles/headings will be automatically underlined in the product view.
+                                            You can style your description (bold, lists, etc). Use the "Horizontal line"
+                                            button (<strong>Insert horizontal line</strong>) to separate paragraphs
+                                            visually.<br>
+                                            <strong>Note:</strong> All titles/headings will be automatically underlined in
+                                            the product view.
                                         </small>
                                     </div>
 
@@ -96,28 +101,20 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Main File (Large) -->
+                                    <!-- Main File (Large) - Stays on S3 -->
                                     <div class="mb-3">
                                         <label for="file_path" class="form-label">Main File (Large)</label>
-                                        
                                         @if ($product->file_path)
-                                            <div class="alert alert-info mb-2">
-                                                <i class="bi bi-file-earmark"></i>
-                                                <strong>Current File:</strong> 
-                                                <a href="{{ Storage::disk('s3')->temporaryUrl($product->file_path, now()->addMinutes(5)) }}" target="_blank" class="text-decoration-none">
-                                                    Download File
+                                            <div class="mb-2">
+                                                <a href="{{ Storage::disk('s3')->temporaryUrl($product->file_path, now()->addMinutes(5)) }}"
+                                                    target="_blank" class="btn btn-sm btn-outline-primary">
+                                                    Current File
                                                 </a>
                                             </div>
-                                        @else
-                                            <div class="alert alert-secondary mb-2">
-                                                <i class="bi bi-exclamation-circle"></i> No file uploaded
-                                            </div>
                                         @endif
-
                                         <input type="file"
                                             class="form-control stylish-file @error('file_path') is-invalid @enderror"
                                             id="file_path" name="file_path">
-                                        <small class="text-muted">Select a new file to replace the existing one</small>
                                         <div class="progress mt-2" style="height:20px;">
                                             <div id="fileProgress" class="progress-bar bg-success" role="progressbar"
                                                 style="width:0%">
@@ -128,77 +125,40 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Gallery Images with Progress + Preview -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Gallery Images</label>
-                                        <div class="row">
-                                            @php
-                                                $galleryFields = ['images_1', 'images_2', 'images_3', 'images_4'];
-                                                $productImages = $product->images()->orderBy('id')->get();
-                                            @endphp
-
-                                            @foreach ($galleryFields as $index => $imgField)
-                                                @php
-                                                    $existingImage = $productImages[$index] ?? null;
-                                                @endphp
-                                                <div class="col-md-6 col-lg-3 mb-3">
-                                                    <div class="card gallery-card shadow-sm">
-                                                        <div class="card-body p-2">
-                                                            <!-- Existing Image Preview -->
-                                                            @if ($existingImage)
-                                                                <div class="existing-image-container mb-2" id="existing_{{ $imgField }}">
-                                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($existingImage->image_path, now()->addMinutes(5)) }}"
-                                                                        alt="Gallery Image {{ $index + 1 }}"
-                                                                        class="img-fluid rounded"
-                                                                        style="max-height: 150px; width: 100%; object-fit: cover;"
-                                                                        loading="lazy">
-                                                                </div>
-                                                            @endif
-
-                                                            <!-- New Image Preview -->
-                                                            <div id="preview_{{ $imgField }}" class="img-preview mb-2"></div>
-
-                                                            <!-- File Input -->
-                                                            <div class="input-group mb-2">
-                                                                <input type="file"
-                                                                    class="form-control stylish-file @error($imgField) is-invalid @enderror"
-                                                                    id="{{ $imgField }}" name="{{ $imgField }}"
-                                                                    accept="image/*"
-                                                                    onchange="previewImageWithProgress(this, 'preview_{{ $imgField }}', 'progress_{{ $imgField }}')">
-                                                                <label class="input-group-text" for="{{ $imgField }}">
-                                                                    <i class="bi bi-image"></i>
-                                                                </label>
-                                                            </div>
-
-                                                            <!-- Progress Bar -->
-                                                            <div class="progress mb-2" style="height:10px;">
-                                                                <div id="progress_{{ $imgField }}" class="progress-bar bg-info"
-                                                                    role="progressbar" style="width:0%">0%</div>
-                                                            </div>
-
-                                                            <!-- Remove Checkbox -->
-                                                            @if ($existingImage)
-                                                                <div class="form-check">
-                                                                    <input type="checkbox" class="form-check-input" 
-                                                                        id="remove_{{ $imgField }}" 
-                                                                        name="remove_images[]"
-                                                                        value="{{ $existingImage->id }}"
-                                                                        onchange="toggleImageRemoval(this, 'existing_{{ $imgField }}', '{{ $imgField }}')">
-                                                                    <label class="form-check-label" for="remove_{{ $imgField }}">
-                                                                        Remove Image
-                                                                    </label>
-                                                                </div>
-                                                            @endif
-
-                                                            @error($imgField)
-                                                                <div class="text-danger small mt-2">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
+                                    @php
+                                        $productImages = $product->images()->orderBy('id')->get();
+                                    @endphp
+                                    @for ($i = 1; $i <= 4; $i++)
+                                        <div class="mb-3">
+                                            <label for="images_{{ $i }}" class="form-label">Gallery Image
+                                                {{ $i }}</label>
+                                            <div class="input-group stylish-img-input">
+                                                <input type="file"
+                                                    class="form-control stylish-file @error('images_' . $i) is-invalid @enderror"
+                                                    id="images_{{ $i }}" name="images_{{ $i }}"
+                                                    accept="image/*"
+                                                    onchange="previewImageWithProgress(this, 'preview_{{ $i }}', 'progress_images_{{ $i }}')">
+                                                <label class="input-group-text" for="images_{{ $i }}"><i
+                                                        class="bi bi-image"></i></label>
+                                            </div>
+                                            <div class="progress mt-2" style="height:10px;">
+                                                <div id="progress_images_{{ $i }}"
+                                                    class="progress-bar bg-info" role="progressbar" style="width:0%">0%
                                                 </div>
-                                            @endforeach
+                                            </div>
+                                            <div id="preview_{{ $i }}" class="img-preview mt-2">
+                                                @if (isset($productImages[$i - 1]))
+                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($productImages[$i - 1]->image_path, now()->addMinutes(5)) }}"
+                                                        alt="Gallery Image {{ $i }}" class="rounded shadow-sm"
+                                                        style="max-width:150px; max-height:150px; object-fit: cover;">
+                                                @endif
+                                            </div>
+                                            @error('images_' . $i)
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                    </div>
+                                    @endfor
+
 
                                     <!-- Status -->
                                     <div class="mb-3">
@@ -237,59 +197,21 @@
         }
 
         .img-preview img {
-            max-width: 100%;
-            max-height: 150px;
+            max-width: 120px;
+            max-height: 120px;
             border-radius: 10px;
             box-shadow: 0 0 8px #d1d1d1;
+            margin-right: 8px;
+            object-fit: cover;
         }
 
         .stylish-file {
             border: 2px solid #d1e7dd;
         }
-
-        .gallery-card {
-            border: 1px solid #e9ecef;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .gallery-card.image-removed {
-            opacity: 0.5;
-            background-color: #f8f9fa;
-        }
-
-        .gallery-card.image-removed .existing-image-container {
-            text-decoration: line-through;
-        }
-
-        .existing-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #f8f9fa;
-        }
-
-        .input-group .input-group-text {
-            background: #f4f6fb;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            cursor: pointer;
-        }
-
-        .input-group input[type="file"] {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
     </style>
-
-    <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- CKEditor 5 CDN -->
+    <!-- CKEditor 5 CDN for Description field -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -308,7 +230,6 @@
                 console.error(error);
             });
 
-        // Preview image on change with progress simulation
         function previewImageWithProgress(input, previewId, progressId) {
             let preview = document.getElementById(previewId);
             let progressBar = document.getElementById(progressId);
@@ -321,7 +242,6 @@
 
             let reader = new FileReader();
 
-            // Simulate loading progress
             let loaded = 0;
             let total = input.files[0].size;
             let interval = setInterval(function() {
@@ -331,35 +251,23 @@
                 progressBar.textContent = percentComplete + '%';
                 if (percentComplete >= 100) {
                     clearInterval(interval);
-                    progressBar.textContent = 'Ready!';
+                    progressBar.textContent = 'Loaded!';
                 }
             }, 30);
 
             reader.onload = function(e) {
                 let img = document.createElement('img');
                 img.src = e.target.result;
-                img.classList.add('rounded');
+                preview.innerHTML = '';
                 preview.appendChild(img);
             }
             reader.readAsDataURL(input.files[0]);
         }
 
-        // Toggle image removal with visual feedback
-        function toggleImageRemoval(checkbox, existingImageId, fieldId) {
-            let card = document.getElementById(fieldId).closest('.gallery-card');
-            
-            if (checkbox.checked) {
-                card.classList.add('image-removed');
-            } else {
-                card.classList.remove('image-removed');
-            }
-        }
-
-        // S3 Progress Upload for main file
+        // S3 Progress Upload (AJAX + progress bar) for main file
         document.getElementById('file_path').addEventListener('change', function(e) {
             let file = e.target.files[0];
             if (!file) return;
-
             let form = document.getElementById('productForm');
             let progressBar = document.getElementById('fileProgress');
             progressBar.style.width = '0%';
@@ -367,13 +275,11 @@
 
             let formData = new FormData();
             formData.append('file', file);
-
             fetch('/api/s3-upload-signed-url', {
                     method: 'POST',
                     body: formData,
                 }).then(response => response.json())
                 .then(data => {
-                    // Upload file to S3 using signed URL
                     let xhr = new XMLHttpRequest();
                     xhr.open('PUT', data.signed_url, true);
                     xhr.upload.onprogress = function(e) {
@@ -392,7 +298,6 @@
                     xhr.send(file);
                 });
 
-            // Fallback progress on submit
             form.addEventListener('submit', function() {
                 progressBar.style.width = '100%';
                 progressBar.textContent = 'Uploaded!';
@@ -402,13 +307,13 @@
 @endsection
 
 @push('styles')
-<style>
-    .product-description h1,
-    .product-description h2,
-    .product-description h3,
-    .product-description h4,
-    .product-description h5 {
-        text-decoration: underline;
-    }
-</style>
+    <style>
+        .product-description h1,
+        .product-description h2,
+        .product-description h3,
+        .product-description h4,
+        .product-description h5 {
+            text-decoration: underline;
+        }
+    </style>
 @endpush

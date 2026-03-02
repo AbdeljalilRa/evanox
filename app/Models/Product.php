@@ -67,6 +67,36 @@ class Product extends Model
         return $this->price;
     }
 
+    /**
+     * Get the primary image URL for the product.
+     *
+     * Returns the first gallery image URL, or a default image if none exists.
+     * Uses caching to avoid excessive S3 API calls.
+     *
+     * @return string
+     */
+    public function getImageUrlAttribute()
+    {
+        // Try to get first gallery image
+        if ($this->relationLoaded('images') && $this->images->isNotEmpty()) {
+            $firstImage = $this->images->first();
+            if ($firstImage->image_path && strlen($firstImage->image_path) > 0) {
+                $cacheKey = 'product_image_url_' . $this->id . '_' . $firstImage->id;
+                try {
+                    return Cache::remember($cacheKey, now()->addMinutes(60), function () use ($firstImage) {
+                        $disk = Storage::disk('s3');
+                        return $disk->temporaryUrl($firstImage->image_path, now()->addMinutes(5));
+                    });
+                } catch (\Exception $e) {
+                    return asset('images/no-image.png');
+                }
+            }
+        }
+
+        // Fallback to default image
+        return asset('images/no-image.png');
+    }
+
 
 
 
