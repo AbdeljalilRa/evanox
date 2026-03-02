@@ -11,11 +11,30 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with(['category', 'images'])->latest()->paginate(10);
-        return view('admin.products.index', compact('products'));
+        $query = Product::with(['category', 'images']);
+
+        // 🔍 Search by title
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        // 🗂 Filter by category
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query
+            ->orderByDesc('created_at')
+            ->paginate(10)
+            ->appends($request->query()); // مهم مع pagination
+
+        $categories = Category::orderBy('title')->get();
+
+        return view('admin.products.index', compact('products', 'categories'));
     }
+
 
     public function create()
     {

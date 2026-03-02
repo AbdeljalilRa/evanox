@@ -138,7 +138,7 @@
                 {{-- Description Section --}}
                 <div class="pt-6 mb-6">
                     <h3 class="text-white font-montserrat font-semibold italic text-[18px] mb-3">• Description</h3>
-                    <div class="text-white font-montserrat font-bold italic text-[12px] mb-4 product-description">
+                    <div class="text-white font-montserrat font-bold  text-[12px] mb-4 product-description">
                         {!! $product->description !!}
                     </div>
                     @if ($product->whats_inside || $product->perfect_for || $product->format || $product->license)

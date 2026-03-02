@@ -16,6 +16,38 @@
 
                     <div class="card-body p-4">
                         <div class="table-responsive">
+                            <form method="GET" action="{{ route('admin.products.index') }}" class="row g-3 mb-4">
+                                <!-- Search -->
+                                <div class="col-md-4">
+                                    <input type="text" name="search" class="form-control"
+                                        placeholder="Search product..." value="{{ request('search') }}">
+                                </div>
+
+                                <!-- Category Filter -->
+                                <div class="col-md-3">
+                                    <select name="category" class="form-select">
+                                        <option value="">All Categories</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                {{ request('category') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="col-md-3 d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bx bx-search"></i> Filter
+                                    </button>
+
+                                    <a href="{{ route('admin.products.index') }}" class="btn btn-light">
+                                        Reset
+                                    </a>
+                                </div>
+                            </form>
+
                             <table class="table table-hover table-centered align-middle mb-0">
                                 <thead class="table-light">
                                     <tr>
@@ -37,7 +69,7 @@
                                                         <div class="avatar-sm">
                                                             @if ($product->images && $product->images->count() > 0)
                                                                 <span class="avatar-title bg-light rounded">
-                                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)); }}"
+                                                                    <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                                                         alt="{{ $product->title }}"
                                                                         class="img-fluid rounded"
                                                                         style="width:40px; height:40px; object-fit: cover;"
@@ -120,10 +152,18 @@
                         </div>
 
                         @if ($products->hasPages())
-                            <div class="d-flex justify-content-end mt-4">
-                                {{ $products->links('vendor.pagination.bootstrap-5') }}
+                            <div class="row align-items-center mt-4">
+                                <div class="col-sm-12 col-md-5 text-muted">
+                                    Showing {{ $products->firstItem() }} to {{ $products->lastItem() }}
+                                    of {{ $products->total() }} results
+                                </div>
+
+                                <div class="col-sm-12 col-md-7 d-flex justify-content-end">
+                                    {{ $products->links('vendor.pagination.admin') }}
+                                </div>
                             </div>
                         @endif
+
                     </div>
                 </div>
             </div>
