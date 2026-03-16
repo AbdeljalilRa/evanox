@@ -7,7 +7,7 @@
         </a>
 
         <!-- Navigation Links - Montserrat 500, 22px/27px -->
-        <div class="flex items-center gap-[62px]">
+        <div class="flex items-center gap-[30px]">
             <a href="{{ route('store.index') }}" class="text-white hover:text-gray-300 transition-colors relative group font-montserrat font-medium text-[22px] leading-[27px]">
                 <span>ENTER</span>
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Desktop Right Icons -->
-        <div class="flex items-center gap-[41px]">
+        <div class="flex items-center gap-[20px]">
             <!-- icon2 - Profile (43px × 45px) -->
             <div class="relative flex items-center" id="profile-dropdown">
                 <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="profile-button">
