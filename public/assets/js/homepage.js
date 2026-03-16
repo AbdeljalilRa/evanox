@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     // First main products slider
     new Swiper('.product-slider', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        centeredSlides: true,
+        slidesPerView: 2,
+        spaceBetween: 10,
+        centeredSlides: false,
         loop: true,
+        watchOverflow: true,
+        observer: true,
+        observeParents: true,
         autoplay: {
             delay: 5000,
             disableOnInteraction: false
@@ -61,10 +64,13 @@ function initCategorySliders() {
             const categoryId = className[1];
             
             new Swiper(`.product-slider-${categoryId}`, {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                centeredSlides: true,
+                slidesPerView: 2,
+                spaceBetween: 10,
+                centeredSlides: false,
                 loop: true,
+                watchOverflow: true,
+                observer: true,
+                observeParents: true,
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false
