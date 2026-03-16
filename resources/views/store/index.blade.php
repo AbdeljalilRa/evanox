@@ -143,38 +143,23 @@
     </div>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-2 sm:px-4 py-8 sm:py-16">
-        <div class="flex justify-center items-center min-h-[60vh] sm:min-h-screen">
-            <div class="w-full max-w-6xl mt-8 sm:mt-16">
-                <div class="bg-white p-3 sm:p-5 pb-6 sm:pb-8 shadow-xl w-full rounded-[30px] sm:rounded-[50px] md:rounded-[100px] relative">
-                    <div class="flex flex-row items-center justify-between">
-                        <div class="w-2/5 pr-2 sm:pr-4 md:pr-8 flex flex-col justify-center">
-                            <div class="pl-2 sm:pl-4 md:pl-6 pt-2 sm:pt-4">
-                                <h2
-                                    class="text-[10px] sm:text-[16px] md:text-26px lg:text-42px font-bold mb-1 sm:mb-4 md:mb-6 uppercase tracking-wide font-montserrat leading-tight text-left">
-                                    THE&nbsp;T&#8209;SHIRT<br>DESIGN&nbsp;DROP&nbsp;THAT<br>BUILDS&nbsp;BRANDS</h2>
-                                <p class="text-[5px] sm:text-[10px] md:text-16.97px font-nunito font-normal max-w-xs leading-tight sm:leading-relaxed tracking-normal">
-                                    Timeless visual design for those who lead,
-                                    not follow. Crafted in limited drops. Worn by
-                                    intention.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="w-3/5 flex justify-center md:justify-end">
-                            <img src="{{ asset('images/ex.png') }}" alt="Evanox Image"
-                                class="max-h-[140px] sm:max-h-[280px] md:max-h-[460px] w-auto object-contain">
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 transform translate-y-1/2 ml-2 sm:ml-4 md:ml-16">
+    <main class="flex justify-center items-center pt-[70px] pb-[120px] px-4">
+    <div class="relative w-full max-w-[1162px]">
+        <!-- Hero Section as PNG Image - Responsive -->
+        <div class="relative">
+            <img src="{{ asset('images/hero-section.png') }}" alt="The T-Shirt Design Drop That Builds Brands" 
+                class="w-full h-auto">
+        </div>
+        
+        <!-- Button - Scales with image -->
+        <div class="absolute bottom-0 left-0 transform translate-y-1/2 ml-4 sm:ml-6 md:ml-24">
                         <a href="{{ route('drop') }}"
-                            class="bg-white text-black px-3 py-1.5 sm:px-5 sm:py-2 md:px-8 md:py-3 rounded-full font-montserrat font-semibold text-[8px] sm:text-sm md:text-lg uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-md">
+                            class="bg-white text-black px-3 py-1.5 sm:px-5 sm:py-2 md:px-8 md:py-3 rounded-full font-montserrat font-bold text-[8px] sm:text-sm md:text-lg uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-md">
                             GET THE DROP
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 
     <!-- Product Section with Slider -->
     <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
