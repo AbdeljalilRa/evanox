@@ -55,9 +55,7 @@
             <!-- icon2 - Profile (43px × 45px) -->
             <div class="relative flex items-center" id="profile-dropdown">
                 <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="profile-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-[43px] h-[45px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[43px] h-[45px] object-contain">
                 </button>
                 
                 <!-- Profile Dropdown Menu -->
@@ -87,17 +85,13 @@
             
             <!-- icon1 - Bag (39px × 50px) -->
             <button class="text-white hover:text-gray-300 transition-colors bag-icon relative flex items-center" id="bag-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-[39px] h-[50px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
+                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[39px] h-[50px] object-contain">
                 <span class="bag-count absolute -top-1 -right-1 bg-white text-black text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold hidden">0</span>
             </button>
             
             <!-- icon3 - Menu (46px × 40px) -->
             <button class="flex items-center text-white hover:text-gray-300 transition-colors" id="dropdown-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-[46px] h-[40px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[46px] h-[40px] object-contain">
             </button>
         </div>
     </div>
@@ -116,9 +110,7 @@
             <!-- icon2 - Profile (~20×21px) -->
             <div class="relative" id="mobile-profile-dropdown">
                 <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="mobile-profile-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[21px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[20px] h-[21px] object-contain">
                 </button>
                 
                 <!-- Mobile Profile Dropdown -->
@@ -148,17 +140,13 @@
             
             <!-- icon1 - Bag (~18×23px) -->
             <button class="text-white hover:text-gray-300 transition-colors bag-icon relative flex items-center" id="mobile-bag-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[23px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
+                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[18px] h-[23px] object-contain">
                 <span class="bag-count absolute -top-1 -right-1 bg-white text-black text-[10px] rounded-full h-3 w-3 flex items-center justify-center font-bold hidden">0</span>
             </button>
             
             <!-- icon3 - Menu (~21×18px) -->
             <button class="flex items-center text-white hover:text-gray-300 transition-colors" id="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-[21px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[21px] h-[18px] object-contain">
             </button>
         </div>
     </div>
