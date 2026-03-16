@@ -162,42 +162,147 @@
 </main>
 
     <!-- Product Section with Slider -->
+<section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
+    <!-- Section Header -->
+    <h2 class="font-montserrat font-black text-[32px] text-white text-center uppercase leading-normal mb-1">
+        NEW IN STORE
+    </h2>
+    <p class="font-montserrat font-medium italic text-[24px] text-white text-center uppercase leading-normal mb-8 md:mb-16">
+        "TRENDING."
+    </p>
+    
+    <!-- Product Slider -->
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
+            @forelse($products as $product)
+                <div class="swiper-slide">
+                    <a href="{{ route('store.show', $product->slug) }}" class="block">
+                        <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-[52px]">
+                            <!-- Product Image - Offset to left by -43px from container -->
+                            <div class="w-[482px] h-[422px] -ml-[95px]">
+                                @if ($product->images && $product->images->count() > 0)
+                                    <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
+                                        alt="{{ $product->title }}" class="w-full h-full object-cover rounded-lg">
+                                @else
+                                    <img src="{{ asset('images/no-image.png') }}" alt="No image"
+                                        class="w-full h-full object-cover rounded-lg">
+                                @endif
+                                @php
+                                    $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
+                                @endphp
+                            </div>
+                            
+                            <!-- Product Info - Starts at left: 52px (aligned with pl-[52px]) -->
+                            <div class="pt-4">
+                                <!-- Title: width 318px -->
+                                <h3 class="w-[318px] font-montserrat font-medium text-[20px] leading-[24px] text-white uppercase mb-2">
+                                    {{ $product->title }}
+                                </h3>
+                                
+                                <!-- Star Rating + Reviews -->
+                                <div class="flex items-center mb-3">
+                                    <div class="flex text-yellow-400 text-[16px] gap-[5px]">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <span class="text-gray-400 font-montserrat text-[14px] ml-2">({{ $product->reviews_count ?? 45 }})</span>
+                                </div>
+                                
+                                <!-- Price: width 108px -->
+                                <p class="w-[108px] font-montserrat font-extrabold text-[20px] leading-[24px] text-white uppercase">
+                                    {{ number_format($finalPrice, 2) }} USD
+                                </p>
+                                
+                                @if ($product->discount_percentage > 0)
+                                    <span class="text-xs text-red-400 font-montserrat">-{{ $product->discount_percentage }}%</span>
+                                @endif
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @empty
+                <div class="swiper-slide">
+                    <div class="p-4 text-white text-center font-montserrat">No products available.</div>
+                </div>
+            @endforelse
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </div>
+        <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- View All Button -->
+    <div class="flex justify-center mt-8">
+        <a href="{{ route('collections') }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white border border-white transition-colors inline-block shadow-lg">
+            View All
+        </a>
+    </div>
+</section>
+
+
+
+    <!-- Category Products Sections -->
+@foreach ($categories as $category)
     <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
-        <h2 class="text-18px font-bold text-white text-center mb-1 uppercase tracking-wide font-montserrat">NEW IN STORE
+        <!-- Section Header -->
+        <h2 class="font-montserrat font-black text-[32px] text-white text-center uppercase leading-normal mb-1">
+            {{ $category->title }}
         </h2>
-        <p class="text-14px text-white text-center mb-8 md:mb-16 font-montserrat font-normal">"TRENDING"</p>
-        <div class="swiper product-slider">
+        <p class="font-montserrat font-medium italic text-[24px] text-white text-center uppercase leading-normal mb-8 md:mb-16">
+            "{{ $category->sub_title ?? 'CATEGORY PRODUCTS' }}"
+        </p>
+        
+        <!-- Product Slider -->
+        <div class="swiper product-slider-{{ $category->id }}">
             <div class="swiper-wrapper">
-                @forelse($products as $product)
+                @forelse($category->products as $product)
                     <div class="swiper-slide">
-                        <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                            <div
-                                class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                                <div class="relative">
+                        <a href="{{ route('store.show', $product->slug) }}" class="block">
+                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-[52px]">
+                                <!-- Product Image - Offset to left by -95px -->
+                                <div class="w-[482px] h-[422px] -ml-[95px]">
                                     @if ($product->images && $product->images->count() > 0)
                                         <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
-                                            alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
+                                            alt="{{ $product->title }}" class="w-full h-full object-cover rounded-lg">
                                     @else
                                         <img src="{{ asset('images/no-image.png') }}" alt="No image"
-                                            class="w-full h-auto rounded-lg">
+                                            class="w-full h-full object-cover rounded-lg">
                                     @endif
                                     @php
-                                        $finalPrice =
-                                            $product->price - ($product->price * $product->discount_percentage) / 100;
+                                        $finalPrice = $product->price - ($product->price * $product->discount_percentage) / 100;
                                     @endphp
                                 </div>
-                                <div class="p-4">
-                                    <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}</h3>
+                                
+                                <!-- Product Info - Aligned at left: 52px -->
+                                <div class="pt-4">
+                                    <!-- Title: width 318px -->
+                                    <h3 class="w-[318px] font-montserrat font-medium text-[20px] leading-[24px] text-white uppercase mb-2">
+                                        {{ $product->title }}
+                                    </h3>
+                                    
+                                    <!-- Star Rating + Reviews -->
                                     <div class="flex items-center mb-3">
-                                        <div class="flex text-yellow-500 star-rating">
+                                        <div class="flex text-yellow-400 text-[16px] gap-[5px]">
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>
-                                        <span
-                                            class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
+                                        <span class="text-gray-400 font-montserrat text-[14px] ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                     </div>
-                                    <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $</p>
+                                    
+                                    <!-- Price: width 108px -->
+                                    <p class="w-[108px] font-montserrat font-extrabold text-[20px] leading-[24px] text-white uppercase">
+                                        {{ number_format($finalPrice, 2) }} USD
+                                    </p>
+                                    
                                     @if ($product->discount_percentage > 0)
-                                        <span class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
+                                        <span class="text-xs text-red-400 font-montserrat">-{{ $product->discount_percentage }}%</span>
                                     @endif
                                 </div>
                             </div>
@@ -205,104 +310,32 @@
                     </div>
                 @empty
                     <div class="swiper-slide">
-                        <div class="p-4 text-white text-center">No products available.</div>
+                        <div class="p-4 text-white text-center font-montserrat">No products available in this category.</div>
                     </div>
                 @endforelse
             </div>
-            <div class="swiper-button-next !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
                 </svg>
             </div>
-            <div class="swiper-button-prev !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+            <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </div>
         </div>
+        
+        <!-- View All Button -->
         <div class="flex justify-center mt-8">
-            <a href="{{ route('collections') }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-lg">
+            <a href="{{ route('collections.show', $category->slug) }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white border border-white transition-colors inline-block shadow-lg">
                 View All
             </a>
         </div>
     </section>
-
-
-
-    <!-- Category Products Sections -->
-    @foreach ($categories as $category)
-        <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
-            <h2 class="text-18px font-bold text-white text-center mb-1 uppercase tracking-wide font-montserrat">
-                {{ $category->title }}
-            </h2>
-            <p class="text-14px text-white text-center mb-8 md:mb-16 font-montserrat font-normal">
-                "{{ $category->sub_title ?? 'CATEGORY PRODUCTS' }}"
-            </p>
-            <div class="swiper product-slider-{{ $category->id }}">
-                <div class="swiper-wrapper">
-                    @forelse($category->products as $product)
-                        <div class="swiper-slide">
-                            <a href="{{ route('store.show', $product->slug) }}" class="block h-full">
-                                <div
-                                    class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                                    <div class="relative">
-                                        @if ($product->images && $product->images->count() > 0)
-                                            <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
-                                                alt="{{ $product->title }}" class="w-full h-auto rounded-lg">
-                                        @else
-                                            <img src="{{ asset('images/no-image.png') }}" alt="No image"
-                                                class="w-full h-auto rounded-lg">
-                                        @endif
-                                        @php
-                                            $finalPrice =
-                                                $product->price -
-                                                ($product->price * $product->discount_percentage) / 100;
-                                        @endphp
-                                    </div>
-                                    <div class="p-4">
-                                        <h3 class="text-white text-14px font-bold mb-2 uppercase">{{ $product->title }}
-                                        </h3>
-                                        <div class="flex items-center mb-3">
-                                            <div class="flex text-yellow-500 star-rating">
-                                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                            </div>
-                                            <span
-                                                class="text-gray-400 text-10px ml-2">({{ $product->reviews_count ?? 0 }})</span>
-                                        </div>
-                                        <p class="text-14.42px font-bold text-white">{{ number_format($finalPrice, 2) }} $
-                                        </p>
-                                        @if ($product->discount_percentage > 0)
-                                            <span
-                                                class="text-xs text-red-400">-{{ $product->discount_percentage }}%</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @empty
-                        <div class="swiper-slide">
-                            <div class="p-4 text-white text-center">No products available in this category.</div>
-                        </div>
-                    @endforelse
-                </div>
-                <div class="swiper-button-next !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                    </svg>
-                </div>
-                <div class="swiper-button-prev !bg-white !w-12 !h-12 !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="flex justify-center mt-8">
-                <a href="{{ route('collections.show', $category->slug) }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white transition-colors inline-block shadow-lg">
-                    View All
-                </a>
-            </div>
-        </section>
-    @endforeach
+@endforeach
 @endsection
 
 @push('styles')
