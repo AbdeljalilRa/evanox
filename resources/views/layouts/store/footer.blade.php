@@ -1,29 +1,44 @@
 <footer class="py-8 bg-black">
-    <div class="container mx-auto px-4 max-w-4xl">
+    <div class="container mx-auto px-4">
         <!-- Footer Links Structure -->
-        <div class="grid grid-cols-3 gap-4 text-center mb-8">
-            <!-- First Column -->
-            <div class="flex flex-col space-y-4">
-                <a href="{{ route('about.us') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">ABOUT US</a>
-                <a href="{{ route('privacy.policy') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">PRIVACY POLICY</a>
-            </div>
-            
-            <!-- Middle Column -->
-            <div class="flex flex-col space-y-4">
-                <a href="{{ route('faqs') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">FAQS</a>
-                <a href="{{ route('terms.service') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">TERMS OF SERVICE</a>
-            </div>
-            
-            <!-- Last Column -->
-            <div class="flex flex-col space-y-4">
-                <a href="{{ route('contact') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">CONTACT US</a>
-                <a href="{{ route('refund.policy') }}" class="text-white text-14px font-montserrat font-bold uppercase hover:text-gray-300 transition-colors">REFUND POLICY</a>
-            </div>
+        
+        <!-- Row 1: About Us | FAQs | Contact Us -->
+        <div class="flex justify-between items-center mb-4 px-[46px]">
+            <a href="{{ route('about.us') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                About Us
+            </a>
+            <a href="{{ route('faqs') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                FAQs
+            </a>
+            <a href="{{ route('contact') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                Contact us
+            </a>
+        </div>
+        
+        <!-- Row 2: Privacy Policy | Terms of Service | Refund Policy -->
+        <div class="flex justify-between items-center mb-8 px-[27px]">
+            <a href="{{ route('privacy.policy') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                privacy policy
+            </a>
+            <a href="{{ route('terms.service') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                Terms of Service
+            </a>
+            <a href="{{ route('refund.policy') }}" 
+               class="text-white font-montserrat font-bold text-[18px] leading-[22px] uppercase hover:text-gray-300 transition-colors">
+                Refund Policy
+            </a>
         </div>
         
         <!-- Copyright -->
-        <div class="text-center mt-4">
-            <p class="text-white text-14px font-montserrat">© 2025 EVANOX. All Rights Reserved.</p>
+        <div class="text-center">
+            <p class="text-white font-montserrat font-normal text-[18px] leading-[24px] tracking-[0.15em] uppercase">
+                © 2025 EVANOX. All Rights Reserved.
+            </p>
         </div>
     </div>
 </footer>
