@@ -6,10 +6,10 @@
 <div class="min-h-screen bg-black text-white">
 
     <!-- Breadcrumb -->
-    <div class="px-[49px] pt-8 pb-4">
+    <div class="px-[49px] pt-16 pb-4">
         <p class="font-montserrat font-normal text-white text-[20px] leading-normal">
-            <span>HOME&#9654; COLLECTION &#9654; EYE CONTACT HIP HOP ICONS .</span>
-            <span class="italic">&ldquo;Legends Framed in a Single Glance.&rdquo;</span>
+            <span class="underline">HOME&#9654; COLLECTION &#9654; EYE CONTACT HIP HOP ICONS .</span>
+            <span class="underline italic">&ldquo;Legends Framed in a Single Glance.&rdquo;</span>
         </p>
     </div>
 
