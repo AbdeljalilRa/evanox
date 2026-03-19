@@ -33,7 +33,7 @@
 /* Equal height cards for What's Included section */
 .collections-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     align-items: stretch;
 }
@@ -42,13 +42,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 280px;
-    padding: 1.5rem;
-}
-
-.collection-card h3 {
-    flex-shrink: 0;
-    margin-bottom: 1rem;
+    min-height: 200px;
+    padding: 0.5rem;
 }
 
 .collection-card p {
@@ -90,9 +85,9 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .collection-card {
-        min-height: 220px;
-        padding: 1rem;
+        min-height: auto;
+        padding: 0.5rem;
     }
 }
