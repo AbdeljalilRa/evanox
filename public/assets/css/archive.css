@@ -55,39 +55,25 @@
 
 @media (max-width: 767px) {
     .product-slider {
-        padding: 0 5px 50px 5px;
+        padding: 0 5px 40px 5px;
     }
 
     .swiper-button-next,
     .swiper-button-prev {
-        width: 30px !important;
-        height: 30px !important;
-    }
-
-    .swiper-button-next:after,
-    .swiper-button-prev:after {
-        font-size: 16px !important;
+        display: none !important;
     }
 
     .swiper-pagination {
-        bottom: 10px !important;
+        bottom: 8px !important;
     }
 
-    .swiper-slide .p-4 {
-        padding: 0.75rem !important;
-    }
-
-    .swiper-slide .flex.text-yellow-500 span {
-        font-size: 0.75rem !important;
-    }
-    
     .collections-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .collection-card {
         min-height: auto;
-        padding: 0.5rem;
+        padding: 0.25rem 0;
     }
 }
