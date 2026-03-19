@@ -6,7 +6,7 @@
 @section('content')
 <div class="flex flex-col items-center justify-center min-h-screen bg-black text-white">
     <!-- Top Quote Section -->
-    <div class="text-center w-full mx-auto mb-16">
+    <div class="text-center w-full mx-auto mt-12 mb-16">
         <h1 class="font-extrabold italic mb-3 uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 32px; letter-spacing: 2.4px;">
             "You weren't supposed to be here."
         </h1>
@@ -137,7 +137,7 @@
             <p class="font-bold uppercase mb-0" style="font-family: 'Montserrat', sans-serif; font-size: 22px; color: #fff; line-height: 1.6;">
                 It's not just a pack.
             </p>
-            <p class="font-bold uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 22px; color: #fff; line-height: 1.6;">
+            <p class="font-bold uppercase whitespace-nowrap" style="font-family: 'Montserrat', sans-serif; font-size: 22px; color: #fff; line-height: 1.6;">
                 It's the sealed archive of Evanox — a black box of pressure, power, and untouchable digital design history.
             </p>
         </div>
@@ -167,71 +167,87 @@
         <div class="swiper product-slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                        <div class="relative">
-                            <img src="{{ asset('images/21 savage.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-auto rounded-lg">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-2 sm:pl-[52px]">
+                        <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                            <img src="{{ asset('images/21 savage.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-full object-cover rounded-lg">
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-white font-medium mb-2 uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
+                        <div class="pt-4">
+                            <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
                             <div class="flex items-center mb-3">
-                                <img src="{{ asset('images/stars-rating.png') }}" alt="5 stars" class="h-4">
-                                <span class="text-white font-black ml-2" style="font-family: 'Montserrat', sans-serif; font-size: 14px;">(45)</span>
+                                <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                </div>
+                                <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">(45)</span>
                             </div>
-                            <p class="font-extrabold text-white uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">29,99 USD</p>
+                            <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase">29,99 USD</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="swiper-slide">
-                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                        <div class="relative">
-                            <img src="{{ asset('images/BOX FACE.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-auto rounded-lg">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-2 sm:pl-[52px]">
+                        <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                            <img src="{{ asset('images/BOX FACE.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-full object-cover rounded-lg">
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-white font-medium mb-2 uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
+                        <div class="pt-4">
+                            <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
                             <div class="flex items-center mb-3">
-                                <img src="{{ asset('images/stars-rating.png') }}" alt="5 stars" class="h-4">
-                                <span class="text-white font-black ml-2" style="font-family: 'Montserrat', sans-serif; font-size: 14px;">(45)</span>
+                                <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                </div>
+                                <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">(45)</span>
                             </div>
-                            <p class="font-extrabold text-white uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">29,99 USD</p>
+                            <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase">29,99 USD</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="swiper-slide">
-                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                        <div class="relative">
-                            <img src="{{ asset('images/stephen.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-auto rounded-lg">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-2 sm:pl-[52px]">
+                        <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                            <img src="{{ asset('images/stephen.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-full object-cover rounded-lg">
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-white font-medium mb-2 uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
+                        <div class="pt-4">
+                            <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
                             <div class="flex items-center mb-3">
-                                <img src="{{ asset('images/stars-rating.png') }}" alt="5 stars" class="h-4">
-                                <span class="text-white font-black ml-2" style="font-family: 'Montserrat', sans-serif; font-size: 14px;">(45)</span>
+                                <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                </div>
+                                <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">(45)</span>
                             </div>
-                            <p class="font-extrabold text-white uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">29,99 USD</p>
+                            <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase">29,99 USD</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="swiper-slide">
-                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 h-full rounded-lg">
-                        <div class="relative">
-                            <img src="{{ asset('images/catch me bleu.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-auto rounded-lg">
+                    <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-2 sm:pl-[52px]">
+                        <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                            <img src="{{ asset('images/catch me bleu.png') }}" alt="EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION" class="w-full h-full object-cover rounded-lg">
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-white font-medium mb-2 uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
+                        <div class="pt-4">
+                            <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION</h3>
                             <div class="flex items-center mb-3">
-                                <img src="{{ asset('images/stars-rating.png') }}" alt="5 stars" class="h-4">
-                                <span class="text-white font-black ml-2" style="font-family: 'Montserrat', sans-serif; font-size: 14px;">(45)</span>
+                                <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                </div>
+                                <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">(45)</span>
                             </div>
-                            <p class="font-extrabold text-white uppercase" style="font-family: 'Montserrat', sans-serif; font-size: 20px;">29,99 USD</p>
+                            <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase">29,99 USD</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="swiper-button-next text-white"></div>
-            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </div>
+            <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
+                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
