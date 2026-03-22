@@ -62,7 +62,7 @@
     <!-- Copyright -->
     <div class="text-center mb-4">
         <p class="text-white uppercase text-[9.5px] md:text-[18px] tracking-[1.425px] md:tracking-[2.7px]" style="font-family: 'Satoshi', sans-serif; font-weight: 400;">
-            © 2025 EVANOX. All Rights Reserved.
+            © {{ now()->year }} EVANOX. All Rights Reserved.
         </p>
     </div>
 </div>

@@ -37,7 +37,7 @@
             <!-- Copyright -->
             <div class="text-center">
                 <p class="text-white font-montserrat font-normal text-[18px] leading-[24px] tracking-[0.15em] uppercase">
-                    © 2025 EVANOX. All Rights Reserved.
+                   © {{ now()->year }} EVANOX. All Rights Reserved.
                 </p>
             </div>
         </div>
