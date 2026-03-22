@@ -3,40 +3,39 @@
 @section('title', 'EVANOX - The Code')
 
 @section('content')
-    <div class="container mx-auto px-4 py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-white font-montserrat font-black text-3xl mb-2">THE CODE WHY WE EXIST</h1>
-            <h2 class="text-white font-montserrat font-bold text-xl">THE EVANOX MANIFESTO</h2>
+<div class="min-h-screen bg-black text-white">
+    <div class="px-7 md:px-12 py-10 md:py-16">
+        <!-- Header -->
+        <div class="text-center mb-6 md:mb-8">
+            <h1 class="font-black uppercase text-[14px] md:text-[24px]" style="font-family: 'Montserrat', sans-serif;">
+                THE CODE &nbsp;WHY WE EXIST
+            </h1>
+            <p class="uppercase font-bold text-[10px] md:text-[18px] mt-2" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1.26px;">
+                THE EVANOX MANIFESTO
+            </p>
         </div>
 
-        <div class="flex justify-center mb-16">
-            <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-64">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6 md:mb-10">
+            <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-[120px] md:w-[213px]">
         </div>
 
-        <div class="text-center max-w-4xl mx-auto mb-16">
-            <h3 class="text-white font-montserrat font-bold text-2xl mb-6">PRESSURE. VISION. LEGACY.</h3>
-            <h4 class="text-white font-montserrat font-bold text-xl mb-10">EVANOX</h4>
-
-            <p class="text-white font-montserrat font-semibold text-base mb-4">
-                We weren't built overnight.<br>
-                Evanox was forged in small rooms, late nights, and unshakable passion — a brand born from nothing but an idea and the will to turn it into something rare.
+        <!-- Tagline -->
+        <div class="text-center mb-6 md:mb-8">
+            <p class="uppercase font-bold text-[10px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1.08px;">
+                Pressure. Vision. Legacy.
             </p>
-            <p class="text-white font-montserrat font-semibold text-base mb-4">
-                We came from the edge — where art meets grit, where style is more than fabric and pixels, and where every design carries a story. Our sign is not decoration. It's a mark of survival, ambition, and the belief that pressure creates diamonds.
+            <p class="uppercase font-bold text-[12px] md:text-[20px] mt-1" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1.4px;">
+                EVANOX
             </p>
-            <p class="text-white font-montserrat font-semibold text-base mb-4">
-                Every drop, every pack, every limited run exists for a reason: to push creative boundaries with scarcity, meaning, and the courage to stand apart.<br>
-                We create what the world hasn't seen — and once it's gone, it's gone forever.
-            </p>
-
-            <div class="mt-12">
-                <p class="text-white font-montserrat font-semibold text-base mb-2">This is our code:</p>
-                <p class="text-white font-montserrat text-base mb-2">Pressure shapes us.</p>
-                <p class="text-white font-montserrat text-base mb-2">Vision drives us.</p>
-                <p class="text-white font-montserrat text-base mb-8">Legacy is the only thing worth leaving.</p>
-            </div>
         </div>
 
-
+        <!-- Manifesto Text -->
+        <div class="text-center max-w-[845px] mx-auto">
+            <p class="capitalize font-semibold text-[8px] md:text-[12px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.5;">
+                "We weren't built overnight. Evanox was forged in small rooms, late nights, and unshakable vision — a brand born from nothing but an idea and the will to turn it into something rare. We came from the edge — where art meets grit, where style is more than fabric and pixels, and where every design carries a story. Our sign is not decoration. It's a mark of survival, ambition, and the belief that pressure creates diamonds. Every drop, every pack, every limited run exists for one reason: to prove that value comes from scarcity, meaning, and the courage to stand apart. We create what the world hasn't seen — and once it's gone, it's gone forever. This is our code: Pressure shapes us. Vision drives us. Legacy is the only thing worth leaving."
+            </p>
+        </div>
     </div>
+</div>
 @endsection
