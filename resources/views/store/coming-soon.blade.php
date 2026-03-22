@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="flex flex-col items-center justify-center min-h-screen bg-black pt-12">
+<div class="flex flex-col items-center justify-center min-h-screen bg-black pt-16 md:pt-20">
 
     <!-- Lamp + Logo -->
     <div class="relative mb-0">
