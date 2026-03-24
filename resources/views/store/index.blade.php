@@ -383,7 +383,7 @@
             @foreach($products->take(8) as $product)
             {
                 title: @json($product->title),
-                image: "{{ $product->images && $product->images->count() > 0 ? Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(60)) : asset('images/no-image.png') }}"
+                image: @json($product->images && $product->images->count() > 0 ? Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(60)) : asset('images/no-image.png'))
             },
             @endforeach
         ];
