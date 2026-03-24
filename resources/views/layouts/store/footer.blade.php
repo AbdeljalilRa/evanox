@@ -86,7 +86,7 @@
         <!-- Copyright: Satoshi 400, 9.5px, letter-spacing 0.15em, centered -->
         <div class="text-center mt-4">
             <p class="text-white font-montserrat font-normal text-[9.5px] leading-[13px] tracking-[0.15em] uppercase">
-                © 2025 EVANOX. All Rights Reserved.
+                © {{ now()->year }} EVANOX. All Rights Reserved.
             </p>
         </div>
     </div>
