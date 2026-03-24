@@ -174,7 +174,7 @@
     <section class="px-7 md:px-12 py-12">
         <h2 class="text-white font-black italic text-[14.37px] md:text-[23px] mb-4 text-center" style="font-family: 'Montserrat', sans-serif;">Customer Reviews</h2>
         <div class="flex items-center justify-center mb-8">
-            <img src="{{ asset('images/stars-review.svg') }}" alt="Rating" class="h-[12px] md:h-[20px]">
+            <img src="{{ asset('images/stars-review.svg') }}" alt="Rating" class="w-[208px] h-[20px]">
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="rounded-lg p-6 review-card">
