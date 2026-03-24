@@ -142,6 +142,28 @@
         </div>
     </div>
 
+    <!-- Social Proof Notification -->
+    <div id="social-proof" class="fixed bottom-6 left-4 md:left-8 z-40 transition-all duration-500 translate-y-[200%] opacity-0 pointer-events-none">
+        <div class="relative flex items-center">
+            {{-- Product Image (overlaps left of card) --}}
+            <div class="absolute -left-2 md:-left-4 z-10 w-[80px] h-[80px] md:w-[120px] md:h-[105px]">
+                <img id="sp-image" src="" alt="" class="w-full h-full object-cover rounded-lg">
+            </div>
+            {{-- White Pill Card --}}
+            <div class="bg-white rounded-[59px] pl-[85px] md:pl-[130px] pr-5 md:pr-8 py-3 md:py-4 min-w-[280px] md:min-w-[420px] shadow-2xl">
+                <p id="sp-location" class="font-montserrat font-medium text-[10px] md:text-[13px] text-black/60 capitalize leading-tight mb-0.5">
+                    Someone in London just purchased
+                </p>
+                <p id="sp-title" class="font-montserrat font-medium text-[12px] md:text-[17px] text-black uppercase leading-tight mb-0.5 line-clamp-2 max-w-[180px] md:max-w-[280px]">
+                    EXCLUSIVE DESIGNNIGHT DEVIL
+                </p>
+                <p class="font-montserrat font-extrabold text-[11px] md:text-[15px] text-black capitalize leading-tight">
+                    &ldquo;secured.&rdquo;
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="flex justify-center items-center pt-[70px] pb-[120px] px-4">
     <div class="relative w-full max-w-[1162px]">
@@ -340,9 +362,74 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}">
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
 @endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="{{ asset('assets/js/homepage.js') }}"></script>
+
+    <!-- Social Proof Notification Rotation -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var notifications = [
+            @foreach($products->take(8) as $product)
+            {
+                title: @json($product->title),
+                image: "{{ $product->images && $product->images->count() > 0 ? Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(60)) : asset('images/no-image.png') }}"
+            },
+            @endforeach
+        ];
+
+        if (notifications.length === 0) return;
+
+        var locations = [
+            'London', 'Paris', 'New York', 'Tokyo', 'Dubai',
+            'Los Angeles', 'Berlin', 'Toronto', 'Sydney', 'Milan',
+            'Amsterdam', 'Stockholm', 'Seoul', 'Miami', 'Barcelona'
+        ];
+
+        var el = document.getElementById('social-proof');
+        var spImage = document.getElementById('sp-image');
+        var spTitle = document.getElementById('sp-title');
+        var spLocation = document.getElementById('sp-location');
+        var currentIndex = 0;
+
+        function getRandomLocation() {
+            return locations[Math.floor(Math.random() * locations.length)];
+        }
+
+        function showNotification() {
+            var n = notifications[currentIndex];
+            spImage.src = n.image;
+            spImage.alt = n.title;
+            spTitle.textContent = n.title;
+            spLocation.textContent = 'Someone in ' + getRandomLocation() + ' just purchased';
+
+            el.classList.remove('translate-y-[200%]', 'opacity-0');
+            el.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(function() {
+                el.classList.remove('translate-y-0', 'opacity-100');
+                el.classList.add('translate-y-[200%]', 'opacity-0');
+
+                currentIndex = (currentIndex + 1) % notifications.length;
+            }, 12000);
+        }
+
+        // First notification after 5 seconds
+        setTimeout(function() {
+            showNotification();
+            // Then every 15 seconds
+            setInterval(showNotification, 15000);
+        }, 5000);
+    });
+    </script>
 @endpush
