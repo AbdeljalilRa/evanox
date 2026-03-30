@@ -55,39 +55,48 @@
     <!-- Limited Edition Pop-up -->
     <div id="limited-edition-popup"
         class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
-        <div class="relative max-w-md mx-4 transform scale-95 transition-all duration-300">
+        <div class="relative max-w-[541px] mx-4 transform scale-95 transition-all duration-300">
             <!-- Background Image with Dark Overlay -->
-            <div class="relative rounded-3xl overflow-hidden"
-                style="background-image: url('{{ asset('images/Artboard 9.png') }}'); background-size: cover; background-position: center;">
-                <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+            <div class="relative rounded-[64px] overflow-hidden"
+                style="background-image: url('{{ asset('images/limited-edition-bg.png') }}'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-black bg-opacity-70 rounded-[64px]"></div>
+                <!-- White Inset Border -->
+                <div class="absolute inset-0 rounded-[64px] pointer-events-none" style="box-shadow: inset 0 0 0 3px rgba(255,255,255,0.9);"></div>
 
                 <!-- Close Button -->
                 <button id="close-limited-popup"
-                    class="absolute top-4 right-4 text-white hover:text-gray-300 w-8 h-8 rounded-full bg-gray-800 bg-opacity-50 flex items-center justify-center text-lg font-light transition-colors duration-200 z-50 cursor-pointer">
-                    ×
+                    class="absolute top-8 right-8 w-[27px] h-[27px] cursor-pointer z-50 hover:opacity-75 transition-opacity">
+                    <img src="{{ asset('images/cancel-icon.png') }}" alt="Close" class="w-full h-full">
                 </button>
 
                 <!-- Content -->
-                <div class="relative z-10 text-left p-8 text-white">
-                    <h2 class="text-3xl font-bold mb-6 tracking-wide font-montserrat leading-tight">
-                        LIMITED EDITION<br>ONLY 100 LICENSES
-                    </h2>
+                <div class="relative z-10 text-left px-10 pt-12 pb-10 text-white">
+                    <!-- Title -->
+                    <div class="mb-6">
+                        <h2 class="font-bold text-[28px] uppercase text-white leading-tight" style="font-family: 'Montserrat', sans-serif; letter-spacing: 4.2px;">
+                            LIMITED EDITION
+                        </h2>
+                        <h2 class="font-bold text-[28px] uppercase text-white leading-tight" style="font-family: 'Montserrat', sans-serif; letter-spacing: 6.16px;">
+                            ONLY 100 LICENSE
+                        </h2>
+                    </div>
 
-                    <div class="space-y-4 mb-8">
-                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                    <!-- Body Paragraphs -->
+                    <div class="space-y-5">
+                        <p class="text-[14px] text-white capitalize" style="font-family: 'Nunito', sans-serif; font-weight: 500; letter-spacing: 1.4px; line-height: 1.4;">
                             This design isn't mass-produced.<br>
-                            It's part of a <strong class="text-white">one-time release</strong>, limited to just <strong
-                                class="text-white">100 licenses worldwide</strong>.
+                            It's part of a one-time release, limited to just <strong style="font-weight: 900;">100<br>
+                            licenses worldwide.</strong>
                         </p>
 
-                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                        <p class="text-[14px] text-white capitalize" style="font-family: 'Nunito', sans-serif; font-weight: 500; letter-spacing: 1.4px; line-height: 1.34;">
                             Once it's gone, it's gone<br>
-                            <strong class="text-white">No re-releases. No second chances.</strong>
+                            <strong style="font-weight: 700;">No re-releases. No second chances.</strong>
                         </p>
 
-                        <p class="text-gray-200 text-sm font-nunito leading-relaxed">
+                        <p class="text-[14px] text-white capitalize" style="font-family: 'Nunito', sans-serif; font-weight: 500; letter-spacing: 1.4px; line-height: 1.34;">
                             We believe in creating art that holds value<br>
-                            <strong class="text-white">for the few, not for everyone</strong>.<br>
+                            <strong style="font-weight: 900;">for the few, not for everyone.</strong><br>
                             Own something rare. Own something real.
                         </p>
                     </div>
