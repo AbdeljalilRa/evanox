@@ -33,13 +33,7 @@
         <!-- Manifesto Text -->
         <div class="text-center max-w-[414px] md:max-w-[845px] mx-auto">
             <p class="capitalize font-semibold text-[9px] md:text-[12px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.5;">
-                "We weren't built overnight. Evanox was forged in small rooms, late nights, and unshakable vision — a brand born from nothing but an idea and the will to turn it into something rare. We came from the edge — where art meets grit, where style is more than fabric and pixels, and where every design carries a story. Our sign is not decoration. It's a mark of survival, ambition, and the belief that pressure creates diamonds. Every drop, every pack, every limited run exists for one reason: to prove that value comes from scarcity, meaning, and the courage to stand apart. We create what the world hasn't seen — and once it's gone, it's gone forever.
-            </p>
-            <p class="capitalize font-semibold text-[9px] md:text-[12px] mt-3" style="font-family: 'Montserrat', sans-serif; line-height: 1.5;">
-                This is our code:<br>
-                Pressure shapes us.<br>
-                Vision drives us.<br>
-                Legacy is the only thing worth leaving."
+                "We weren't built overnight. Evanox was forged in small rooms, late nights, and unshakable vision — a brand born from nothing but an idea and the will to turn it into something rare. We came from the edge — where art meets grit, where style is more than fabric and pixels, and where every design carries a story. Our sign is not decoration. It's a mark of survival, ambition, and the belief that pressure creates diamonds. Every drop, every pack, every limited run exists for one reason: to prove that value comes from scarcity, meaning, and the courage to stand apart. We create what the world hasn't seen — and once it's gone, it's gone forever. This is our code: Pressure shapes us. Vision drives us. Legacy is the only thing worth leaving."
             </p>
         </div>
     </div>
