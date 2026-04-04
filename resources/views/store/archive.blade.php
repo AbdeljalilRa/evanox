@@ -528,12 +528,15 @@
             <!-- Product Details (Right Side - Desktop Only) -->
             <div class="hidden md:block w-full md:w-1/2 mt-8 md:mt-0">
                 <div class="bg-black py-5 px-0">
-                    <div class="max-w-lg">
-                        <h1 class="font-semibold text-white mb-1 text-[40px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.2;">
+                    <div>
+                        <h1 class="font-semibold text-white text-[40px] whitespace-nowrap" style="font-family: 'Montserrat', sans-serif; line-height: 1.2;">
                             EXCLUSIVE EVANOX CENTUM
                         </h1>
-                        <p class="font-semibold text-white mb-4 text-[40px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.2;">
-                            "The Complete Evanox Legacy — Sealed Forever."
+                        <p class="font-semibold text-white text-[40px] whitespace-nowrap" style="font-family: 'Montserrat', sans-serif; line-height: 1.2;">
+                            &ldquo;The Complete Evanox Legacy
+                        </p>
+                        <p class="font-semibold text-white mb-4 text-[40px] whitespace-nowrap" style="font-family: 'Montserrat', sans-serif; line-height: 1.2;">
+                            &mdash; Sealed Forever.&rdquo;
                         </p>
 
                         <div class="flex items-center mb-4">
@@ -541,13 +544,13 @@
                             <span class="text-white font-black ml-3 text-[24px]" style="font-family: 'Montserrat', sans-serif;">(8)</span>
                         </div>
 
-                        <p class="font-extrabold italic text-white mb-6 text-[28px]" style="font-family: 'Montserrat', sans-serif;">
+                        <p class="font-extrabold italic text-white mb-6 text-[28px] whitespace-nowrap" style="font-family: 'Montserrat', sans-serif;">
                             First 10 owners (Founders Tier) &rarr; $999 USD
                         </p>
 
                         <div class="mb-8">
                             <button id="addToBagBtn" data-product-id="centum-package"
-                                class="bg-white text-black font-extrabold py-4 px-12 rounded-full hover:bg-white/90 transition-colors text-[27px]" style="font-family: 'Montserrat', sans-serif;">
+                                class="w-full max-w-[631px] h-[75px] bg-white text-black font-extrabold rounded-[36px] hover:bg-white/90 transition-colors text-[27px]" style="font-family: 'Montserrat', sans-serif;">
                                 Own The Drop
                             </button>
                         </div>
