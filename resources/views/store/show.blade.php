@@ -104,15 +104,15 @@
             {{-- Product Details (Right Side) --}}
             <div class="w-full md:w-1/2 mt-4 md:mt-0">
                 <div class="bg-black py-3 md:py-5 px-0">
-                    <div class="max-w-lg">
-                        <h1 class="text-[14px] md:text-[40px] font-semibold text-white mb-2" style="font-family: 'Montserrat', sans-serif;">
+                    <div class="max-w-lg md:max-w-[637px]">
+                        <h1 class="text-[14px] md:text-[40px] font-semibold text-white mb-2 md:mb-4" style="font-family: 'Montserrat', sans-serif;">
                             {{ $product->title }}
                         </h1>
-                        <div class="flex items-center mb-2 md:mb-5">
-                            <img src="{{ asset('images/stars-rating.png') }}" alt="Rating" class="w-[145px] h-[14px] md:w-auto md:h-[24px] mr-2">
+                        <div class="flex items-center mb-2 md:mb-7">
+                            <img src="{{ asset('images/stars-rating.png') }}" alt="Rating" class="w-[145px] h-[14px] md:w-[252px] md:h-[24px] mr-2 md:mr-[17px]">
                             <span class="text-white text-[13px] md:text-[24px] font-black" style="font-family: 'Montserrat', sans-serif;">(8)</span>
                         </div>
-                        <div class="mb-4 md:mb-6">
+                        <div class="mb-4 md:mb-7">
                             <span class="text-white text-[18px] md:text-[32px] font-extrabold" style="font-family: 'Montserrat', sans-serif;">
                                 {{ number_format($product->price, 2) }} USD
                             </span>
