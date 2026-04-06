@@ -208,9 +208,9 @@
             @forelse($products as $product)
                 <div class="swiper-slide">
                     <a href="{{ route('store.show', $product->slug) }}" class="block">
-                        <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-2 sm:pl-[52px]">
-                            <!-- Product Image - Offset to left by -43px from container -->
-                            <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                        <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-[30px] sm:pl-[52px]">
+                            <!-- Product Image - Offset to left -->
+                            <div class="w-[271px] h-[237px] -ml-[57px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
                                 @if ($product->images && $product->images->count() > 0)
                                     <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                         alt="{{ $product->title }}" class="w-full h-full object-cover rounded-lg">
@@ -223,23 +223,23 @@
                                 @endphp
                             </div>
                             
-                            <!-- Product Info - Starts at left: 52px (aligned with pl-[52px]) -->
-                            <div class="pt-4">
-                                <!-- Title: width 318px -->
-                                <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">
+                            <!-- Product Info -->
+                            <div class="pt-1 sm:pt-4">
+                                <!-- Title -->
+                                <h3 class="w-[176px] sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">
                                     {{ $product->title }}
                                 </h3>
-                                
+
                                 <!-- Star Rating + Reviews -->
                                 <div class="flex items-center mb-3">
-                                    <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                    <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[14px] sm:gap-[5px]">
                                         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                     </div>
-                                    <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
+                                    <span class="text-gray-400 font-montserrat font-black sm:font-normal text-[10px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                 </div>
-                                
-                                <!-- Price: width 108px -->
-                                <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] sm:w-[108px] leading-[14px] sm:leading-[24px] text-white uppercase">
+
+                                <!-- Price -->
+                                <p class="font-montserrat font-extrabold text-[13px] sm:text-[20px] sm:w-[108px] leading-[14px] sm:leading-[24px] text-white uppercase">
                                     {{ number_format($finalPrice, 2) }} USD
                                 </p>
                                 
@@ -297,9 +297,9 @@
                 @forelse($category->products as $product)
                     <div class="swiper-slide">
                         <a href="{{ route('store.show', $product->slug) }}" class="block">
-                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg sm:pl-[52px]">
-                                <!-- Product Image - Offset to left by -95px -->
-                                <div class="w-full h-[160px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
+                            <div class="overflow-hidden transition-all duration-300 hover:shadow-xl hover:brightness-110 hover:-translate-y-1 rounded-lg pl-[30px] sm:pl-[52px]">
+                                <!-- Product Image - Offset to left -->
+                                <div class="w-[271px] h-[237px] -ml-[57px] sm:w-[482px] sm:h-[422px] sm:-ml-[95px]">
                                     @if ($product->images && $product->images->count() > 0)
                                         <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                             alt="{{ $product->title }}" class="w-full h-full object-cover rounded-lg">
@@ -312,23 +312,23 @@
                                     @endphp
                                 </div>
                                 
-                                <!-- Product Info - Aligned at left: 52px -->
-                                <div class="pt-4">
-                                    <!-- Title: width 318px -->
-                                    <h3 class="w-full sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">
+                                <!-- Product Info -->
+                                <div class="pt-1 sm:pt-4">
+                                    <!-- Title -->
+                                    <h3 class="w-[176px] sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">
                                         {{ $product->title }}
                                     </h3>
-                                    
+
                                     <!-- Star Rating + Reviews -->
                                     <div class="flex items-center mb-3">
-                                        <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[3px] sm:gap-[5px]">
+                                        <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[14px] sm:gap-[5px]">
                                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                         </div>
-                                        <span class="text-gray-400 font-montserrat text-[9px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
+                                        <span class="text-gray-400 font-montserrat font-black sm:font-normal text-[10px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                     </div>
-                                    
-                                    <!-- Price: width 108px -->
-                                    <p class="font-montserrat font-extrabold text-[11px] sm:text-[20px] sm:w-[108px] leading-[14px] sm:leading-[24px] text-white uppercase">
+
+                                    <!-- Price -->
+                                    <p class="font-montserrat font-extrabold text-[13px] sm:text-[20px] sm:w-[108px] leading-[14px] sm:leading-[24px] text-white uppercase">
                                         {{ number_format($finalPrice, 2) }} USD
                                     </p>
                                     
