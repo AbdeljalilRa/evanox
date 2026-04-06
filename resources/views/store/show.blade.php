@@ -269,8 +269,8 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-6 md:gap-y-12">
             @foreach ($relatedProducts as $related)
                 <a href="{{ route('store.show', $related->slug) }}" class="block">
-                    <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px] transition-all duration-300 hover:brightness-110 hover:-translate-y-1">
-                        <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+                    <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px] transition-all duration-300 hover:brightness-110 hover:-translate-y-1">
+                        <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                             @if ($related->images && $related->images->count() > 0)
                                 <img src="{{ Storage::disk('s3')->temporaryUrl($related->images->first()->image_path, now()->addMinutes(5)) }}"
                                     alt="{{ $related->title }}" class="w-full h-full object-cover rounded-lg">
@@ -282,12 +282,12 @@
                                 $finalPrice = $related->price - ($related->price * $related->discount_percentage) / 100;
                             @endphp
                         </div>
-                        <div class="pt-2 md:pt-4">
+                        <div class="pt-1 md:pt-4">
                             <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                                 {{ $related->title }}
                             </h3>
                             <div class="flex items-center mb-1 md:mb-3">
-                                <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                                <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                 </div>
                                 <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">({{ $related->reviews_count ?? 45 }})</span>
