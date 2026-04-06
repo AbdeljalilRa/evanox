@@ -28,16 +28,16 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-6 md:gap-y-12">
 
             <!-- Product 1 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/21 savage.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -49,16 +49,16 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/ce ntrel cee. box2.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -70,16 +70,16 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/BOX FACE.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -91,16 +91,16 @@
             </div>
 
             <!-- Product 4 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/big face fifty cent BOX.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -112,16 +112,16 @@
             </div>
 
             <!-- Product 5 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/BIG FACE FUTURE.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -133,16 +133,16 @@
             </div>
 
             <!-- Product 6 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/young BOX.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -154,16 +154,16 @@
             </div>
 
             <!-- Product 7 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/box scarface2.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
@@ -175,16 +175,16 @@
             </div>
 
             <!-- Product 8 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/west bopx.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div class="pt-2 md:pt-4">
+                <div class="pt-1 md:pt-4">
                     <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                         EXCLUSIVE DESIGNNIGHT DEVIL: APOCALYPSE EDITION
                     </h3>
                     <div class="flex items-center mb-1 md:mb-3">
-                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
+                        <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[14px] md:gap-[5px]">
                             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                         </div>
                         <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">(45)</span>
