@@ -55,7 +55,7 @@
             <!-- icon2 - Profile (43px × 45px) -->
             <div class="relative flex items-center" id="profile-dropdown">
                 <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="profile-button">
-                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[43px] h-[45px] object-contain">
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[50px] h-[50px] object-contain">
                 </button>
                 
                 <!-- Profile Dropdown Menu -->
@@ -85,13 +85,13 @@
             
             <!-- icon1 - Bag (39px × 50px) -->
             <button class="text-white hover:text-gray-300 transition-colors bag-icon relative flex items-center" id="bag-icon">
-                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[39px] h-[50px] object-contain">
+                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[50px] h-[50px] object-contain">
                 <span class="bag-count absolute -top-1 -right-1 bg-white text-black text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold hidden">0</span>
             </button>
             
             <!-- icon3 - Menu (46px × 40px) -->
             <button class="flex items-center text-white hover:text-gray-300 transition-colors" id="dropdown-menu-button">
-                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[46px] h-[40px] object-contain">
+                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[50px] h-[50px] object-contain">
             </button>
         </div>
     </div>
@@ -110,7 +110,7 @@
             <!-- icon2 - Profile (~20×21px) -->
             <div class="relative" id="mobile-profile-dropdown">
                 <button class="text-white hover:text-gray-300 transition-colors flex items-center" id="mobile-profile-button">
-                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[20px] h-[21px] object-contain">
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile" class="w-[23px] h-[23px] object-contain">
                 </button>
                 
                 <!-- Mobile Profile Dropdown -->
@@ -140,13 +140,13 @@
             
             <!-- icon1 - Bag (~18×23px) -->
             <button class="text-white hover:text-gray-300 transition-colors bag-icon relative flex items-center" id="mobile-bag-icon">
-                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[18px] h-[23px] object-contain">
+                <img src="{{ asset('images/bag.png') }}" alt="Bag" class="w-[23px] h-[23px] object-contain">
                 <span class="bag-count absolute -top-1 -right-1 bg-white text-black text-[10px] rounded-full h-3 w-3 flex items-center justify-center font-bold hidden">0</span>
             </button>
             
             <!-- icon3 - Menu (~21×18px) -->
             <button class="flex items-center text-white hover:text-gray-300 transition-colors" id="mobile-menu-button">
-                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[21px] h-[18px] object-contain">
+                <img src="{{ asset('images/burger.png') }}" alt="Menu" class="w-[23px] h-[23px] object-contain">
             </button>
         </div>
     </div>
