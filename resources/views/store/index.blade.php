@@ -232,9 +232,7 @@
 
                                 <!-- Star Rating + Reviews -->
                                 <div class="flex items-center mb-3">
-                                    <div class="flex text-yellow-400 text-[10px] sm:text-[16px] gap-[14px] sm:gap-[5px]">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                    </div>
+                                    <img src="{{ asset('images/stars-rating-gold.svg') }}" alt="Rating" class="w-[110px] h-[10px] sm:w-[168px] sm:h-[16px]">
                                     <span class="text-gray-400 font-montserrat font-black sm:font-normal text-[10px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                 </div>
 
