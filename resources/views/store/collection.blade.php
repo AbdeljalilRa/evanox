@@ -54,9 +54,7 @@
                                     {{ $product->title }}
                                 </h3>
                                 <div class="flex items-center mb-1 md:mb-3">
-                                    <div class="flex text-yellow-400 text-[10px] md:text-[16px] gap-[3px] md:gap-[5px]">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                    </div>
+                                    <img src="{{ asset('images/stars-rating-gold.svg') }}" alt="Rating" class="w-[110px] h-[10px] md:w-[168px] md:h-[16px]">
                                     <span class="text-gray-400 font-montserrat font-black text-[10px] md:text-[14px] ml-1 md:ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                 </div>
                                 <p class="font-montserrat font-extrabold text-[13px] md:text-[20px] leading-[16px] md:leading-[24px] text-white uppercase">
