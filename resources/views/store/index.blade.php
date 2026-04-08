@@ -174,7 +174,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex justify-center items-center pt-[70px] pb-[120px] px-4">
+    <main class="flex justify-center items-center pt-[70px] pb-[30px] sm:pb-[120px] px-4">
     <div class="relative w-full max-w-[1162px]">
         <!-- Hero Section as PNG Image - Responsive -->
         <div class="relative">
@@ -193,12 +193,12 @@
 </main>
 
     <!-- Product Section with Slider -->
-<section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
+<section class="container mx-auto px-1 sm:px-4 py-6 sm:py-20 bg-black">
     <!-- Section Header -->
-    <h2 class="font-montserrat font-black text-[32px] text-white text-center uppercase leading-normal mb-1">
+    <h2 class="font-montserrat font-black text-[14px] sm:text-[32px] text-white text-center uppercase leading-normal mb-0 sm:mb-1">
         NEW IN STORE
     </h2>
-    <p class="font-montserrat font-medium italic text-[24px] text-white text-center uppercase leading-normal mb-8 md:mb-16">
+    <p class="font-montserrat font-medium italic text-[10px] sm:text-[24px] text-white text-center uppercase leading-normal mb-3 md:mb-16">
         "TRENDING."
     </p>
     
@@ -226,12 +226,12 @@
                             <!-- Product Info -->
                             <div class="pt-1 sm:pt-4">
                                 <!-- Title -->
-                                <h3 class="w-[176px] sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-2">
+                                <h3 class="w-[176px] sm:w-[318px] font-montserrat font-medium text-[11px] sm:text-[20px] leading-[14px] sm:leading-[24px] text-white uppercase mb-1 sm:mb-2">
                                     {{ $product->title }}
                                 </h3>
 
                                 <!-- Star Rating + Reviews -->
-                                <div class="flex items-center mb-3">
+                                <div class="flex items-center mb-1 sm:mb-3">
                                     <img src="{{ asset('images/stars-rating-gold.svg') }}" alt="Rating" class="w-[110px] h-[10px] sm:w-[168px] sm:h-[16px]">
                                     <span class="text-gray-400 font-montserrat font-black sm:font-normal text-[10px] sm:text-[14px] ml-1 sm:ml-2">({{ $product->reviews_count ?? 45 }})</span>
                                 </div>
@@ -256,20 +256,20 @@
         </div>
         
         <!-- Navigation Arrows -->
-        <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+        <div class="swiper-button-next !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+            <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
             </svg>
         </div>
-        <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+        <div class="swiper-button-prev !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+            <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
             </svg>
         </div>
     </div>
     
     <!-- View All Button -->
-    <div class="flex justify-center mt-8">
+    <div class="flex justify-center mt-4 sm:mt-8">
         <a href="{{ route('collections') }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white border border-white transition-colors inline-block shadow-lg">
             View All
         </a>
@@ -280,12 +280,12 @@
 
     <!-- Category Products Sections -->
 @foreach ($categories as $category)
-    <section class="container mx-auto px-1 sm:px-4 py-20 bg-black">
+    <section class="container mx-auto px-1 sm:px-4 py-6 sm:py-20 bg-black">
         <!-- Section Header -->
-        <h2 class="font-montserrat font-black text-[32px] text-white text-center uppercase leading-normal mb-1">
+        <h2 class="font-montserrat font-black text-[14px] sm:text-[32px] text-white text-center uppercase leading-normal mb-0 sm:mb-1">
             {{ $category->title }}
         </h2>
-        <p class="font-montserrat font-medium italic text-[24px] text-white text-center uppercase leading-normal mb-8 md:mb-16">
+        <p class="font-montserrat font-medium italic text-[10px] sm:text-[24px] text-white text-center uppercase leading-normal mb-3 md:mb-16">
             "{{ $category->sub_title ?? 'CATEGORY PRODUCTS' }}"
         </p>
         
@@ -343,20 +343,20 @@
             </div>
             
             <!-- Navigation Arrows -->
-            <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+            <div class="swiper-button-next !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+                <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
                 </svg>
             </div>
-            <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-                <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+            <div class="swiper-button-prev !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+                <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </div>
         </div>
         
         <!-- View All Button -->
-        <div class="flex justify-center mt-8">
+        <div class="flex justify-center mt-4 sm:mt-8">
             <a href="{{ route('collections.show', $category->slug) }}" class="bg-white text-black px-8 py-3 rounded-full font-montserrat font-semibold text-sm uppercase hover:bg-black hover:text-white border border-white transition-colors inline-block shadow-lg">
                 View All
             </a>

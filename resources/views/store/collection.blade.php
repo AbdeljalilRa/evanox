@@ -6,7 +6,7 @@
 <div class="min-h-screen bg-black text-white">
 
     <!-- Breadcrumb -->
-    <div class="px-[13px] md:px-[49px] pt-10 md:pt-16 pb-4">
+    <div class="px-[13px] md:px-[49px] pt-3 md:pt-16 pb-1">
         <p class="font-montserrat font-normal text-white text-[10px] md:text-[20px] leading-normal">
             <span class="underline">HOME&#9654; COLLECTION &#9654; {{ strtoupper($category->title) }} .</span>
             @if($category->sub_title)
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Collection Title Section -->
-    <div class="text-center pt-8 md:pt-16 pb-6 md:pb-12 px-4 md:px-8">
+    <div class="text-center pt-2 md:pt-16 pb-2 md:pb-12 px-4 md:px-8">
         <h2 class="font-montserrat font-black text-white text-[14px] md:text-[32px] uppercase tracking-wider mb-2 md:mb-4">
             {{ strtoupper($category->title) }}
         </h2>
@@ -28,14 +28,14 @@
     </div>
 
     <!-- Products Grid -->
-    <div class="px-1 md:px-4 pb-8 md:pb-16">
+    <div class="px-1 md:px-4 pb-2 md:pb-16">
         @if($products->count() > 0)
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-6 md:gap-y-12">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-6 gap-y-2 md:gap-y-12">
                 @foreach($products as $product)
                     <a href="{{ route('store.show', $product->slug) }}" class="block">
                         <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px] transition-all duration-300 hover:brightness-110 hover:-translate-y-1">
                             <!-- Product Image -->
-                            <div class="w-[271px] h-[237px] -ml-[35px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+                            <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                                 @if ($product->images && $product->images->count() > 0)
                                     <img src="{{ Storage::disk('s3')->temporaryUrl($product->images->first()->image_path, now()->addMinutes(5)) }}"
                                         alt="{{ $product->title }}" class="w-full h-full object-cover rounded-lg">
@@ -49,7 +49,7 @@
                             </div>
 
                             <!-- Product Info -->
-                            <div class="pt-2 md:pt-4">
+                            <div class="pt-1 md:pt-4">
                                 <h3 class="w-[176px] md:w-[318px] font-montserrat font-medium text-[11px] md:text-[20px] leading-[14px] md:leading-[24px] text-white uppercase mb-1 md:mb-2">
                                     {{ $product->title }}
                                 </h3>
@@ -71,7 +71,7 @@
 
             <!-- Pagination -->
             @if($products->hasPages())
-                <div class="flex items-center justify-center gap-3 md:gap-4 pb-12 md:pb-20 pt-8 md:pt-12">
+                <div class="flex items-center justify-center gap-3 md:gap-4 pb-6 md:pb-20 pt-1 md:pt-12">
                     <!-- Left Arrow -->
                     @if($products->onFirstPage())
                         <span class="opacity-30">

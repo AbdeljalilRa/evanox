@@ -6,7 +6,7 @@
 <div class="min-h-screen bg-black text-white">
 
     <!-- Breadcrumb -->
-    <div class="px-[13px] md:px-[49px] pt-10 md:pt-16 pb-4">
+    <div class="px-[13px] md:px-[49px] pt-3 md:pt-16 pb-1">
         <p class="font-montserrat font-normal text-white text-[10px] md:text-[20px] leading-normal">
             <span class="underline">HOME&#9654; COLLECTION &#9654; EYE CONTACT HIP HOP ICONS .</span>
             <span class="underline italic">&ldquo;Legends Framed in a Single Glance.&rdquo;</span>
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Collection Title Section -->
-    <div class="text-center pt-8 md:pt-16 pb-6 md:pb-12 px-4 md:px-8">
+    <div class="text-center pt-2 md:pt-16 pb-2 md:pb-12 px-4 md:px-8">
         <h2 class="font-montserrat font-black text-white text-[14px] md:text-[32px] uppercase tracking-wider mb-2 md:mb-4">
             EYE CONTACT: HIP-HOP ICONS
         </h2>
@@ -24,12 +24,12 @@
     </div>
 
     <!-- Products Grid -->
-    <div class="px-1 md:px-4 pb-8 md:pb-16">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-6 md:gap-y-12">
+    <div class="px-1 md:px-4 pb-2 md:pb-16">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-6 gap-y-2 md:gap-y-12">
 
             <!-- Product 1 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/21 savage.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -47,8 +47,8 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/ce ntrel cee. box2.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -66,8 +66,8 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/BOX FACE.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -85,8 +85,8 @@
             </div>
 
             <!-- Product 4 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/big face fifty cent BOX.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -104,8 +104,8 @@
             </div>
 
             <!-- Product 5 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/BIG FACE FUTURE.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -123,8 +123,8 @@
             </div>
 
             <!-- Product 6 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/young BOX.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -142,8 +142,8 @@
             </div>
 
             <!-- Product 7 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/box scarface2.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -161,8 +161,8 @@
             </div>
 
             <!-- Product 8 -->
-            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[30px] md:pl-[52px]">
-                <div class="w-[271px] h-[237px] -ml-[57px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
+            <div class="group cursor-pointer overflow-hidden rounded-lg pl-[22px] md:pl-[52px]">
+                <div class="w-[271px] h-[237px] -ml-[49px] md:w-[482px] md:h-[422px] md:-ml-[95px]">
                     <img src="{{ asset('images/west bopx.png') }}" alt="Exclusive Design" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="pt-1 md:pt-4">
@@ -183,7 +183,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="flex items-center justify-center gap-3 md:gap-4 pb-12 md:pb-20 pt-4 md:pt-8">
+    <div class="flex items-center justify-center gap-3 md:gap-4 pb-6 md:pb-20 pt-1 md:pt-8">
         <!-- Left Arrow -->
         <button class="text-white hover:text-gray-300 transition-colors">
             <svg class="w-[23px] h-[8px] md:w-[40px] md:h-[8px]" viewBox="0 0 40 8" fill="none" xmlns="http://www.w3.org/2000/svg">
