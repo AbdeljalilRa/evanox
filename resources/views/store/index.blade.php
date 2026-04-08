@@ -174,7 +174,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex justify-center items-center pt-[70px] pb-[120px] px-4">
+    <main class="flex justify-center items-center pt-[70px] pb-[30px] sm:pb-[120px] px-4">
     <div class="relative w-full max-w-[1162px]">
         <!-- Hero Section as PNG Image - Responsive -->
         <div class="relative">
