@@ -114,6 +114,16 @@
                 </div>
             </li>
 
+            <!-- Orders -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:cart-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Orders </span>
+                </a>
+            </li>
+
 
             <!-- Users -->
             <li class="menu-title mt-2">Users</li>
