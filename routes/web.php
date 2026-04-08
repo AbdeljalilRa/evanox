@@ -29,7 +29,8 @@ Route::middleware(CheckStoreStatus::class)->group(function () {
 
     // Collections page
     Route::get('/collections', fn() => view('store.collections'))->name('collections');
-
+    Route::get('/collections/{slug}', [StoreController::class, 'showCollection'])->name('collections.show');
+    
     // Drop page
     Route::get('/drop', fn() => view('store.drop'))->name('drop');
 

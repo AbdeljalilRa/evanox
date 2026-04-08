@@ -116,7 +116,7 @@ class EvanoxShoppingBag {
         
         this.saveBagItems();
         this.updateBagUI();
-        this.showAddedToBagMessage(product.name);
+        this.showAddedToCartPopup(product);
     }
     
     removeItem(id) {
@@ -281,28 +281,67 @@ class EvanoxShoppingBag {
         localStorage.setItem('evanoxBagItems', JSON.stringify(this.items));
     }
     
-    showAddedToBagMessage(productName) {
-        // Remove any existing message
-        const existingMessage = document.querySelector('.add-to-bag-animation');
-        if (existingMessage) {
-            existingMessage.remove();
+    showAddedToCartPopup(product) {
+        // Remove any existing popup
+        const existingOverlay = document.querySelector('.added-to-cart-overlay');
+        if (existingOverlay) {
+            existingOverlay.remove();
         }
-        
-        // Create message element
-        const message = document.createElement('div');
-        message.className = 'add-to-bag-animation';
-        message.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span>Added to bag</span>
+
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'added-to-cart-overlay';
+
+        overlay.innerHTML = `
+            <div class="added-to-cart-popup">
+                <!-- Header -->
+                <div class="added-to-cart-header">
+                    <svg width="34" height="39" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="17" cy="19.5" r="16" stroke="white" stroke-width="2"/>
+                        <path d="M10 19.5L15 24.5L24 14.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="added-to-cart-title">Product Added To Cart</span>
+                </div>
+                <!-- Product Info -->
+                <div class="added-to-cart-product">
+                    <img src="${product.image}" alt="${product.name}" class="added-to-cart-product-img">
+                    <div class="added-to-cart-product-details">
+                        <p class="added-to-cart-product-name">${product.name}</p>
+                        <p class="added-to-cart-product-price">${product.price} USD</p>
+                        <div class="added-to-cart-rating">
+                            <img src="/images/stars-rating-gold.svg" alt="Rating" class="added-to-cart-stars">
+                            <span class="added-to-cart-rating-count">(45)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <button class="added-to-cart-btn view-bag-btn">view bag</button>
+                <button class="added-to-cart-btn checkout-btn">check out</button>
+                <!-- Copyright -->
+                <p class="added-to-cart-copyright">&copy; 2026 EVANOX. All Rights Reserved.</p>
+            </div>
         `;
-        
-        // Add to body and remove after animation
-        document.body.appendChild(message);
-        setTimeout(() => {
-            message.remove();
-        }, 3000);
+
+        document.body.appendChild(overlay);
+
+        // Close on overlay click (outside popup)
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.remove();
+            }
+        });
+
+        // View Bag button
+        overlay.querySelector('.view-bag-btn').addEventListener('click', () => {
+            overlay.remove();
+            this.openBag();
+        });
+
+        // Check Out button
+        overlay.querySelector('.checkout-btn').addEventListener('click', () => {
+            overlay.remove();
+            this.proceedToCheckout();
+        });
     }
 }
 
