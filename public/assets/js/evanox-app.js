@@ -74,6 +74,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Collections dropdown functionality (Desktop)
+    const collectionsButton = document.getElementById('collections-button');
+    const collectionsMenu = document.getElementById('collections-menu');
+    const collectionsArrow = document.getElementById('collections-arrow');
+    
+    if (collectionsButton && collectionsMenu) {
+        collectionsButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            
+            if (collectionsMenu.classList.contains('opacity-0')) {
+                // Show menu
+                collectionsMenu.classList.remove('opacity-0', 'invisible', 'scale-95');
+                collectionsMenu.classList.add('opacity-100', 'visible', 'scale-100');
+                collectionsArrow.classList.add('rotate-180');
+            } else {
+                // Hide menu
+                collectionsMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                collectionsMenu.classList.remove('opacity-100', 'visible', 'scale-100');
+                collectionsArrow.classList.remove('rotate-180');
+            }
+        });
+        
+        // Close collections menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!collectionsButton.contains(e.target) && !collectionsMenu.contains(e.target)) {
+                collectionsMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+                collectionsMenu.classList.remove('opacity-100', 'visible', 'scale-100');
+                collectionsArrow.classList.remove('rotate-180');
+            }
+        });
+    }
+
+    // Collections dropdown functionality (Mobile)
+    const mobileCollectionsButton = document.getElementById('mobile-collections-button');
+    const mobileCollectionsMenu = document.getElementById('mobile-collections-menu');
+    const mobileCollectionsArrow = document.getElementById('mobile-collections-arrow');
+    
+    if (mobileCollectionsButton && mobileCollectionsMenu) {
+        mobileCollectionsButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            
+            if (mobileCollectionsMenu.classList.contains('hidden')) {
+                mobileCollectionsMenu.classList.remove('hidden');
+                mobileCollectionsArrow.classList.add('rotate-180');
+            } else {
+                mobileCollectionsMenu.classList.add('hidden');
+                mobileCollectionsArrow.classList.remove('rotate-180');
+            }
+        });
+    }
+
     // Header scroll effect
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;

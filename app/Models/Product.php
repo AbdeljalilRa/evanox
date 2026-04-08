@@ -48,6 +48,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id');
@@ -62,25 +67,55 @@ class Product extends Model
         return $this->price;
     }
 
-
-
-   
-    // Accessor for gallery images URLs
-    public function getGalleryUrlsAttribute()
-{
-    return $this->images->map(function ($image) {
-        $cacheKey = 'product_image_temp_url_' . $image->id;
-        return Cache::remember($cacheKey, 60, function () use ($image) {
-            if ($image->image_path && strlen($image->image_path) > 0) {
+    /**
+     * Get the primary image URL for the product.
+     *
+     * Returns the first gallery image URL, or a default image if none exists.
+     * Uses caching to avoid excessive S3 API calls.
+     *
+     * @return string
+     */
+    public function getImageUrlAttribute()
+    {
+        // Try to get first gallery image
+        if ($this->relationLoaded('images') && $this->images->isNotEmpty()) {
+            $firstImage = $this->images->first();
+            if ($firstImage->image_path && strlen($firstImage->image_path) > 0) {
+                $cacheKey = 'product_image_url_' . $this->id . '_' . $firstImage->id;
                 try {
-                    $disk = Storage::disk('s3');
-                    return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+                    return Cache::remember($cacheKey, now()->addMinutes(60), function () use ($firstImage) {
+                        $disk = Storage::disk('s3');
+                        return $disk->temporaryUrl($firstImage->image_path, now()->addMinutes(5));
+                    });
                 } catch (\Exception $e) {
                     return asset('images/no-image.png');
                 }
             }
-            return asset('images/no-image.png');
+        }
+
+        // Fallback to default image
+        return asset('images/no-image.png');
+    }
+
+
+
+
+    // Accessor for gallery images URLs
+    public function getGalleryUrlsAttribute()
+    {
+        return $this->images->map(function ($image) {
+            $cacheKey = 'product_image_temp_url_' . $image->id;
+            return Cache::remember($cacheKey, 60, function () use ($image) {
+                if ($image->image_path && strlen($image->image_path) > 0) {
+                    try {
+                        $disk = Storage::disk('s3');
+                        return $disk->temporaryUrl($image->image_path, now()->addMinutes(5));
+                    } catch (\Exception $e) {
+                        return asset('images/no-image.png');
+                    }
+                }
+                return asset('images/no-image.png');
+            });
         });
-    });
-}
+    }
 }

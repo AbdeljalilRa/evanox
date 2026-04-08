@@ -1,6 +1,6 @@
 <div class="main-nav">
     <!-- Sidebar Logo -->
-     <div class="logo-box">
+    {{-- <div class="logo-box">
         <a href="{{ route('admin.dashboard') }}" class="logo-dark">
             <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
             <img src="{{ asset('assets/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
@@ -10,7 +10,7 @@
             <img src="{{ asset('assets/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
             <img src="{{ asset('assets/images/logo-light.png') }}" class="logo-lg" alt="logo light">
         </a>
-    </div>
+    </div> --}}
 
 
 
@@ -93,6 +93,38 @@
                 </div>
             </li>
 
+            <!-- Collections -->
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarCollections" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="sidebarCollections">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:folder-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Collections </span>
+                </a>
+                <div class="collapse" id="sidebarCollections">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('admin.collections.index') }}">List</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <a class="sub-nav-link" href="{{ route('admin.collections.create') }}">Create</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Orders -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="mdi:cart-outline" class="fs-20"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Orders </span>
+                </a>
+            </li>
+
+
             <!-- Users -->
             <li class="menu-title mt-2">Users</li>
 
@@ -135,14 +167,14 @@
             </li>
 
             <!-- Store Settings -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span class="nav-icon">
                         <iconify-icon icon="mdi:cog-outline" class="fs-20"></iconify-icon>
                     </span>
                     <span class="nav-text"> Store Settings </span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-title mt-2">Other</li>
 

@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Swiper for products showcase
     if (typeof Swiper !== 'undefined') {
         new Swiper('.product-slider', {
-            slidesPerView: 1,
+            slidesPerView: 2,
             spaceBetween: 10,
             loop: true,
             autoplay: {

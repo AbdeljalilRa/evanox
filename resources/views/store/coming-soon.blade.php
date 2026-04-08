@@ -2,37 +2,33 @@
 
 @section('title', 'EVANOX - The Drop')
 
-@push('scripts')
-    <script src="{{ asset('assets/js/drop2.js') }}"></script>
-@endpush
-
 @section('content')
 <!-- Coming Soon Sliding Banner -->
-<div id="comingSoonBanner" class="fixed top-0 left-0 w-full bg-black text-white py-3 px-4 z-50 overflow-hidden">
-    <div class="flex items-center justify-center">
-        <div id="slidingText" class="flex whitespace-nowrap animate-pulse">
-            <span class="font-bold text-lg mr-16 font-neue">COMING SOON</span>
-        </div>
+<div class="fixed top-0 left-0 w-full bg-black text-white py-3 z-50 overflow-hidden">
+    <div class="flex whitespace-nowrap animate-marquee">
+        @for ($i = 0; $i < 16; $i++)
+            <span class="font-bold italic uppercase text-[14px] md:text-[20px] mx-6 md:mx-8" style="font-family: 'Montserrat', sans-serif;">COMING SOON</span>
+        @endfor
     </div>
 </div>
 
-<div class="flex flex-col items-center justify-center h-screen overflow-hidden pt-16 bg-black">
+<div class="flex flex-col items-center justify-center min-h-screen bg-black pt-16 md:pt-20">
 
-    <!-- Lamp -->
-    <div class="relative z-10">
-        <div class="flex justify-center">
-            <img src="{{ asset('images/LAMP.png') }}" alt="Lamp" class="w-48 h-auto">
+    <!-- Lamp + Logo -->
+    <div class="relative mb-0">
+        <div class="relative flex justify-center" style="z-index: 10;">
+            <img src="{{ asset('images/LAMP.png') }}" alt="Lamp" class="w-[380px] md:w-[422px] h-auto">
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center" style="z-index: 20;">
+            <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-[132px] md:w-[146px] h-auto mt-4">
         </div>
     </div>
 
-    <!-- Logo -->
-    <div class="mb-5 flex justify-center -mt-12 relative z-20">
-        <img src="{{ asset('images/svg.png') }}" alt="EVANOX Logo" class="w-48 h-auto">
-    </div>
-
-    <!-- Sign Up Form -->
-    <div class="text-center mb-5 w-full max-w-md px-4 relative z-30">
-        <h2 class="text-white font-bold text-lg mb-4 font-neue">SIGN UP FOR ACCESS</h2>
+    <!-- Sign Up Section -->
+    <div class="text-center -mt-8 md:-mt-12 w-full max-w-[412px] px-6 relative z-30">
+        <h2 class="font-black uppercase text-[14px] md:text-[17px] text-white mb-4" style="font-family: 'Montserrat', sans-serif; letter-spacing: -0.34px;">
+            SIGN UP FOR ACCESS
+        </h2>
 
         @if(session('success'))
             <p class="text-green-400 mb-3">{{ session('success') }}</p>
@@ -43,18 +39,20 @@
 
         <!-- Email Form -->
         <div id="emailOnlyForm" style="display: block;">
-            <form method="POST" action="{{ route('comingsoon.request') }}" class="flex items-center mb-3">
+            <form method="POST" action="{{ route('comingsoon.request') }}" class="flex items-center bg-white rounded-[45px] h-[48px] md:h-[57px] overflow-hidden">
                 @csrf
-                <input 
-                    type="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    name="email"
                     placeholder="Email"
                     required
-                    class="flex-1 px-4 py-2.5 rounded-l-full bg-white text-black placeholder-gray-500 outline-none"
+                    class="flex-1 px-6 h-full bg-transparent text-black placeholder-[#5d5a5a] outline-none capitalize font-light text-[14px] md:text-[16px]"
+                    style="font-family: 'Montserrat', sans-serif;"
                 >
-                <button 
-                    type="submit" 
-                    class="px-6 py-2.5 bg-white text-black font-bold rounded-r-full hover:bg-gray-100 transition"
+                <button
+                    type="submit"
+                    class="px-6 h-full font-bold italic uppercase text-[14px] md:text-[16px] text-black tracking-[1.44px]"
+                    style="font-family: 'Montserrat', sans-serif;"
                 >
                     JOIN
                 </button>
@@ -62,35 +60,39 @@
         </div>
 
         <!-- Toggle Password Button -->
-        <button 
-            type="button" 
+        <button
+            type="button"
             id="togglePasswordBtn"
-            class="text-white underline hover:opacity-75 transition mt-2"
+            class="capitalize font-medium text-white text-[14px] md:text-[17px] tracking-[1.19px] mt-4 hover:opacity-75 transition-opacity"
+            style="font-family: 'Montserrat', sans-serif;"
         >
             Enter Using Password
         </button>
 
         <!-- Password Form -->
-        <div id="passwordForm" style="display: none;" class="mt-3">
-            <form method="POST" action="{{ route('comingsoon.enter') }}">
+        <div id="passwordForm" style="display: none;" class="mt-4">
+            <form method="POST" action="{{ route('comingsoon.enter') }}" class="space-y-3">
                 @csrf
-                <input 
-                    type="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    name="email"
                     placeholder="Enter your Email"
                     required
-                    class="w-full px-4 py-2.5 rounded-full bg-white text-black placeholder-gray-500 outline-none mb-3"
+                    class="w-full px-6 py-3 rounded-[45px] bg-white text-black placeholder-[#5d5a5a] outline-none text-[14px] md:text-[16px]"
+                    style="font-family: 'Montserrat', sans-serif;"
                 >
-                <input 
-                    type="password" 
-                    name="password" 
+                <input
+                    type="password"
+                    name="password"
                     placeholder="Enter Password"
                     required
-                    class="w-full px-4 py-2.5 rounded-full bg-white text-black placeholder-gray-500 outline-none mb-3"
+                    class="w-full px-6 py-3 rounded-[45px] bg-white text-black placeholder-[#5d5a5a] outline-none text-[14px] md:text-[16px]"
+                    style="font-family: 'Montserrat', sans-serif;"
                 >
-                <button 
-                    type="submit" 
-                    class="w-full px-4 py-2.5 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition"
+                <button
+                    type="submit"
+                    class="w-full px-6 py-3 bg-white text-black font-bold italic uppercase rounded-[45px] text-[14px] md:text-[16px] tracking-[1.44px] hover:bg-gray-100 transition"
+                    style="font-family: 'Montserrat', sans-serif;"
                 >
                     ENTER
                 </button>
@@ -98,49 +100,67 @@
         </div>
     </div>
 
-    <!-- Socials -->
-    <div class="flex justify-center space-x-4 mb-6 relative z-20">
-        <a href="#" class="text-white hover:opacity-75"><i class="fab fa-instagram w-5 h-5"></i></a>
-        <a href="#" class="text-white hover:opacity-75"><i class="fab fa-whatsapp w-5 h-5"></i></a>
-        <a href="#" class="text-white hover:opacity-75"><i class="fab fa-tiktok w-5 h-5"></i></a>
-        <a href="#" class="text-white hover:opacity-75"><i class="fab fa-x-twitter w-5 h-5"></i></a>
+    <!-- Social Media Icons -->
+    <div class="flex justify-center items-center space-x-5 md:space-x-6 mt-4 mb-16 md:mb-20">
+        <a href="#" class="hover:opacity-75 transition-opacity">
+            <img src="{{ asset('assets/images/social/instagram.svg') }}" alt="Instagram" class="w-[19px] h-[19px] md:w-[22px] md:h-[22px]">
+        </a>
+        <a href="#" class="hover:opacity-75 transition-opacity">
+            <img src="{{ asset('assets/images/social/whatsapp.svg') }}" alt="WhatsApp" class="w-[22px] h-[22px] md:w-[26px] md:h-[26px]">
+        </a>
+        <a href="#" class="hover:opacity-75 transition-opacity">
+            <img src="{{ asset('assets/images/social/tiktok.svg') }}" alt="TikTok" class="w-[17px] h-[21px] md:w-[20px] md:h-[25px]">
+        </a>
+        <a href="#" class="hover:opacity-75 transition-opacity">
+            <img src="{{ asset('assets/images/social/x.svg') }}" alt="X" class="w-[21px] h-[19px] md:w-[25px] md:h-[22px]">
+        </a>
     </div>
 
-    <!-- Footer -->
-    <div class="text-center mb-4 relative z-20">
-        <p class="text-white font-black text-base mb-1">PRESSURE. VISION. LEGACY.</p>
-        <p class="text-white font-bold text-sm">ONLY 100 LICENCE</p>
-    </div>
-    <div class="text-center relative z-20">
-        <p class="text-white text-xs font-satoshi">© 2025 EVANOX. All rights Reserved</p>
+    <!-- Tagline and License -->
+    <div class="text-center mb-8">
+        <p class="capitalize font-black text-white text-[14px] md:text-[17px]" style="font-family: 'Montserrat', sans-serif;">
+            Pressure. Vision. Legacy.
+        </p>
+        <p class="capitalize font-black text-white text-[14px] md:text-[17px]" style="font-family: 'Montserrat', sans-serif;">
+            only 100 licence
+        </p>
     </div>
 
+    <!-- Copyright -->
+    <div class="text-center mb-4">
+        <p class="text-white uppercase text-[9.5px] md:text-[18px] tracking-[1.425px] md:tracking-[2.7px]" style="font-family: 'Satoshi', sans-serif; font-weight: 400;">
+            © {{ now()->year }} EVANOX. All Rights Reserved.
+        </p>
+    </div>
 </div>
 
-<!-- Simple JavaScript toggle without dependencies -->
+@push('styles')
+<style>
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+    animation: marquee 15s linear infinite;
+}
+</style>
+@endpush
+
+<!-- Toggle Password Form -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Wait for DOM to be fully loaded
     var toggleBtn = document.getElementById('togglePasswordBtn');
     var emailForm = document.getElementById('emailOnlyForm');
     var passwordForm = document.getElementById('passwordForm');
-    
-    // Check if elements exist
-    if (!toggleBtn || !emailForm || !passwordForm) {
-        console.error('Required elements not found!');
-        return;
-    }
-    
-    // Add click handler
+
+    if (!toggleBtn || !emailForm || !passwordForm) return;
+
     toggleBtn.addEventListener('click', function() {
-        // Toggle visibility
         if (passwordForm.style.display === 'none') {
-            // Show password form, hide email form
             passwordForm.style.display = 'block';
             emailForm.style.display = 'none';
             toggleBtn.textContent = 'Hide Password Form';
         } else {
-            // Show email form, hide password form
             passwordForm.style.display = 'none';
             emailForm.style.display = 'block';
             toggleBtn.textContent = 'Enter Using Password';
@@ -148,5 +168,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 @endsection

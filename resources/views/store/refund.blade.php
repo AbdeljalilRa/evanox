@@ -4,241 +4,98 @@
 
 @section('content')
 <div class="min-h-screen bg-black text-white">
-    <div class="container mx-auto px-4 py-16">
-        <!-- Header Section -->
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold mb-8 tracking-wide font-montserrat">
-                REFUND POLICY
+    <div class="px-7 md:px-12 py-10 md:py-16">
+        <!-- Header -->
+        <div class="text-center mb-10 md:mb-16">
+            <h1 class="font-black uppercase text-[16px] md:text-[26px]" style="font-family: 'Montserrat', sans-serif;">
+                Refund Policy
             </h1>
         </div>
 
-        <!-- Content Section -->
-        <div class="max-w-4xl mx-auto">
+        <!-- Content -->
+        <div>
             <!-- Effective Date -->
-            <div class="mb-12">
-                <p class="text-gray-300 text-lg font-nunito italic">
-                    Effective Date: July 25, 2025
-                </p>
-            </div>
+            <p class="capitalize font-semibold italic mb-8 md:mb-12 text-[13.5px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                Effective Date: July 24, 2025
+            </p>
 
-            <!-- Policy Sections -->
-            <div class="space-y-12">
-                
-                <!-- 1. Digital Product Policy -->
+            <!-- Sections -->
+            <div class="space-y-5 md:space-y-7">
+
                 <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">1.</span> Digital Product Policy
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        1. Digital Product Policy
                     </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito mb-4">
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
                         Due to the nature of digital products, all sales made on Evanox are final. Once a digital file has been downloaded or accessed, we are unable to offer refunds, exchanges, or cancellations.
                     </p>
                 </section>
 
-                <!-- 2. Exceptions -->
                 <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">2.</span> Exceptions
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        2. Use of Our Services
                     </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito mb-4">
-                        Refunds may be issued under the following rare conditions:
-                    </p>
-                    <ul class="text-gray-300 leading-relaxed font-nunito space-y-3 ml-4">
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            You were charged multiple times for the same product
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            You received a corrupted or unusable file and support was unable to fix the issue.
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            The product was never delivered or made available for download due to a system error.
-                        </li>
-                    </ul>
-                </section>
-
-                <!-- 3. No Refunds For -->
-                <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">3.</span> No Refunds For
-                    </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito mb-4">
-                        We do not offer refunds for:
-                    </p>
-                    <ul class="text-gray-300 leading-relaxed font-nunito space-y-3 ml-4">
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            Change of mind after purchase
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            Incompatibility with your software (please read compatibility details before purchasing)
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-white mr-3">-</span>
-                            Download issues related to poor internet connection or device limitations
-                        </li>
-                    </ul>
-                </section>
-
-                <!-- 4. Requesting a Refund -->
-                <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">4.</span> Requesting a Refund
-                    </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito mb-4">
-                        To request a refund under exceptional circumstances, please contact us within 7 days of your purchase at: 
-                        <a href="mailto:support@evanox.store" class="text-white hover:text-gray-300 font-bold underline transition-colors duration-300">
-                            support@evanox.store
-                        </a>
-                    </p>
-                    <p class="text-gray-300 leading-relaxed font-nunito">
-                        Include your order number and a detailed description of the issue.
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        You agree to use our services only for lawful purposes and in a way that does not infringe the rights of others or restrict their use of the site. All content you submit must comply with applicable laws and regulations.
                     </p>
                 </section>
 
-                <!-- 5. Chargebacks -->
                 <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">5.</span> Chargebacks
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        3. Intellectual Property
                     </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito">
-                        Initiating a chargeback without first contacting our support team may result in the loss of access to all Evanox products and termination of your license agreement.
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        All designs, logos, products, and content on this site are the intellectual property of Evanox. You may not reproduce, distribute, or exploit any part of our content without express written permission.
                     </p>
                 </section>
 
-                <!-- 6. Contact Us -->
                 <section>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-montserrat text-white">
-                        <span class="text-gray-400">6.</span> Contact Us
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        4. Limited Licenses
                     </h2>
-                    <p class="text-gray-300 leading-relaxed font-nunito">
-                        If you have any questions about this policy, contact our support team: 
-                        <a href="mailto:support@evanox.store" class="text-white hover:text-gray-300 font-bold underline transition-colors duration-300">
-                            support@evanox.store
-                        </a>
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        Each digital design is sold under a limited license (100 max unless otherwise stated). You may use the files for personal or commercial purposes, but redistribution, resale, or modification of the original files is strictly prohibited.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        5. Payments and Refunds
+                    </h2>
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        All payments are processed securely. Due to the nature of digital products, all sales are final and non-refundable unless otherwise stated.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        6. Your Rights
+                    </h2>
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        You have the right to: - Access your personal data - Correct or update your data - Request deletion of your data - Withdraw consent for marketing communications To exercise any of these rights, please contact us at: [Your brand email]
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        7. Changes to the Terms
+                    </h2>
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        We reserve the right to update or change these Terms at any time. Continued use of the site after such changes constitutes your acceptance of the new terms.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="capitalize font-bold italic underline mb-2 text-[13px] md:text-[22px]" style="font-family: 'Montserrat', sans-serif;">
+                        8. Contact Us
+                    </h2>
+                    <p class="capitalize font-semibold text-[11.5px] md:text-[18px]" style="font-family: 'Montserrat', sans-serif; line-height: 1.4;">
+                        If you have any questions about this Terms of Service, you can contact us at: support@evanox.store (or your official email)
                     </p>
                 </section>
 
             </div>
         </div>
     </div>
-
-    
 </div>
 @endsection
-
-@push('styles')
-<style>
-/* Refund Policy specific styles */
-
-/* Numbered sections styling */
-h2 span {
-    font-style: italic;
-}
-
-/* List styling */
-ul li {
-    position: relative;
-}
-
-/* Link hover effects */
-a[href^="mailto"] {
-    transition: all 0.3s ease;
-}
-
-a[href^="mailto"]:hover {
-    text-decoration-color: rgba(255, 255, 255, 0.7);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    
-    /* Header title */
-    h1 {
-        font-size: 2rem !important; /* 32px */
-        line-height: 1.2;
-        margin-bottom: 2rem !important;
-    }
-    
-    /* Effective date */
-    .text-lg {
-        font-size: 0.875rem !important; /* 14px */
-        margin-bottom: 2rem !important;
-    }
-    
-    /* Section headings */
-    h2 {
-        font-size: 1.25rem !important; /* 20px */
-        line-height: 1.4;
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Body text */
-    .text-gray-300 {
-        font-size: 0.875rem !important; /* 14px */
-        line-height: 1.6;
-    }
-    
-    /* Spacing adjustments */
-    .space-y-12 > * + * {
-        margin-top: 2rem !important;
-    }
-    
-    .mb-12 {
-        margin-bottom: 2rem !important;
-    }
-    
-    .mb-16 {
-        margin-bottom: 3rem !important;
-    }
-    
-    /* Footer links */
-    .grid-cols-3 {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    .grid-cols-3 a {
-        font-size: 0.75rem !important; /* 12px */
-    }
-    
-    /* Padding adjustments */
-    .py-16 {
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
-    }
-    
-    /* Max width adjustments */
-    .max-w-4xl {
-        max-width: 100% !important;
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-/* Desktop enhancements */
-@media (min-width: 769px) {
-    /* Better spacing for desktop */
-    .space-y-12 > * + * {
-        margin-top: 3rem;
-    }
-    
-    /* Larger text for better readability */
-    .text-gray-300 {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-    
-    /* Enhanced list spacing */
-    ul.space-y-3 > * + * {
-        margin-top: 0.875rem;
-    }
-}
-</style>
-@endpush
