@@ -256,13 +256,13 @@
         </div>
         
         <!-- Navigation Arrows -->
-        <div class="swiper-button-next !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+        <div class="swiper-button-next !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+            <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
             </svg>
         </div>
-        <div class="swiper-button-prev !bg-white !w-[50px] !h-[50px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center">
-            <svg class="w-[13px] h-[23px]" fill="none" stroke="black" stroke-width="2" viewBox="0 0 24 24">
+        <div class="swiper-button-prev !bg-white !w-[28px] !h-[28px] sm:!w-[42px] sm:!h-[42px] !rounded-full !shadow-lg hover:!shadow-xl !transition-all !duration-300 hover:!scale-110 after:!content-none flex items-center justify-center !top-[118px] sm:!top-[211px]">
+            <svg class="w-[8px] h-[14px] sm:w-[11px] sm:h-[19px]" fill="none" stroke="black" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
             </svg>
         </div>
